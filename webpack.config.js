@@ -28,8 +28,17 @@ module.exports = {
                         modules: true,
                         importLoaders: 1,
                         localIdentName: "[name]_[local]_[hash:base64]",
-                        sourceMap: true,
-                        minimize: true
+                    }
+                }
+            ]
+        },
+        {
+            test: /\.(png|jpe?g|gif|svg)$/i,
+            use: [
+                {
+                    loader: 'url-loader',
+                    options: {
+                        limit: 8192
                     }
                 }
             ]
@@ -38,6 +47,7 @@ module.exports = {
     },
     devServer: {
         contentBase: path.join(__dirname, 'src'),
+        port: 4000
     },
     plugins: [
         new HtmlWebpackPlugin({
