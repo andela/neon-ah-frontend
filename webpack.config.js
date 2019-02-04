@@ -28,14 +28,12 @@ module.exports = {
                         modules: true,
                         importLoaders: 1,
                         localIdentName: "[name]_[local]_[hash:base64]",
-                        sourceMap: true,
-                        minimize: true
                     }
                 }
             ]
         },
         {
-            test: /\.(png|jpg|gif|svg)$/i,
+            test: /\.(png|jpe?g|gif|svg)$/i,
             use: [
                 {
                     loader: 'url-loader',
@@ -44,15 +42,12 @@ module.exports = {
                     }
                 }
             ]
-        },
-        {
-            test: /\.svg$/,
-            loader: 'svg-inline-loader'
         }
         ],
     },
     devServer: {
         contentBase: path.join(__dirname, 'src'),
+        port: 4000
     },
     plugins: [
         new HtmlWebpackPlugin({
