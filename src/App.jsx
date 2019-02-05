@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from 'react-redux';
 import logo from '../public/images/logo.png';
-import  simpleAction  from './Action/testRedux';
+import  simpleAction  from './action/testRedux';
 import sign from '../public/images/welcome.svg';
 import styles from './index.css';
 

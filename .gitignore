@@ -1,4 +1,7 @@
-node_modules/
-package-lock.json
-dist/
+node_modules
+dist
+coverage
+*.snap
+src/__snapshots__/
 .DS_Store
+package-lock.json
