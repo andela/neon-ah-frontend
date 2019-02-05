@@ -1,5 +1,0 @@
-node_modules
-#Ignore dist folder
-dist
-
-.DS_Store

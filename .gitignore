@@ -1,5 +1,7 @@
 node_modules
-#Ignore dist folder
 dist
-
+coverage
+*.snap
+src/__snapshots__/
 .DS_Store
+package-lock.json
