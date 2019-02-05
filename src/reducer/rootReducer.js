@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux';
-import placeholderReducer from './placeholderReducer';
+import placeholderReducer from './placeholder';
 
 const reducers = combineReducers({
   placeholderReducer,
