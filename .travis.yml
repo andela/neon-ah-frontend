@@ -1,24 +1,28 @@
 sudo: required
 language: node_js
+
 node_js:
   - 'stable'
-cache:
-directories:
-  - node_modules
 
-script:
-  - npm test -- -u
+cache:
+  directories:
+    - node_modules
 
 env:
   - global:
       - NODE_ENV = test
+      - CC_TEST_REPORTER_ID=92ba1769cf40191d6c2895e1ad98f843d3baeefbc80a3f86bb5351b9dfe8bc82
+
 before_script:
   - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
   - chmod +x ./cc-test-reporter
   - ./cc-test-reporter before-build
 
-after_script:
-  - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
+script:
+  - npm test
 
 after_success:
-  - npm run coverage
+  - npm run test:coverage
+
+after_script:
+  - ./cc-test-reporter after-build -t "lcov" --exit-code $TRAVIS_TEST_RESULT
