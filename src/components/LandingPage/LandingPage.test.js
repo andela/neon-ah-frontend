@@ -1,10 +1,10 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import App from './App.jsx';
+import LandingPage from './LandingPage';
 
-const wrapper = shallow(<App />);
+const wrapper = shallow(<LandingPage />);
 
-describe('<App />', () => {
+describe('<LandingPage />', () => {
 	it('should render successfully', () => {
 		expect(wrapper).toMatchSnapshot();
 	});

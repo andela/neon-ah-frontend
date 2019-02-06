@@ -3,5 +3,6 @@ dist
 coverage
 *.snap
 src/__snapshots__/
+src/components/LandingPage/__snapshots__
 .DS_Store
 package-lock.json

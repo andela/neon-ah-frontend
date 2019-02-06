@@ -2,7 +2,7 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
-	entry: path.join(__dirname, 'src', 'index.js'),
+	entry: path.join(__dirname, 'src', 'index.jsx'),
 	output: {
 		path: path.join(__dirname, 'dist'),
 		filename: 'app.bundle.js'
@@ -27,14 +27,11 @@ module.exports = {
 						loader: 'css-loader',
 						options: {
 							modules: true,
+							importLoaders: 1,
 							localIdentName: '[name]_[local]_[hash:base64]'
 						}
 					}
 				]
-			},
-			{
-				test: /\.scss$/,
-				use: ['style-loader', 'css-loader', 'sass-loader']
 			},
 			{
 				test: /\.(png|jpe?g|gif|svg)$/i,
@@ -51,11 +48,13 @@ module.exports = {
 	},
 	devServer: {
 		contentBase: path.join(__dirname, 'src'),
-		port: 4000
+		port: 4000,
+		historyApiFallback: true
 	},
 	plugins: [
 		new HtmlWebpackPlugin({
 			template: path.join(__dirname, 'src', 'index.html')
 		})
-	]
+	],
+	resolve: { extensions: ['.js', '.jsx'] }
 };
