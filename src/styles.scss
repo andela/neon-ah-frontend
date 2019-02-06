@@ -1,0 +1,11 @@
+$h1-font: normal 24px/1.5 'Open Sans', sans-serif;
+$ah-blue: rgb(54, 168, 244);
+
+div.container {
+  background: #fff;
+  text-align: center;
+  h1 {
+    font: $h1-font;
+    color: $ah-blue;
+  }
+}

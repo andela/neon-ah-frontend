@@ -4,20 +4,12 @@ import logo from '../public/images/logo.png';
 import  simpleAction  from './action/testRedux';
 import sign from '../public/images/welcome.svg';
 import styles from './index.css';
-
-const h1 = {
-    color: 'rgba(0, 0, 0, 1)',
-    padding: '10px',
-    textAlign: 'center'
-}
+import './styles.scss';
 
 const Index = () => {
-    return <div>
-
+    return <div className="container">
         <img src={sign} alt="welcome" className={styles.welcome} />
-        <h1 style={h1}>
-            to
-        </h1>
+            <h1>to</h1>
         <img src={logo} alt="Logo" />
     </div>;
 };
