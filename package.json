@@ -3,9 +3,6 @@
   "version": "1.0.0",
   "description": "A Social platform for the creative at heart",
   "main": "index.js",
-  "engines": {
-    "node": "10.14.1"
-  },
   "scripts": {
     "test": "jest -u",
     "test:coverage": "jest --coverage --colors && cat ./coverage/lcov.info",
@@ -33,9 +30,8 @@
     "react-router-dom": "^4.3.1",
     "redux": "^4.0.1",
     "redux-thunk": "^2.3.0",
-    "webpack": "^4.29.0",
-    "webpack-cli": "^3.2.1",
-    "webpack-dev-server": "^3.1.10"
+    "semantic-ui-css": "^2.4.1",
+    "semantic-ui-react": "^0.85.0"
   },
   "devDependencies": {
     "@babel/cli": "^7.0.0-rc.1",
@@ -52,7 +48,6 @@
     "enzyme-to-json": "^3.3.5",
     "eslint": "^5.3.0",
     "eslint-config-airbnb": "^17.1.0",
-    "eslint-config-prettier": "^4.0.0",
     "eslint-plugin-import": "^2.16.0",
     "eslint-plugin-jsx-a11y": "^6.2.1",
     "eslint-plugin-prettier": "^3.0.1",
@@ -62,18 +57,23 @@
     "jest": "^24.1.0",
     "node-sass": "^4.11.0",
     "prettier": "^1.16.4",
+    "react-test-renderer": "^16.8.1",
     "sass-loader": "^7.1.0",
     "style-loader": "^0.23.1",
     "svg-inline-loader": "^0.8.0",
     "svg-url-loader": "^2.3.2",
-    "url-loader": "^1.1.2"
+    "url-loader": "^1.1.2",
+    "webpack": "^4.29.0",
+    "webpack-cli": "^3.2.1",
+    "webpack-dev-server": "^3.1.10"
   },
   "jest": {
     "clearMocks": true,
     "collectCoverageFrom": [
       "src/**/*.{js,jsx,mjs}",
       "!<rootDir>/node_modules/",
-      "!src/index.js",
+      "!src/index.jsx",
+      "!src/App.jsx",
       "!src/store/index.js"
     ],
     "coverageDirectory": "coverage",

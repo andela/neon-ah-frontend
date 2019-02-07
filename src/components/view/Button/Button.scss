@@ -1,0 +1,46 @@
+@import '../../../styles/variables.scss';
+$cursor: pointer;
+$outline: none !important;
+
+@mixin btn--primary-key {
+	&:hover{
+		cursor: $cursor;
+		background-color: $hoverBlue; 
+	}
+	&:focus {
+		outline: $outline;
+	}
+	font-size: 16px;
+	background-color: $mainBlue;
+	padding: 10px 15px;
+	font-weight: 300;
+	border: none;
+	border-radius: 6px;
+	color: #fff;
+	-webkit-transition: background-color 300ms;
+	transition: background-color 300ms;
+  }
+
+.btn--huge{
+	@include btn--primary-key;
+	padding: 15px 30px 15px 30px;
+}
+.btn--primary {
+	@include btn--primary-key;
+}
+
+
+.btn--default {
+	&:hover{
+		cursor: $cursor; 
+		color: $hoverBlue;
+	}
+	&:focus {
+		outline: $outline;
+	}
+	color: $mainBlue;
+	border: none;
+	background: transparent;
+	-webkit-transition: color 300ms;
+	transition: color 300ms;
+}
