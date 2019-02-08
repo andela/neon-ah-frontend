@@ -32,13 +32,13 @@ describe('Auth Reducer', () => {
   it('should return a new state for failed social login', () => {
     const action = {
       type: USER_LOGIN_FAILURE,
-      payload: 'Login Error'
+      payload: ['Login Error']
     };
 
     const expectedState = {
       isAuthenticated: false,
       roleId: '',
-      loginErrors: [action.payload],
+      loginErrors: [...action.payload],
       isLoading: false
     };
 

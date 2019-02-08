@@ -6,7 +6,7 @@
   "scripts": {
     "test": "jest -u --coverage",
     "test:coverage": "jest --coverage --colors && cat ./coverage/lcov.info",
-    "test:watch": "jest --watch",
+    "test:watch": "jest -u --coverage --watch",
     "heroku-postbuild": "rm -rf ./dist/* && webpack -p",
     "start": "node server.js",
     "dev": "webpack-dev-server  --open --hot",
@@ -32,6 +32,7 @@
     "react": "^16.6.3",
     "react-dom": "^16.6.3",
     "react-helmet": "^5.2.0",
+    "moxios": "^0.4.0",
     "react-redux": "^6.0.0",
     "react-router-dom": "^4.3.1",
     "redux": "^4.0.1",
@@ -51,6 +52,7 @@
     "axios-mock-adapter": "^1.16.0",
     "babel-eslint": "^10.0.1",
     "babel-loader": "^8.0.4",
+    "check-prop-types": "^1.1.2",
     "coveralls": "^3.0.2",
     "css-loader": "^2.1.0",
     "enzyme": "^3.8.0",
@@ -90,7 +92,9 @@
       "!<rootDir>/node_modules/",
       "!src/index.jsx",
       "!src/App.jsx",
-      "!src/store/index.js"
+      "!src/store/index.js",
+      "!/src/utils/axiosSetup.js",
+      "!/src/utils/testUtils.js"
     ],
     "coverageDirectory": "coverage",
     "moduleFileExtensions": [
@@ -119,7 +123,8 @@
       "<rootDir>/node_modules/"
     ],
     "coveragePathIgnorePatterns": [
-      "/src/utils/axiosSetup.js"
+      "/src/utils/axiosSetup.js",
+      "!/src/utils/testUtils.js"
     ],
     "verbose": false
   }

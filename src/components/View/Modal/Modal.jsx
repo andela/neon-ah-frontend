@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { Modal as SemannticModal, Button, Form, Image, Divider, Grid, Icon } from 'semantic-ui-react';
+import LoginComponent from '../LoginForm/LoginForm';
 
 const Modal = ({ triggerEl, type }) => {
   if (type === 'login') {
@@ -12,19 +13,10 @@ const Modal = ({ triggerEl, type }) => {
             <Image centered src="https://res.cloudinary.com/jesseinit/image/upload/v1549611110/neon-ah/Logo.svg" />
             <h2 className="site-modal__header">Log in into Authors Haven</h2>
             <p className="site-modal__subheader">Fill the form to create an account and get started</p>
-            <Form>
-              <Form.Field>
-                <input type="email" required placeholder="Email" />
-              </Form.Field>
-              <Form.Field>
-                <input type="password" required placeholder="Password" />
-              </Form.Field>
-              <Button style={{ backgroundColor: '#2fb5ee', color: '#fff' }} fluid content="Login" />
-            </Form>
-
-            <a href="/forgot-password" className="site-modal__link">
-              Forgot Password?
-            </a>
+            <LoginComponent />
+            <Link to="/forgotpassword">
+              <span className="site-modal__link">Forgot Password?</span>
+            </Link>
 
             <Divider horizontal>Or</Divider>
 

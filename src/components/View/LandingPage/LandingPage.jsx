@@ -1,4 +1,8 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import { Helmet } from 'react-helmet';
+import { Message, Container } from 'semantic-ui-react';
+import PropTypes from 'prop-types';
 import Header from '../Header/Header';
 import LandingPageHeader from '../Header/LandingPageHeader/LandingPageHeader';
 import Footer from '../Footer/LandingPageFooter';
@@ -9,13 +13,20 @@ import tour from '../../../../public/images/tour.svg';
 import post from '../../../../public/images/post.svg';
 import MakeHeaderResponsive from '../Header/MakeHeaderResponsive/MakeHeaderResponsive';
 
-const LandingPage = () => {
+const LandingPage = props => {
+  const { socialLoginErrors } = props;
   return (
     <div>
+      <Helmet title="Home - Authors Haven" />
       <Header>
         <LandingPageHeader />
         <MakeHeaderResponsive />
       </Header>
+      {socialLoginErrors.length ? (
+        <Container>
+          <Message size="small" error list={[...socialLoginErrors]} />
+        </Container>
+      ) : null}
       <section>
         <div className="ui stackable two column grid container landingPageBg">
           <div className="column" />
@@ -93,4 +104,16 @@ const LandingPage = () => {
   );
 };
 
-export default LandingPage;
+LandingPage.propTypes = {
+  socialLoginErrors: PropTypes.oneOfType([PropTypes.array])
+};
+
+LandingPage.defaultProps = {
+  socialLoginErrors: () => {}
+};
+
+const mapStateToProps = state => ({
+  socialLoginErrors: state.auth.loginErrors
+});
+
+export default connect(mapStateToProps)(LandingPage);
