@@ -7,27 +7,13 @@ const Header = ({ children }) => {
       <div className="ui container">
         <div className="header__container">
           <div>
-            <a href="/">
-              <img
-                src="https://res.cloudinary.com/jesseinit/image/upload/v1549829243/neon-ah/Logo.svg"
-                alt="Authors haven logo"
-                className="logo"
-              />
-            </a>
+            <img src={logo} alt="Authors haven logo" className="logo" />
           </div>
           <div>{children}</div>
         </div>
       </div>
     </div>
   );
-};
-
-Header.propTypes = {
-  children: PropTypes.node
-};
-
-Header.defaultProps = {
-  children: null
 };
 
 export default Header;

@@ -1,8 +1,4 @@
-import React from 'react';
-import { connect } from 'react-redux';
-import { Helmet } from 'react-helmet';
-import { Message, Container } from 'semantic-ui-react';
-import PropTypes from 'prop-types';
+import React, { Component } from 'react';
 import Header from '../Header/Header';
 import LandingPageHeader from '../Header/LandingPageHeader/LandingPageHeader';
 import Footer from '../Footer/LandingPageFooter';
