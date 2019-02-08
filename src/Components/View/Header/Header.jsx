@@ -22,12 +22,4 @@ const Header = ({ children }) => {
   );
 };
 
-Header.propTypes = {
-  children: PropTypes.node
-};
-
-Header.defaultProps = {
-  children: null
-};
-
 export default Header;
