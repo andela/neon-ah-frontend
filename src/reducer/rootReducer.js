@@ -1,10 +1,12 @@
 import { combineReducers } from 'redux';
-import sendEmailReducer from './forgotPassword/forgotPassword.reducer';
-import sendPasswordReducer from './forgotPassword/resetPassword.reducer';
+import sendEmailReducer from './forgotPassword/forgotPasswordReducer';
+import sendPasswordReducer from './forgotPassword/resetPasswordReducer';
+import authReducer from './authReducer/authReducer';
 
 const reducers = combineReducers({
   sendEmailReducer,
-  sendPasswordReducer
+  sendPasswordReducer,
+  auth: authReducer
 });
 
 export default reducers;

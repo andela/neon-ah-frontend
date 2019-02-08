@@ -2,34 +2,41 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import Header from '../../view/Header/Header';
-import MakeHeaderResponsive from '../../view/Header/MakeHeaderResponsive/MakeHeaderResponsive';
-import LandingPageHeader from '../../view/Header/LandingPageHeader/LandingPageHeader';
-import './ForgotPasswordForm.scss';
-import EmailSent from '../../view/PasswordReset/EmailSent/EmailSent';
-import * as forgotPasswordActions from '../../../action/forgotPassword/forgotPassword.action';
 import { Form, Button } from 'semantic-ui-react';
+import Header from '../../View/Header/Header';
+import MakeHeaderResponsive from '../../View/Header/MakeHeaderResponsive/MakeHeaderResponsive';
+import LandingPageHeader from '../../View/Header/LandingPageHeader/LandingPageHeader';
+import './ForgotPasswordForm.scss';
+import EmailSent from '../../View/PasswordReset/EmailSent/EmailSent';
+import { forgetPasswordRequest, onEmailSubmit } from '../../../action/forgotPassword/forgotPasswordAction';
 import validateEmail from '../../../utils/emailPasswordValidator';
-import ErrorMessage from '../../view/Message/ErrorMessage';
+import ErrorMessage from '../../View/Message/ErrorMessage';
 
 class ForgotPasswordForm extends Component {
   state = {
-    message: ''
+    message: '',
+    isButtonLoading: false
   };
 
   handleFormSubmit = event => {
     event.preventDefault();
+    this.setState(prevState => ({ ...prevState, isButtonLoading: !prevState.isButtonLoading }));
+    const { forgetPasswordRequest: sendPasswordRecoveryEmail } = this.props;
     const userEmail = this.userEmail.value;
     const error = validateEmail.email(userEmail);
     if (error) {
-      this.setState({ ...this.state, message: error });
+      this.setState(prevState => ({
+        ...prevState,
+        ...{ message: error, isButtonLoading: !prevState.isButtonLoading }
+      }));
+      return;
     }
-    this.props.sendUserEmail(userEmail);
+    sendPasswordRecoveryEmail(userEmail);
   };
 
   render() {
-    const { isEmailSent, onEmailSubmit } = this.props;
-    const { message } = this.state;
+    const { isEmailSent, onEmailSubmit: sendPasswordRecoveryEmail } = this.props;
+    const { message, isButtonLoading } = this.state;
     return (
       <div>
         <Header>
@@ -38,7 +45,12 @@ class ForgotPasswordForm extends Component {
         </Header>
         <section>
           {isEmailSent ? (
-            <EmailSent onFormSubmit={() => onEmailSubmit()} />
+            <EmailSent
+              resetButtonState={() =>
+                this.setState(prevState => ({ ...prevState, isButtonLoading: false, message: '' }))
+              }
+              onFormSubmit={() => sendPasswordRecoveryEmail()}
+            />
           ) : (
             <div className="reset-password-container">
               <div className="align-center">
@@ -55,9 +67,15 @@ class ForgotPasswordForm extends Component {
                   <input ref={input => (this.userEmail = input)} placeholder="Email" type="email" required />
                   {message !== '' ? <ErrorMessage message={message} /> : null}
                 </Form.Field>
-                <Button fluid className="btn--primary" type="submit">
-                  Submit
-                </Button>
+                {isButtonLoading ? (
+                  <Button disabled loading fluid className="btn--primary" type="submit">
+                    Submit
+                  </Button>
+                ) : (
+                  <Button fluid className="btn--primary" type="submit">
+                    Submit
+                  </Button>
+                )}
               </Form>
               <div className="align-center">
                 <p>
@@ -82,16 +100,14 @@ const mapStateToProps = state => {
 };
 
 const mapDispatchToProps = {
-  sendUserEmail: forgotPasswordActions.asyncForgotPasswordApiCall,
-  onEmailSubmit: forgotPasswordActions.onEmailSubmit
+  forgetPasswordRequest,
+  onEmailSubmit
 };
 
 ForgotPasswordForm.propTypes = {
-  errorMessage: PropTypes.string,
-  email: PropTypes.string,
-  isEmailSent: PropTypes.bool,
-  onFormSubmit: PropTypes.func,
-  setEmail: PropTypes.func
+  onEmailSubmit: PropTypes.func.isRequired,
+  forgetPasswordRequest: PropTypes.func.isRequired,
+  isEmailSent: PropTypes.bool
 };
 
 export default connect(
