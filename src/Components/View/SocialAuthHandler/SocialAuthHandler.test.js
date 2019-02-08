@@ -15,7 +15,7 @@ describe('<SocialAuthHandler />', () => {
     'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJlMDA4N2EwNy0xMmEyLTQ2NzctOTM4OS05ZjNlNTA3ZDA1NTYiLCJ1c2VyTmFtZSI6InVzZXIxMDIxODc4Njk5MjY1MjEzNiIsInVzZXJFbWFpbCI6InJlZG9saXZlNUB5YWhvby5jb20iLCJyb2xlSWQiOiIzY2ViNTQ2ZS0wNTRkLTRjMWQtODg2MC1lMjdjMjA5ZDRhZTMiLCJpYXQiOjE1NDk4MDgwNDEsImV4cCI6MTU4MTM2NTY0MX0.r3XFqcSA1y3hzxQzlm54P5Cz_7wtXU5ITbUECXH3yZY';
 
   const props = {
-    history: { push: () => {} },
+    history: { push: jest.fn() },
     location: {
       search: `?token=${returnedToken}`
     },

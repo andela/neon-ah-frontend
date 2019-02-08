@@ -2,10 +2,8 @@ const mockData = {
   authResponse: {
     status: 'success',
     data: {
-      data: {
-        statusCode: '200',
-        message: 'Kindly check your mail to reset your password'
-      }
+      statusCode: '200',
+      message: 'Kindly check your mail to reset your password'
     }
   },
   forgotPasswordData: {
