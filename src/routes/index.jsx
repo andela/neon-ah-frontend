@@ -10,11 +10,13 @@ import ConfirmPage from '../Components/View/ConfirmationPage/ConfirmationPage';
 import SearchFunctionality from '../Components/Container/SearchFunctionality/SearchFunctionality';
 import CreateArticleDefault from '../Components/View/CreateArticle/CreateArticle';
 import AuthenticatedRoute from '../Components/Container/ProtectedRoute/ProtectedRoute';
+import SingleArticle from '../Components/Container/SingleArticle/SingleArticle';
 import Home from '../Components/Container/Home/Home';
 
 const Routes = () => (
   <Router>
     <Switch>
+      <Route path="/articles/read/:slug" component={SingleArticle} />
       <Route path="/search" component={SearchFunctionality} exact />
       <Route path="/reset-password/:token" component={ResetPasswordForm} />
       <Route path="/forgot-password" component={ForgotPasswordForm} exact />

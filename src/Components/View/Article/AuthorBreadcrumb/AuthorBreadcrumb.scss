@@ -1,0 +1,47 @@
+.ui.tiny.image {
+  width: 60px;
+  height: auto;
+}
+
+#articleDetails {
+  padding: 0 -1em;
+  margin: 0 -4em;
+}
+
+.ui.button.tiny.ui.primary.basic {
+  background: #2fb5ee;
+  padding: 5px 15px;
+  font-size: 12px;
+
+  color: #ffffff;
+}
+
+.ui.button.tiny.ui.primary.basic:hover {
+  background: #2fb5ee;
+  padding: 5px 15px;
+  font-size: 12px;
+
+  color: #2fb5ee;
+}
+
+@media only screen and (max-width: 768px) {
+  .ui.tiny.image {
+    width: 50px;
+    height: auto;
+    margin: 0 -4em;
+  }
+
+  #articleDetails {
+    padding: 0 -1em;
+    margin: 0 -3em;
+  }
+
+  .ui.button.tiny.ui.primary.basic {
+    background: #2fb5ee;
+    padding: 5px 15px;
+    font-size: 12px;
+    margin-left: 3em;
+
+    color: #ffffff;
+  }
+}

@@ -1,0 +1,18 @@
+.ui.star.huge.rating .active.icon:before {
+  color: #2fb5ee !important;
+  background: none;
+  border: none;
+}
+
+.icon.selected,
+.ui.star.huge.rating .icon.selected.active,
+.ui.star.huge.rating .icon.selected:hover {
+  color: #2fb5ee !important;
+  background: none !important;
+  border: none !important;
+}
+
+.ui.star.rating .active.icon {
+  color: #2fb5ee !important;
+  text-shadow: none !important;
+}
