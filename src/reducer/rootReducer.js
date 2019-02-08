@@ -1,8 +1,10 @@
 import { combineReducers } from 'redux';
-import placeholderReducer from './placeholderReducer';
+import sendEmailReducer from './forgotPassword/forgotPassword.reducer';
+import sendPasswordReducer from './forgotPassword/resetPassword.reducer';
 
 const reducers = combineReducers({
-  placeholderReducer
+  sendEmailReducer,
+  sendPasswordReducer
 });
 
 export default reducers;
