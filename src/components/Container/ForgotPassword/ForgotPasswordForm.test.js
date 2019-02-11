@@ -7,7 +7,7 @@ import { MemoryRouter } from 'react-router';
 describe('Render ForgotPasswordForm ', () => {
   const wrapper = shallow(<ForgotPasswordForm />);
 
-  it('should render succesfully', () => {
+  it('should render successfully', () => {
     expect(wrapper).toMatchSnapshot();
   });
 });
@@ -21,6 +21,13 @@ describe('ForgotPasswordForm', () => {
       return {
         sendEmailReducer: {
           isEmailSent: false
+        },
+        signUpReducer: {
+          isLoading: false,
+          signUpCompleted: false,
+          hasSignUpError: false,
+          signUpError: null,
+          message: null
         }
       };
     },

@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-wrap-multilines */
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Dropdown } from 'semantic-ui-react';
@@ -10,7 +11,7 @@ const MakeHeaderResponsive = () => {
         <Dropdown.Menu>
           <Dropdown.Item text={<Link to="/search">Search</Link>} />
           <Modal type="login" triggerEl={<Dropdown.Item text="Login" />} />
-          <Dropdown.Item text={<Link to="/signup">Sign Up</Link>} />
+          <Modal triggerEl={<Dropdown.Item text="Sign Up" />} />
         </Dropdown.Menu>
       </Dropdown>
     </div>

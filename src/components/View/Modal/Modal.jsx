@@ -1,8 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Modal as SemannticModal, Button, Image, Divider, Grid, Icon } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
-import { Modal as SemannticModal, Button, Form, Image, Divider, Grid, Icon } from 'semantic-ui-react';
 import LoginComponent from '../LoginForm/LoginForm';
+import SignUpComponent from '../SignUp/SignUp';
 
 const Modal = ({ triggerEl, type }) => {
   if (type === 'login') {
@@ -82,7 +83,7 @@ const Modal = ({ triggerEl, type }) => {
       </SemannticModal>
     );
   }
-  return <h1>Signup Modal</h1>;
+  return <SignUpComponent triggerEl={triggerEl} />;
 };
 
 Modal.propTypes = {

@@ -9,9 +9,16 @@ import ResetPasswordForm from './ResetPasswordForm';
 const sendPasswordReducer = {
   message: {}
 };
+const signUpReducer = {
+  isLoading: false,
+  signUpCompleted: false,
+  hasSignUpError: false,
+  signUpError: null,
+  message: null
+} 
 const mockStore = configureMockStore([thunk]);
 
-const store = mockStore({ sendPasswordReducer });
+const store = mockStore({ sendPasswordReducer, signUpReducer });
 
 describe('<ResetPasswordForm />', () => {
   it('should render succesfully', () => {

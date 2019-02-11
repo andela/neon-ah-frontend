@@ -7,6 +7,7 @@ import Header from '../Header/Header';
 import LandingPageHeader from '../Header/LandingPageHeader/LandingPageHeader';
 import Footer from '../Footer/LandingPageFooter';
 import Button from '../Button/Button';
+import Modal from '../Modal/Modal';
 import './LandingPage.scss';
 import leaf from '../../../../public/images/leaf.svg';
 import tour from '../../../../public/images/tour.svg';
@@ -96,7 +97,7 @@ const LandingPage = props => {
       <section>
         <div className="ui container call-to-action">
           <h1>Become a member today!</h1>
-          <Button content="Sign up" className="btn--huge" />
+          <Modal triggerEl={<Button content="Sign up" className="btn--huge" />} />
         </div>
       </section>
       <Footer />

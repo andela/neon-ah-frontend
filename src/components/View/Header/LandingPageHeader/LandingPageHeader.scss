@@ -13,18 +13,22 @@
   &__details {
     width: 42%;
     padding: 20px 35px;
+    overflow-x: auto;
+
     @include mobile {
       width: auto;
     }
   }
+
   &__image {
     width: 58%;
     display: flex;
-    padding: 20px;
+
     @include mobile {
       display: none;
     }
   }
+
   &__header {
     font-family: Hind;
     font-style: normal;
@@ -34,6 +38,7 @@
     text-align: center;
     margin: 15px 0 0;
   }
+
   &__subheader {
     font-weight: 300;
     line-height: normal;
@@ -58,4 +63,10 @@
     display: flex;
     flex-wrap: wrap;
   }
+}
+
+.signup-modal-bg-image {
+  background-image: url("https://www.dreamoftravelwriting.com/wp-content/uploads/2018/04/neven-krcmarek-246988-unsplash.jpg");
+  background-position: right bottom;
+  background-size: cover;
 }

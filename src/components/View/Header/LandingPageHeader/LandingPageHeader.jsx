@@ -14,7 +14,7 @@ const LandingPageHeader = () => {
         type="login"
         triggerEl={<Button content="Login" style={{ backgroundColor: '#2fb5ee', color: '#fff' }} />}
       />
-      <Button basic content="Sign Up" style={{ boxShadow: 'none' }} />
+      <Modal triggerEl={<Button basic content="Sign Up" style={{ boxShadow: 'none' }} />} />
     </div>
   );
 };
