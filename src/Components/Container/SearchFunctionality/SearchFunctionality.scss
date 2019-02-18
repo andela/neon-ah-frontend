@@ -1,0 +1,190 @@
+#flex-all-articles-card {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: flex-end;
+}
+
+.margin-top {
+  margin-top: 43px;
+}
+
+.search-not-found {
+  margin: 0 auto;
+  width: 319px;
+  font-family: Hind;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  font-size: 14px;
+  text-align: center;
+  color: #696969;
+}
+
+#flex-all-authors-card {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.article-card-bookmark {
+  position: relative;
+  left: 130px;
+}
+.article-description-date {
+  font-family: Hind;
+  font-style: normal;
+  font-weight: normal;
+  line-height: normal;
+  font-size: 12px;
+}
+.article-description-name {
+  font-family: Hind;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  font-size: 14px;
+}
+.article-meta-card {
+  font-family: Hind;
+  font-style: normal;
+  font-weight: normal;
+  line-height: normal;
+  font-size: 12px;
+}
+
+.article-header-card {
+  background-color: white;
+  color: #000000;
+  font-family: Hind;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  font-size: 19px;
+}
+
+#dropdown {
+  min-width: 150px;
+  border-color: #2fb5ee;
+  background-color: white;
+  outline: none;
+  color: #696969;
+}
+
+#input {
+  margin-top: 10px;
+  color: #2d2d2d;
+  padding: 3px;
+  border-bottom: 1px solid #2fb5ee;
+  width: 100%;
+  outline: none;
+  background: transparent;
+  font-weight: normal;
+  margin-right: 10px;
+}
+
+select {
+  padding: 10px;
+}
+option {
+  padding: 10px;
+}
+
+.article-grid {
+  padding: 0;
+}
+
+.card-flex {
+  display: flex;
+}
+
+.upload-btn {
+  width: 100%;
+  margin: 0 auto;
+  margin-top: 12px;
+  color: #000000;
+  border-radius: 6%;
+  font-size: 12px;
+  font-family: Hind;
+  font-style: normal;
+  font-weight: normal;
+  padding: 5px;
+  border-color: #2fb5ee !important;
+  outline: none;
+  cursor: pointer;
+}
+
+.following {
+  width: 100%;
+  margin: 0 auto;
+  margin-top: 12px;
+  color: #fff;
+  border-radius: 6%;
+  font-size: 12px;
+  font-family: Hind;
+  font-style: normal;
+  font-weight: normal;
+  padding: 5px;
+  border-color: #2fb5ee !important;
+  background: #2fb5ee !important;
+  outline: none;
+  cursor: pointer;
+}
+
+#author-card {
+  // width: 120px;
+  // height: 173px;
+  border: none !important;
+  box-shadow: none;
+  text-align: center;
+}
+
+#article-card-margin {
+  margin: 20px;
+}
+
+.text-align-center {
+  text-align: center !important;
+  font-size: 12px;
+  width: 88px;
+}
+
+#article-card {
+  height: 118px;
+  width: 442px;
+}
+
+@media only screen and (max-width: 600px) {
+  #article-card {
+    height: 118px;
+    width: 302px;
+  }
+
+  .article-header-card {
+    font-size: 12px;
+  }
+
+  .article-description-name {
+    font-size: 11px;
+  }
+
+  .article-meta-card {
+    font-size: 9px;
+  }
+
+  .article-card-bookmark {
+    position: relative;
+    left: 80px;
+  }
+}
+
+#search-article-form {
+  display: flex;
+  flex-direction: column;
+  align-content: flex-end;
+}
+
+#image-size {
+  width: 88px;
+  height: 88px;
+}

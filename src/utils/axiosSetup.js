@@ -7,7 +7,7 @@ const makeRequest = (url, options = { method: 'GET' }) => {
     method: options.method,
     data: options.body,
     headers: {
-      Authorization: `Bearer ${localStorage.getItem('user')}`
+      Authorization: `Bearer ${localStorage.getItem('userToken')}`
     }
   }).then(response => response.data);
 };

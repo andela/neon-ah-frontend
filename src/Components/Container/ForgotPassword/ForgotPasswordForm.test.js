@@ -14,7 +14,7 @@ describe('Render ForgotPasswordForm ', () => {
 
 describe('ForgotPasswordForm', () => {
   const props = {
-    isEmailSent: true
+    isEmailSent: false
   };
   const store = {
     getState: () => {
@@ -28,6 +28,13 @@ describe('ForgotPasswordForm', () => {
           hasSignUpError: false,
           signUpError: null,
           message: null
+        },
+        searchFunctionalityReducer: {
+          statusCode: 200,
+          articleTagOrAuthorDatas: [],
+          bookmarks: [],
+          isBookmark: 'bookmark',
+          following: []
         }
       };
     },
@@ -45,5 +52,11 @@ describe('ForgotPasswordForm', () => {
   );
   it('should render component successfully', () => {
     expect(wrapper).toBeTruthy();
+  });
+
+  it('should simulate an input change', () => {
+    const preventDefault = jest.fn();
+    wrapper.find('Form.reset-form-container').simulate('submit', { preventDefault });
+    expect(preventDefault.mock.calls.length).toEqual(2);
   });
 });

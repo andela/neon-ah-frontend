@@ -4,13 +4,15 @@ import sendPasswordReducer from './forgotPassword/resetPasswordReducer';
 import authReducer from './authReducer/authReducer';
 import signUpReducer from './signUp/signUpReducer';
 import accountVerifyReducer from './verifyAccount/verifyAccountReducer';
+import searchFunctionalityReducer from './searchFunctionality/searchFunctionalityReducer';
 
 const reducers = combineReducers({
   sendEmailReducer,
   sendPasswordReducer,
   auth: authReducer,
   signUpReducer,
-  accountVerifyReducer
+  accountVerifyReducer,
+  searchFunctionalityReducer
 });
 
 export default reducers;

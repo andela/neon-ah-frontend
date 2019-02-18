@@ -1,5 +1,4 @@
 import React from 'react';
-import './LandingPageFooter.scss';
 
 const Footer = () => {
   return (

@@ -1,0 +1,48 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Hind';
+}
+
+body {
+  font-size: 16px;
+  font-family: 'Hind', sans-serif;
+}
+a {
+  text-decoration: none;
+}
+h1 {
+  margin-top: 0px;
+}
+
+section {
+  margin: 30px 0px;
+}
+
+// semantic overides
+
+.ui.grid {
+  margin-top: -1rem !important;
+  margin-bottom: -1rem !important;
+}
+
+.search {
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+input {
+  background: $mediumGrey;
+  border: none;
+  border-radius: 0;
+}
+
+.ui.modal > .close {
+  top: 14px;
+  right: 0;
+  left: 10px;
+  font-size: 1.35em;
+  color: #000;
+}

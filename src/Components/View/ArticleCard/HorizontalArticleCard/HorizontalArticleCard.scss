@@ -40,3 +40,15 @@
   background: #fbfbfb !important;
   border-top: 0px !important;
 }
+
+.card-img {
+  width: 100%;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  min-height: 15rem;
+}
+.card-img-horizontal {
+  max-width: 200px;
+  min-height: auto;
+}

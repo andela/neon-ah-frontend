@@ -6,7 +6,6 @@ import Header from '../../View/Header/Header';
 import { resetPassword, setMessage } from '../../../action/forgotPassword/forgotPasswordAction';
 import MakeHeaderResponsive from '../../View/Header/MakeHeaderResponsive/MakeHeaderResponsive';
 import LandingPageHeader from '../../View/Header/LandingPageHeader/LandingPageHeader';
-import './ResetPasswordForm.scss';
 import validatePassword from '../../../utils/emailPasswordValidator';
 import formatMessage from '../../View/Message/FormatMessage';
 import isTokenValid from '../../../utils/auth/jwtDecode';

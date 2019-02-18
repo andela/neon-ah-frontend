@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { Loader } from 'semantic-ui-react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import './AccountVerify.scss';
 import Header from '../../View/Header/Header';
 import * as EmailVerificationActions from '../../../action/emailVerification/emailVerificationAction';
 import isTokenValid from '../../../utils/auth/jwtDecode';

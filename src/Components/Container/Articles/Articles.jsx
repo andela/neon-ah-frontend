@@ -10,7 +10,6 @@ import Header from '../../View/Header/Header';
 import VerticalArticleCard from '../../View/ArticleCard/VerticalArticleCard/VerticalArticleCard';
 import HorizontalArticleCard from '../../View/ArticleCard/HorizontalArticleCard/HorizontalArticleCard';
 import getToken from '../../../utils/auth/authentication';
-import './Articles.scss';
 
 class Articles extends Component {
   state = {

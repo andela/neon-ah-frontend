@@ -1,10 +1,8 @@
-@import '../../../../styles/global.scss';
-
-* {
+/* * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-}
+} */
 
 .site-modal {
   height: 640px;
@@ -66,7 +64,7 @@
 }
 
 .signup-modal-bg-image {
-  background-image: url("https://www.dreamoftravelwriting.com/wp-content/uploads/2018/04/neven-krcmarek-246988-unsplash.jpg");
+  background-image: url('https://www.dreamoftravelwriting.com/wp-content/uploads/2018/04/neven-krcmarek-246988-unsplash.jpg');
   background-position: right bottom;
   background-size: cover;
 }

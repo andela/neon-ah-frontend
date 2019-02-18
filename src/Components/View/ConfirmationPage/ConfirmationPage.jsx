@@ -3,7 +3,6 @@ import React, { Component } from 'react';
 import { Message } from 'semantic-ui-react';
 import { withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import './ConfirmationPage.scss';
 
 export class ConfirmationPage extends Component {
   componentDidMount() {

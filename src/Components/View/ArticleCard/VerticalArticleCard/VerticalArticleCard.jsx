@@ -1,7 +1,6 @@
 import React from 'react';
 import { Image, Card, Icon } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
-import './VerticalArticleCard.scss';
 
 const VerticalArticleCard = () => {
   return (

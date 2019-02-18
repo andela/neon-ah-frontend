@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import * as EmailVerificationActions from '../../../action/emailVerification/emailVerificationAction';
 import * as forgotPasswordActions from '../../../action/forgotPassword/forgotPasswordAction';
-import './EmailVerification.scss';
 import Header from '../../View/Header/Header';
 import ErrorMessage from '../../View/Message/ErrorMessage';
 

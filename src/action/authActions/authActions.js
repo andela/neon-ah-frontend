@@ -48,8 +48,7 @@ export const loginLocal = ({ userEmailOrUsername, userPassword }, history) => as
       type: LOGIN_USER_SUCCESS,
       payload: { isAuthenticated: true, roleId: decodeJwt(token).roleId }
     });
-
-    return history.push('/articles');
+    return window.location.reload;
   } catch (errors) {
     const wrongDetails = 'Invalid username/Email or Password';
     switch (errors.response.status) {

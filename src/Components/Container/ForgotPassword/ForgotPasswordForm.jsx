@@ -6,7 +6,6 @@ import { Form, Button } from 'semantic-ui-react';
 import Header from '../../View/Header/Header';
 import MakeHeaderResponsive from '../../View/Header/MakeHeaderResponsive/MakeHeaderResponsive';
 import LandingPageHeader from '../../View/Header/LandingPageHeader/LandingPageHeader';
-import './ForgotPasswordForm.scss';
 import EmailSent from '../../View/PasswordReset/EmailSent/EmailSent';
 import { forgetPasswordRequest, onEmailSubmit } from '../../../action/forgotPassword/forgotPasswordAction';
 import validateEmail from '../../../utils/emailPasswordValidator';

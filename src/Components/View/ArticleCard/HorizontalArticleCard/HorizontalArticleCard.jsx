@@ -1,32 +1,53 @@
 import React from 'react';
-import { Icon, Image } from 'semantic-ui-react';
+import moment from 'moment';
+import { Icon, Image, Card } from 'semantic-ui-react';
+import stripTags from 'striptags';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
+import Modal from '../../Modal/Modal';
 
-import './HorizontalArticleCard.scss';
-
-const HorizontalArticleCard = () => {
+const HorizontalArticleCard = ({
+  banner,
+  title,
+  content,
+  author,
+  createdAt,
+  timeToRead,
+  handleIconClick,
+  iconName,
+  slug,
+  isAuthenticated
+}) => {
+  function createMarkup() {
+    return { __html: content };
+  }
+  const description = <Card.Description dangerouslySetInnerHTML={createMarkup()} />;
+  const articleDescription = `${stripTags(description.props.dangerouslySetInnerHTML.__html).substring(0, 40)}`;
   return (
     <div className="ui card horizontal">
-      <div className="image">
-        <Image src="https://res.cloudinary.com/dnavbc7ny/image/upload/v1550505647/pexels-photo-981619_h9enuv.jpg" />
-      </div>
+      <div className="card-img card-img-horizontal" style={{ backgroundImage: `url(${banner})` }} />
       <div className="content card-bg">
-        <Link to="/" className="header card-link">
-          CSS Flexbox from Scratch
+        <Link to={`/articles/read/${slug}`} className="header card-link">
+          {title}
         </Link>
-        <div className="description">Sed ut perspiciatis unde omnis iste architecto...</div>
+        <div className="description">{articleDescription}</div>
         <div className="meta">
           <div style={{ display: 'flex', justifyContent: 'space-between' }}>
             <div>
-              <Link to="/" className="card-link">
-                Jesse Egbosionu
+              <Link to={`/profile/${author}`} className="card-link">
+                {author}
               </Link>
-              <p>10th Sept. 2 mins</p>
+              <p>
+                {`${moment(createdAt).format('Do MMM')}.   `}
+                <span>{`   ${timeToRead} min`}</span>
+              </p>
             </div>
             <div>
-              <a href="/" className="card-link">
-                <Icon name="bookmark outline" />
-              </a>
+              {isAuthenticated ? (
+                <Icon name={iconName} className="article-icon" onClick={() => handleIconClick(slug)} />
+              ) : (
+                <Modal type="login" triggerEl={<Icon name={iconName} />} />
+              )}
             </div>
           </div>
         </div>
