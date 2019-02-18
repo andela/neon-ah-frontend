@@ -32,8 +32,6 @@ export const loginSocial = (history, token) => dispatch => {
 
 export const loginLocal = ({ userEmailOrUsername, userPassword }, history) => async dispatch => {
   try {
-    console.log('DATA FROM LOGIN FORM >>>', { userEmailOrUsername, userPassword });
-
     const {
       data: { token }
     } = await makeRequest('/auth/login', {
@@ -44,8 +42,6 @@ export const loginLocal = ({ userEmailOrUsername, userPassword }, history) => as
       }
     });
 
-    console.log(token);
-
     localStorage.setItem('userToken', token);
 
     dispatch({
@@ -53,19 +49,16 @@ export const loginLocal = ({ userEmailOrUsername, userPassword }, history) => as
       payload: { isAuthenticated: true, roleId: decodeJwt(token).roleId }
     });
 
-    console.log(history);
-
     return history.push('/articles');
   } catch (errors) {
-    console.log('ERRORS FROM DB', errors.response.data.data);
-
+    const wrongDetails = 'Invalid username/Email or Password';
     switch (errors.response.status) {
       case 422:
         return dispatch(loginError(errors.response.data.data.error));
       case 404:
-        return dispatch(loginError([errors.response.data.data.message]));
+        return dispatch(loginError([wrongDetails]));
       case 401:
-        return dispatch(loginError([errors.response.data.data.message]));
+        return dispatch(loginError(['Your account has not been verified']));
       default:
         break;
     }

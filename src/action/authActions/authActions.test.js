@@ -71,4 +71,48 @@ describe('Login actions', () => {
     store.dispatch({ type: SHOW_ERROR });
     done();
   });
+
+  it('should return failure if login returns 422', done => {
+    const { errorResponse } = mockLoginData;
+    moxios.stubRequest('/auth/signup', {
+      status: 422,
+      response: errorResponse
+    });
+    const expectedActions = [
+      {
+        type: SHOW_ERROR,
+        payload: {
+          errors: 'Wrong Login details',
+          hasErrors: true,
+          hasLoginVerification: true,
+          loginRedirect: false
+        }
+      }
+    ];
+    store = mockStore({});
+    store.dispatch({ type: SHOW_ERROR });
+    done();
+  });
+
+  it('should return failure if login returns 422', done => {
+    const { errorResponse } = mockLoginData;
+    moxios.stubRequest('/auth/signup', {
+      status: 422,
+      response: errorResponse
+    });
+    const expectedActions = [
+      {
+        type: SHOW_ERROR,
+        payload: {
+          errors: 'Wrong Login details',
+          hasErrors: true,
+          hasLoginVerification: true,
+          loginRedirect: false
+        }
+      }
+    ];
+    store = mockStore({});
+    store.dispatch({ type: SHOW_ERROR });
+    done();
+  });
 });

@@ -34,7 +34,19 @@ class Login extends Component {
     } = this.props;
     return (
       <Form onSubmit={this.handleSubmit} data-test="LoginForm">
-        {loginErrors.length ? <Message negative list={[...loginErrors]} /> : null}
+        {(() => {
+          if (loginErrors == 'Your account has not been verified') {
+            return (
+              <Message negative>
+                <p>Your account has not been verified </p>
+                <p>
+                  <a href="/resend-verification"> Click here to verify</a>
+                </p>
+              </Message>
+            );
+          }
+          return loginErrors.length ? <Message negative list={[...loginErrors]} /> : null;
+        })()}
         <Form.Field data-test="LoginFormField">
           <input
             type="text"
@@ -42,7 +54,7 @@ class Login extends Component {
             required
             ref={userEmailOrUsername => (this.userEmailOrUsername = userEmailOrUsername)}
             onFocus={this.dismissLoginErrors}
-            placeholder="Email or username"
+            placeholder="Email or Username"
           />
         </Form.Field>
         <Form.Field data-test="LoginFormField">
