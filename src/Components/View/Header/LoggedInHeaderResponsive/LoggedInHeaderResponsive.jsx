@@ -8,7 +8,7 @@ const LoggedInHeaderResponsive = () => {
       <Dropdown item icon="bars">
         <Dropdown.Menu>
           <Dropdown.Item text={<Link to="/search">Search</Link>} />
-          <Dropdown.Item text={<Link to="/articles/create">Write Article</Link>} />
+          <Dropdown.Item text={<Link to="/articles/new">Write Article</Link>} />
           <Dropdown.Item text={<a href=" ">Notifications</a>} />
           <Dropdown.Item text={<Link to="/profile">Profile</Link>} />
         </Dropdown.Menu>

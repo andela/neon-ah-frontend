@@ -8,7 +8,7 @@ const LoggedInHeader = () => {
       <Link to="/search" style={{ marginRight: '10px' }}>
         <Icon link name="search" />
       </Link>
-      <Link to="/articles/create">
+      <Link to="/article/new">
         <Button content="Write an article" style={{ backgroundColor: '#2fb5ee', color: '#fff', marginRight: '10px' }} />
       </Link>
 

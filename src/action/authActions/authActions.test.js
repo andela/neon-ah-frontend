@@ -1,19 +1,22 @@
 import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
 import moxios from 'moxios';
-import { LOGIN_USER_SUCCESS, SHOW_ERROR, loginUser } from './authActions';
+import { LOGIN_USER_SUCCESS, SHOW_ERROR, USER_LOGIN_FAILURE, loginError, loginSocial } from './authActions';
 import mockLoginData from './mockLoginData';
 
 const mockStore = configureMockStore([thunk]);
 let store = mockStore();
-const { successResponse, errorResponse } = mockLoginData;
+const { successResponse, loginData } = mockLoginData;
 
 describe('Login actions', () => {
-  beforeEach(() => moxios.install());
+  beforeEach(() => {
+    moxios.install();
+    store.clearActions();
+  });
+
   afterEach(() => moxios.uninstall());
 
   it('Returns success if login was successful', done => {
-    const { successResponse, loginData } = mockLoginData;
     moxios.stubRequest('/auth/login', {
       status: 200,
       response: successResponse
@@ -32,7 +35,6 @@ describe('Login actions', () => {
   });
 
   it('should store in localstorage', done => {
-    const { successResponse, loginData } = mockLoginData;
     moxios.stubRequest('/auth/login', {
       status: 200,
       response: successResponse
@@ -114,5 +116,32 @@ describe('Login actions', () => {
     store = mockStore({});
     store.dispatch({ type: SHOW_ERROR });
     done();
+  });
+
+  it('Login error should dispatch the right payload', () => {
+    const message = 'Error Message';
+
+    const expectedAction = [
+      {
+        payload: message,
+        type: USER_LOGIN_FAILURE
+      }
+    ];
+
+    store.dispatch(loginError(message));
+    expect(store.getActions()).toEqual(expectedAction);
+  });
+
+  it('Login success should catch error from malformed token and redirect to homepage', () => {
+    const history = {
+      push: jest.fn()
+    };
+
+    const expectedAction = [{ type: USER_LOGIN_FAILURE, payload: 'Cannot authenticate your account.' }];
+
+    store.dispatch(loginSocial(history, 'malformed token'));
+
+    expect(store.getActions()).toEqual(expectedAction);
+    expect(history.push).toBeCalled();
   });
 });

@@ -1,13 +1,16 @@
-import decodeJwt from 'jwt-decode';
 import authReducer from './authReducer';
-import { SOCIAL_LOGIN_SUCCESS, USER_LOGIN_FAILURE, LOGIN_LOADING } from '../../action/authActions/authActions';
+import {
+  SOCIAL_LOGIN_SUCCESS,
+  USER_LOGIN_FAILURE,
+  LOGIN_LOADING,
+  LOGIN_USER_SUCCESS,
+  CLEAR_LOGIN_ERRORS
+} from '../../action/authActions/authActions';
 
 describe('Auth Reducer', () => {
-  const token = localStorage.getItem('userToken');
-
   const initialAuthState = {
-    isAuthenticated: Boolean(token),
-    roleId: token ? decodeJwt(token).roleId : '',
+    isAuthenticated: false,
+    roleId: '',
     loginErrors: [],
     isLoading: false
   };
@@ -39,6 +42,53 @@ describe('Auth Reducer', () => {
       isAuthenticated: false,
       roleId: '',
       loginErrors: [...action.payload],
+      isLoading: false
+    };
+
+    expect(authReducer(initialAuthState, action)).toEqual(expectedState);
+  });
+
+  test('should resturn the expected state when LOGIN_LOADING action type is dispatched', () => {
+    const action = {
+      type: LOGIN_LOADING,
+      payload: true
+    };
+
+    const expectedState = {
+      isAuthenticated: false,
+      roleId: '',
+      loginErrors: [],
+      isLoading: true
+    };
+
+    expect(authReducer(initialAuthState, action)).toEqual(expectedState);
+  });
+
+  test('should resturn the expected state when LOGIN_USER_SUCCESS action type is dispatched', () => {
+    const action = {
+      type: LOGIN_USER_SUCCESS,
+      payload: { isAuthenticated: true, roleId: '1234567890' }
+    };
+
+    const expectedState = {
+      isAuthenticated: true,
+      roleId: '1234567890',
+      loginErrors: [],
+      isLoading: false
+    };
+
+    expect(authReducer(initialAuthState, action)).toEqual(expectedState);
+  });
+
+  test('should resturn the expected state when CLEAR_LOGIN_ERRORS action type is dispatched', () => {
+    const action = {
+      type: CLEAR_LOGIN_ERRORS
+    };
+
+    const expectedState = {
+      isAuthenticated: false,
+      roleId: '',
+      loginErrors: [],
       isLoading: false
     };
 

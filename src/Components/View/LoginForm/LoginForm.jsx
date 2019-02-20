@@ -6,6 +6,17 @@ import PropTypes from 'prop-types';
 import { loginLocal, clearLoginErrors } from '../../../action/authActions/authActions';
 
 class Login extends Component {
+  componentDidMount = () => {
+    const {
+      auth: { loginErrors },
+      clearErrors
+    } = this.props;
+
+    if (loginErrors.length) {
+      clearErrors();
+    }
+  };
+
   dismissLoginErrors = () => {
     const {
       auth: { loginErrors },
@@ -30,12 +41,12 @@ class Login extends Component {
 
   render() {
     const {
-      auth: { loginErrors }
+      auth: { loginErrors, isLoading }
     } = this.props;
     return (
       <Form onSubmit={this.handleSubmit} data-test="LoginForm">
         {(() => {
-          if (loginErrors == 'Your account has not been verified') {
+          if (loginErrors.length && loginErrors[0].includes('account has not been verified')) {
             return (
               <Message negative>
                 <p>Your account has not been verified </p>
@@ -68,7 +79,11 @@ class Login extends Component {
             onFocus={this.dismissLoginErrors}
           />
         </Form.Field>
-        <Button style={{ backgroundColor: '#2fb5ee', color: '#fff' }} fluid content="Login" id="loginButton" />
+        {isLoading ? (
+          <Button disabled loading style={{ backgroundColor: '#2fb5ee', color: '#fff' }} fluid content="Login" />
+        ) : (
+          <Button style={{ backgroundColor: '#2fb5ee', color: '#fff' }} fluid content="Login" id="loginButton" />
+        )}
       </Form>
     );
   }

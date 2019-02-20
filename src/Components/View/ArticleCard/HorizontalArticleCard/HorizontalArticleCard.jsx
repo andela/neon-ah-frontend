@@ -1,6 +1,6 @@
 import React from 'react';
 import moment from 'moment';
-import { Icon, Image, Card } from 'semantic-ui-react';
+import { Icon, Card } from 'semantic-ui-react';
 import stripTags from 'striptags';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
@@ -25,7 +25,7 @@ const HorizontalArticleCard = ({
   const articleDescription = `${stripTags(description.props.dangerouslySetInnerHTML.__html).substring(0, 40)}`;
   return (
     <div className="ui card horizontal">
-      <div className="card-img card-img-horizontal" style={{ backgroundImage: `url(${banner})` }} />
+      <div className="card-img card-img-horizontal" style={{ backgroun: `url(${banner})` }} />
       <div className="content card-bg">
         <Link to={`/articles/read/${slug}`} className="header card-link">
           {title}

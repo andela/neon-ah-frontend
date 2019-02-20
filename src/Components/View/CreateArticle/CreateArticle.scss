@@ -1,0 +1,91 @@
+.articleBanner {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-size: cover;
+  width: 100%;
+  height: 400px;
+  margin: 10px 0 20px;
+}
+
+.uploadBannerBtn {
+  position: absolute;
+  bottom: 20px;
+  padding: 10px;
+  font-size: 0.8rem;
+  outline: none;
+  border: none;
+  cursor: pointer;
+  background: transparentize(#000, 0.9);
+  color: #000;
+}
+
+.titleWrapper {
+  width: 100%;
+  padding: 0 5%;
+}
+
+.article-title {
+  background: transparentize(#fff, 0.2);
+  width: 100%;
+  text-align: center;
+  font-size: 3rem;
+  padding: 20px;
+  outline: none;
+  font-family: 'Hind';
+  font-weight: 300;
+  &::-webkit-input-placeholder {
+    font-weight: 300;
+    font-family: 'Hind';
+    color: transparentize(#000, 0.7);
+  }
+}
+
+div.ReactTags__tags {
+  position: relative;
+  margin-top: 20px;
+}
+
+/* Styles for the input */
+div.ReactTags__tagInput {
+  width: 100px;
+  border-radius: 2px;
+  display: inline-block;
+  outline: none;
+  border: 1px solid #ededed;
+}
+div.ReactTags__tagInput input.ReactTags__tagInputField,
+div.ReactTags__tagInput input.ReactTags__tagInputField:focus {
+  height: 31px;
+  margin: 0;
+  font-size: 12px;
+  width: 100%;
+  border: 1px solid #eee;
+  padding: 0 4px;
+  outline: none;
+}
+
+/* Styles for selected tags */
+div.ReactTags__selected span.ReactTags__tag {
+  border: 1px solid #2eb5ee;
+  background: #fbfbfb;
+  font-size: 15px;
+  display: inline-block;
+  padding: 5px;
+  margin-right: 5px;
+  cursor: move;
+  border-radius: 2px;
+}
+div.ReactTags__selected a.ReactTags__remove {
+  color: #aaa;
+  margin-left: 5px;
+  cursor: pointer;
+}
+
+@media only screen and (max-width: 480px) {
+  .article-title {
+    padding: 10px;
+    font-size: 2.1rem;
+  }
+}

@@ -13,6 +13,8 @@ export const loginError = message => {
   return { type: USER_LOGIN_FAILURE, payload: message };
 };
 
+export const loginLoading = loadingStatus => ({ type: LOGIN_LOADING, payload: loadingStatus });
+
 export const clearLoginErrors = () => ({ type: CLEAR_LOGIN_ERRORS });
 
 export const loginSocial = (history, token) => dispatch => {
@@ -30,8 +32,9 @@ export const loginSocial = (history, token) => dispatch => {
   }
 };
 
-export const loginLocal = ({ userEmailOrUsername, userPassword }, history) => async dispatch => {
+export const loginLocal = ({ userEmailOrUsername, userPassword }) => async dispatch => {
   try {
+    dispatch(loginLoading(true));
     const {
       data: { token }
     } = await makeRequest('/auth/login', {
@@ -57,9 +60,9 @@ export const loginLocal = ({ userEmailOrUsername, userPassword }, history) => as
       case 404:
         return dispatch(loginError([wrongDetails]));
       case 401:
-        return dispatch(loginError(['Your account has not been verified']));
+        return dispatch(loginError([errors.response.data.data.message]));
       default:
-        break;
+        return null;
     }
   }
 };

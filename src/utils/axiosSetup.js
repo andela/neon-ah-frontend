@@ -1,8 +1,11 @@
 import axios from 'axios';
 
+export const apiInstance = axios.create({
+  baseURL: 'https://neon-ah-staging.herokuapp.com/api/v1'
+});
+
 const makeRequest = (url, options = { method: 'GET' }) => {
-  return axios({
-    baseURL: 'https://neon-ah-staging.herokuapp.com/api/v1',
+  return apiInstance({
     url,
     method: options.method,
     data: options.body,

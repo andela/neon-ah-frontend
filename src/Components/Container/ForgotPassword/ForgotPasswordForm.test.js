@@ -53,7 +53,7 @@ describe('ForgotPasswordForm', () => {
   it('should render component successfully', () => {
     expect(wrapper).toBeTruthy();
   });
-
+  
   it('should simulate an input change', () => {
     const preventDefault = jest.fn();
     wrapper.find('Form.reset-form-container').simulate('submit', { preventDefault });

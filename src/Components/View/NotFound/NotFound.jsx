@@ -1,16 +1,13 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { Helmet } from 'react-helmet';
 import Header from '../Header/Header';
-import MakeHeaderResponsive from '../Header/MakeHeaderResponsive/MakeHeaderResponsive';
-import LandingPageHeader from '../Header/LandingPageHeader/LandingPageHeader';
 
 const NotFound = () => {
   return (
     <>
-      <Header>
-        <LandingPageHeader />
-        <MakeHeaderResponsive />
-      </Header>
+      <Helmet title="Page Not Found - Authors Haven" />
+      <Header />
       <section>
         <div className="reset-password-container">
           <div className="align-center">
@@ -19,7 +16,7 @@ const NotFound = () => {
               alt="password reset"
               style={{ width: '400px', height: '400px' }}
             />
-            <h2>Oops, looks like you are lost</h2>
+            <h2>Sorry the page you have requested cannot be found.</h2>
             <Link to="/">Go Home</Link>
           </div>
         </div>
