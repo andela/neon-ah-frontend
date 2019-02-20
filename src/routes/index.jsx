@@ -9,6 +9,7 @@ import ResetPasswordForm from '../Components/Container/ResetPassword/ResetPasswo
 import SocialAuthHandler from '../Components/View/SocialAuthHandler/SocialAuthHandler';
 import EmailConfirmation from '../Components/Container/EmailVerification/EmailVerification';
 import AccountVerify from '../Components/Container/AccountVerify/AccountVerify';
+import Articles from '../Components/Container/Articles/Articles';
 
 export default (
   <Router>
@@ -16,7 +17,7 @@ export default (
       <Switch>
         <Route path="/reset-password/:token" component={ResetPasswordForm} />
         <Route path="/forgot-password" component={ForgotPasswordForm} exact />
-        <Route path="/" component={LandingPage} exact />
+        <Route path="/" component={Articles} exact />
         <Route path="/auth/social" component={SocialAuthHandler} exact />
         <Route path="/auth/verify/:token" component={AccountVerify} />
         <Route path="/resend-verification" component={EmailConfirmation} />

@@ -2,91 +2,100 @@
 $font-weight: 300;
 
 .landingPageBg {
-	background: url('../../../../public/images/studying.svg');
-	background-repeat: no-repeat;
-	background-position: left;
-	min-height: 550px;
+  background: url('../../../../public/images/studying.svg');
+  background-repeat: no-repeat;
+  background-position: left;
+  min-height: 550px;
 }
 .mainsection--row {
-	padding: 150px 0px !important;
+  padding: 150px 0px !important;
 }
 .mainsection--row__width {
-	max-width: 400px;
+  max-width: 400px;
 }
 .mainsection--header {
-	font-size: 40px;
+  font-size: 40px;
 }
 .mainsection--body {
-	display: flex;
-	margin-bottom: 25px;
+  display: flex;
+  margin-bottom: 25px;
 }
 .mainsection-image {
-	position: relative;
-	top: 50px;
+  position: relative;
+  top: 50px;
 }
 .mainsection--body--text {
-	margin-left: 10px;
-	margin-bottom: 25px;
+  margin-left: 10px;
+  margin-bottom: 25px;
 }
 .mainsection--body--text__light {
-	font-size: 300;
+  font-size: 300;
 }
 .mainsection2--header {
-	font-size: 30px;
+  font-size: 30px;
 }
 .mainsection--header__light {
-	font-weight: $font-weight;
+  font-weight: $font-weight;
 }
 .mainsection--header__blue {
-	color: $mainBlue;
+  color: $mainBlue;
 }
 .mainsection--header__nobottom {
-	margin-bottom: 0;
+  margin-bottom: 0;
 }
 .mainsection--body__light {
-	font-weight: $font-weight;
+  font-weight: $font-weight;
 }
 
-.call-to-action{
-	text-align: center;
-	padding:30px 0px
+.call-to-action {
+  text-align: center;
+  padding: 30px 0px;
 }
 
 .column {
-	.container {
-		display: flex;
-		justify-content: center;
-	  }
-	  
+  .container {
+    display: flex;
+    justify-content: center;
+  }
 }
 
-.hamburger{
-	display: none;
-	color: $mainBlue;
-	position: relative;
-    top: 10px;
-  }
+.hamburger {
+  display: none;
+  color: $mainBlue;
+  position: relative;
+  top: 10px;
+}
 .ui.dropdown .menu {
-    left: -55px;
+  left: -70px;
 }
 
-  .display {
-	  display: none;
-  }
-.menu{z-index:1000000; font-weight:bold; font-size:0.8em; width:100%; background:#f1f1f1;  position:absolute; text-align:center; font-size:12px; display:none}
+.display {
+  display: none;
+}
+.menu {
+  z-index: 1000000;
+  font-weight: bold;
+  font-size: 0.8em;
+  width: 100%;
+  background: #f1f1f1;
+  position: absolute;
+  text-align: center;
+  font-size: 12px;
+  display: none;
+}
 
 @media only screen and (max-width: 768px) {
-	.landingPage__mobile {
-		display: none;
-	}
-	.hamburger {
-		display: block;
-	}
+  .landingPage__mobile {
+    display: none;
+  }
+  .hamburger {
+    display: block;
+  }
 
-	.menu{
-		display:block;
-	}
-	.footer-container {
+  .menu {
+    display: block;
+  }
+  .footer-container {
     display: flex;
     flex-direction: column;
     text-align: center;
