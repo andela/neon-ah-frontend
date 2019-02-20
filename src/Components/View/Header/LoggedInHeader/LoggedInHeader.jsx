@@ -3,20 +3,24 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { Button, Icon, Image } from 'semantic-ui-react';
+import ImageDropdown from '../../CustomDropdown/CustomDropdown';
 import NotificationBox from '../../Notification/Notification';
 import { NotificationAction } from '../../../../action/notificationActions/notificationActions';
 import pusher, { eventName } from '../../../../utils/pusherSetup';
+import * as profileAction from '../../../../action/profileActions/profileActions';
 
 export class LoggedInHeader extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      showNotificationBox: false
+      showNotificationBox: false,
+      showDropdown: false
     };
   }
 
   componentDidMount() {
-    const { fetchNotifications } = this.props;
+    const { fetchNotifications, getUserDataById } = this.props;
+    getUserDataById();
     fetchNotifications();
     const channel = pusher.subscribe('notification');
     channel.bind(eventName, () => {
@@ -26,8 +30,9 @@ export class LoggedInHeader extends Component {
   }
 
   handleNotificationDisplay = () => {
+    const { showNotificationBox } = this.state;
     this.setState({
-      showNotificationBox: true
+      showNotificationBox: !showNotificationBox
     });
   };
 
@@ -38,10 +43,18 @@ export class LoggedInHeader extends Component {
     });
   };
 
+  handleImageClick = () => {
+    const { showDropdown } = this.state;
+    this.setState({
+      showDropdown: !showDropdown
+    });
+  };
+
   render() {
-    const { showNotificationBox } = this.state;
-    const { notificationList } = this.props;
+    const { showNotificationBox, showDropdown } = this.state;
+    const { notificationList, loggedInUserData } = this.props;
     document.onscroll = this.onPageScroll;
+
     return (
       <div className="landingPage__mobile">
         <Link to="/search" style={{ marginRight: '10px' }}>
@@ -66,7 +79,20 @@ export class LoggedInHeader extends Component {
           )}
           <NotificationBox onClose={this.onPageScroll} open={showNotificationBox} notificationList={notificationList} />
         </Icon>
-        <Image src="http://placekitten.com/g/30/30" avatar style={{ marginLeft: '10px', marginRight: '10px' }} />
+        <div className="image">
+          <Image
+            src={
+              loggedInUserData.img
+                ? loggedInUserData.img
+                : 'https://res.cloudinary.com/jesseinit/image/upload/v1550502499/neon-ah/user.svg'
+            }
+            avatar
+            style={{ marginLeft: '10px', marginRight: '10px', cursor: 'pointer' }}
+            className="profile-img"
+            onClick={this.handleImageClick}
+          />
+          <ImageDropdown userinfo={loggedInUserData} open={showDropdown} />
+        </div>
       </div>
     );
   }
@@ -84,18 +110,56 @@ LoggedInHeader.propTypes = {
       updatedAt: PropTypes.string
     })
   ).isRequired,
-  fetchNotifications: PropTypes.func.isRequired
+  fetchNotifications: PropTypes.func.isRequired,
+  loggedInUserData: PropTypes.shape({
+    bio: 'NY Times Best Selling Author',
+    email: 'samuel.adeniran@andela.com',
+    fullName: 'Samuel Adeniran',
+    getEmailsNotification: true,
+    getInAppNotification: true,
+    id: '6211521f-5baf-403e-9d66-04103240a5c2',
+    img: 'https://res.cloudinary.com/jesseinit/image/upload/v1551087507/article-images/tttkavt3wkrffezc7cf5.jpg',
+    userName: 'sam',
+    articles: [],
+    following: [],
+    followers: []
+  })
+};
+
+LoggedInHeader.defaultProps = {
+  loggedInUserData: {}
 };
 
 export const mapStateToProps = state => ({
-  notificationList: state.notification.notificationList
+  notificationList: state.notification.notificationList,
+  loggedInUserData: state.profileReducer.loggedInUserData
 });
 
 const mapDispatchToProps = {
-  fetchNotifications: NotificationAction.fetchNotifications
+  fetchNotifications: NotificationAction.fetchNotifications,
+  getUserDataById: profileAction.fetchUserProfileById
 };
 
 export default connect(
   mapStateToProps,
   mapDispatchToProps
 )(LoggedInHeader);
+
+// {
+//   Object.keys(loggedInUserData.length > 0) ? (
+//     <div className="image">
+//       <Image
+//         src={
+//           loggedInUserData.img
+//             ? loggedInUserData.img
+//             : 'https://res.cloudinary.com/jesseinit/image/upload/v1550502499/neon-ah/user.svg'
+//         }
+//         avatar
+//         style={ { marginLeft: '10px', marginRight: '10px', cursor: 'pointer' } }
+//         className="profile-img"
+//         onClick={ this.handleImageClick }
+//       />
+//       <ImageDropdown userinfo={ loggedInUserData } open={ showDropdown } />
+//     </div>
+//   ) : null
+// }

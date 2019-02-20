@@ -1,5 +1,6 @@
 import React from 'react';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Switch } from 'react-router-dom';
+import Route from 'react-router-dom/Route';
 import NotFound from '../Components/View/NotFound/NotFound';
 import ForgotPasswordForm from '../Components/Container/ForgotPassword/ForgotPasswordForm';
 import ResetPasswordForm from '../Components/Container/ResetPassword/ResetPasswordForm';
@@ -12,6 +13,7 @@ import CreateArticleDefault from '../Components/View/CreateArticle/CreateArticle
 import AuthenticatedRoute from '../Components/Container/ProtectedRoute/ProtectedRoute';
 import SingleArticle from '../Components/Container/SingleArticle/SingleArticle';
 import Home from '../Components/Container/Home/Home';
+import ProfilePage from '../Components/Container/ProfilePage/ProfilePage';
 
 const Routes = () => (
   <Router>
@@ -26,6 +28,7 @@ const Routes = () => (
       <AuthenticatedRoute path="/article/new" component={CreateArticleDefault} exact />
       <Route path="/confirmation" exact component={ConfirmPage} />
       <Route path="/articles/read/:slug" component={SingleArticle} />
+      <Route path="/profile/:username" component={ProfilePage} exact />
       <Route component={NotFound} />
     </Switch>
   </Router>

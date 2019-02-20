@@ -1,0 +1,36 @@
+.tabs-menu {
+  margin-top: 35px;
+
+  overflow-x: auto;
+
+  & > div {
+    position: relative;
+  }
+
+  & > div > a.active {
+    border-color: #00b7f4 !important;
+  }
+
+  & > div > a:nth-child(6) {
+    position: absolute !important;
+    right: 0;
+  }
+}
+
+.tabs-menu :nth-child(2) {
+  border: none;
+  box-shadow: none;
+}
+
+@media only screen and (max-width: 768px) {
+  .tabs-menu {
+    & > div {
+      overflow: auto;
+    }
+
+    & > div > a:nth-child(6) {
+      position: relative !important;
+      right: 0;
+    }
+  }
+}

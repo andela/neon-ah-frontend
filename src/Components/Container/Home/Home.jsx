@@ -12,15 +12,19 @@ import Header from '../../View/Header/Header';
 import VerticalArticleCard from '../../View/ArticleCard/VerticalArticleCard/VerticalArticleCard';
 import HorizontalArticleCard from '../../View/ArticleCard/HorizontalArticleCard/HorizontalArticleCard';
 import * as homePageActions from '../../../action/homePage/homePageAction';
+import * as profileAction from '../../../action/profileActions/profileActions';
 import * as gettagsActions from '../../../action/tags/tagsAction';
 import VerticalArticleCardLoader from '../../View/ArticleCard/VerticalArticleCardLoader/VerticalArticleCardLoader';
 import HorizontalArticleCardLoader from '../../View/ArticleCard/HorizontalArticleCardLoader/HorizontalArticleLoader';
 
 export class Home extends Component {
-  state = {};
+  constructor(props) {
+    super(props);
+    this.state = {};
+  }
 
   async componentDidMount() {
-    const { getHomePageArticles, getTags } = this.props;
+    const { getHomePageArticles, getTags} = this.props;
     getHomePageArticles();
     getTags();
   }
@@ -213,21 +217,31 @@ export const mapStateToProps = state => {
   const {
     homePageArticlesReducer: { articles },
     tagsReducer: { tags },
-    auth
+    auth,
+    profileReducer: { data }
   } = state;
   return {
     articles,
     auth,
-    tags
+    tags,
+    data
   };
 };
 
 const mapDispatchToProps = {
   getHomePageArticles: homePageActions.getHomePageArticles,
-  getTags: gettagsActions.getTags
+  getTags: gettagsActions.getTags,
+  getUserData: profileAction.fetchUserProfile
 };
 
 Home.propTypes = {
+  getHomePageArticles: PropTypes.func,
+  articles: PropTypes.array,
+  auth: PropTypes.object,
+  tags: PropTypes.array,
+};
+
+Home.defaultProps = {
   getHomePageArticles: PropTypes.func,
   articles: PropTypes.array,
   auth: PropTypes.object,

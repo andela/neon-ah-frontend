@@ -36,6 +36,14 @@ describe('<CreateArticle />', () => {
           notificationList: [],
           hasError: false,
           errorMessage: null
+        },
+        profileReducer: {
+          data: {},
+          isLoading: true,
+          error: '',
+          isSelf: false,
+          message: '',
+          visible: false
         }
       };
     },
@@ -62,11 +70,11 @@ describe('<CreateArticle />', () => {
   test('should set title onChange to the state', () => {
     wrapper = mount(
       <Provider store={store}>
-      <MemoryRouter>
-        <>
-          <CreateArticleUnit {...props} />
-        </>
-      </MemoryRouter>
+        <MemoryRouter>
+          <>
+            <CreateArticleUnit {...props} />
+          </>
+        </MemoryRouter>
       </Provider>
     );
     wrapper.find('.article-title').simulate('change', { target: { value: 'some title' } });
@@ -76,13 +84,12 @@ describe('<CreateArticle />', () => {
   test('should should submit entries to the action creator', () => {
     wrapper = mount(
       <Provider store={store}>
-      <MemoryRouter>
-        <>
-          <CreateArticleUnit {...props} />
-        </>
-      </MemoryRouter>
+        <MemoryRouter>
+          <>
+            <CreateArticleUnit {...props} />
+          </>
+        </MemoryRouter>
       </Provider>
-
     );
     wrapper
       .find('#submitArticle')

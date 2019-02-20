@@ -20,7 +20,7 @@ describe('Sign Up Reducer', () => {
 
     expect(reducer(initialState, { type: 'SIGNUP_USER', payload })).toEqual({
       ...initialState,
-      isLoading: true,
+      isLoading: true
     });
   });
 
@@ -32,7 +32,7 @@ describe('Sign Up Reducer', () => {
       signUpError: 'Network error'
     };
 
-    expect(reducer(initialState, { type: 'SIGNUP_ERROR', payload  })).toEqual({
+    expect(reducer(initialState, { type: 'SIGNUP_ERROR', payload })).toEqual({
       ...initialState,
       ...payload
     });
@@ -47,12 +47,14 @@ describe('Sign Up Reducer', () => {
       message: 'User signed up'
     };
 
-    expect(reducer(initialState, {
-      type: 'SIGNUP_SUCCESS',
-      payload
-    })).toEqual({
+    expect(
+      reducer(initialState, {
+        type: 'SIGNUP_SUCCESS',
+        payload
+      })
+    ).toEqual({
       ...initialState,
       ...payload
     });
-});
+  });
 });

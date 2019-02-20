@@ -16,7 +16,7 @@ import MakeHeaderResponsive from '../Header/MakeHeaderResponsive/MakeHeaderRespo
 const LandingPage = props => {
   const { socialLoginErrors } = props;
   return (
-    <div>
+    <div className="page-container">
       <Helmet title="Home - Authors Haven" />
       <Header>
         <LandingPageHeader />

@@ -1,5 +1,6 @@
 /* eslint-disable no-constant-condition */
 import makeRequest from '../../utils/axiosSetup';
+import manageUserToken from '../../utils/auth/authentication';
 
 export const UPDATE_STATUS_CODE = 'UPDATE_STATUS_CODE';
 
@@ -27,13 +28,15 @@ export const verifyUserApiCall = (token, history) => {
       await makeRequest(`/auth/verify/${token}`, {
         method: 'POST'
       });
-      history.push('/confirmation');
+      manageUserToken.saveUserToken('userToken', token);
+      history.push('/articles');
     } catch (error) {
       const {
         response: { data }
       } = error;
       const responseStatusCode = data.data.statusCode;
       if (responseStatusCode === 409) {
+        manageUserToken.saveUserToken(token);
         history.push('/articles');
       } else {
         history.push('/resend-verification');

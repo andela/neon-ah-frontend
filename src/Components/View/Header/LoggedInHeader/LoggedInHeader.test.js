@@ -3,9 +3,16 @@ import { shallow } from 'enzyme';
 import { LoggedInHeader, mapStateToProps } from './LoggedInHeader';
 
 const fetchNotifications = jest.fn();
-const notificationList = [{}]
+const getUserDataById = jest.fn();
+const notificationList = [{}];
 
-const wrapper = shallow(<LoggedInHeader fetchNotifications={fetchNotifications} notificationList={notificationList} />);
+const wrapper = shallow(
+  <LoggedInHeader
+    fetchNotifications={fetchNotifications}
+    notificationList={notificationList}
+    getUserDataById={getUserDataById}
+  />
+);
 
 describe('<LoggedInHeader />', () => {
   it('should render succesfully', () => {
@@ -14,7 +21,7 @@ describe('<LoggedInHeader />', () => {
 
   it('should simulate onClick Event on the Notification bell', () => {
     wrapper.find('#notification-icon').simulate('click');
-    expect(wrapper.state('showNotificationBox')).toEqual(true)
+    expect(wrapper.state('showNotificationBox')).toEqual(true);
   });
 
   it('should call the fetchNotifications function', () => {
@@ -22,13 +29,27 @@ describe('<LoggedInHeader />', () => {
     expect(fetchNotifications.mock.calls.length).toBeGreaterThan(0);
   });
 
+  it('should simulate onClick Event on the Image', () => {
+    wrapper.find('.profile-img').simulate('click');
+    expect(wrapper.state('showDropdown')).toEqual(true);
+  });
+
+  it('should call the getUserByID function', () => {
+    wrapper.instance().componentDidMount();
+    expect(getUserDataById.mock.calls.length).toBeGreaterThan(0);
+  });
+
   it('should test mapStateToProps function', () => {
     const state = {
-      notification: { notificationList: [] }
+      notification: { notificationList: [] },
+      profileReducer: {
+        loggedInUserData: {}
+      }
     };
     const result = {
-      notificationList: []
-    }
+      notificationList: [],
+      loggedInUserData: {}
+    };
     expect(mapStateToProps(state)).toEqual(result);
   });
 });

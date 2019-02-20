@@ -10,6 +10,8 @@ const makeRequest = (url, options = { method: 'GET' }) => {
     method: options.method,
     data: options.body,
     headers: {
+      Accept: 'application/json',
+      'Content-type': 'application/json',
       Authorization: `Bearer ${localStorage.getItem('userToken')}`
     }
   }).then(response => response.data);

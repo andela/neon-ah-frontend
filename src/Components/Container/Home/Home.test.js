@@ -1,10 +1,10 @@
 import React from 'react';
 import { shallow, mount } from 'enzyme';
-import { Home } from './Home';
 import { MemoryRouter } from 'react-router';
 import configureStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
 import { Provider } from 'react-redux';
+import { Home } from './Home';
 import { getHomePageArticles } from '../../../action/homePage/homePageAction';
 import homePageArticlesReducer from '../../../reducer/homePageArticles/homePageArticlesReducer';
 import tagsReducer from '../../../reducer/tags/tagsReducer';
@@ -92,6 +92,14 @@ const store = {
         hasSignUpError: false,
         signUpError: null,
         message: null
+      },
+      profileReducer: {
+        data: {},
+        isLoading: true,
+        error: '',
+        isSelf: false,
+        message: '',
+        visible: false
       }
     };
   },

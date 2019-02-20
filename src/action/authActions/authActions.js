@@ -7,6 +7,14 @@ export const LOGIN_LOADING = 'LOGIN_LOADING';
 export const LOGIN_USER_SUCCESS = 'LOGIN_USER_SUCCESS';
 export const SHOW_ERROR = 'SHOW_ERROR';
 export const CLEAR_LOGIN_ERRORS = 'CLEAR_LOGIN_ERRORS';
+export const USER_LOGOUT = 'LOGOUT';
+
+export const logout = history => async dispatch => {
+  localStorage.removeItem('userToken');
+  dispatch({ type: USER_LOGOUT, payload: {} });
+  history.push('/');
+  location.reload();
+};
 
 export const loginError = message => {
   localStorage.removeItem('userToken');
@@ -53,8 +61,6 @@ export const loginLocal = ({ userEmailOrUsername, userPassword }) => async dispa
     });
 
     return window.location.reload;
-
-
   } catch (errors) {
     const wrongDetails = 'Invalid username/Email or Password';
     switch (errors.response.status) {

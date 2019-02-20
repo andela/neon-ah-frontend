@@ -46,3 +46,7 @@ input {
   font-size: 1.35em;
   color: #000;
 }
+
+.ui.dimmer {
+  z-index: 1000000 !important;
+}

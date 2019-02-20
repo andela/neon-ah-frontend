@@ -14,7 +14,7 @@ const NotFound = () => {
               alt="password reset"
               style={{ width: '400px', height: '400px' }}
             />
-            <h2>Sorry the page you have requested cannot be found.</h2>
+            <h2>Sorry, we could not find what you were looking for</h2>
             <Link to="/">Go Home</Link>
           </div>
         </div>

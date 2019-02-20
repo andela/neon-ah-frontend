@@ -1,5 +1,8 @@
 $font-weight: 300;
 
+.page-container {
+  position: relative;
+}
 .landingPageBg {
   background: url('../../public/images/studying.svg');
   background-repeat: no-repeat;

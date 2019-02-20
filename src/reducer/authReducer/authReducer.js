@@ -5,7 +5,8 @@ import {
   USER_LOGIN_FAILURE,
   LOGIN_USER_SUCCESS,
   CLEAR_LOGIN_ERRORS,
-  LOGIN_LOADING
+  LOGIN_LOADING,
+  USER_LOGOUT
 } from '../../action/authActions/authActions';
 
 const token = localStorage.getItem('userToken');
@@ -29,6 +30,7 @@ const authReducer = (state = initialAuthState, { type, payload }) => {
       return { ...state, loginErrors: [] };
     case USER_LOGIN_FAILURE:
       return { ...state, ...{ isAuthenticated: false, roleId: '', loginErrors: [...payload], isLoading: false } };
+    case USER_LOGOUT:
     default:
       return state;
   }
