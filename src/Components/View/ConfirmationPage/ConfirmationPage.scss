@@ -1,0 +1,12 @@
+$break-small: 600px;
+
+.confirmation-div {
+    margin: auto;
+    width: 50%;
+    padding: 10px;
+    text-align: center;
+
+    @media screen and (max-width: $break-small) {
+        width: 80%;
+    }
+}

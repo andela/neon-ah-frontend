@@ -27,7 +27,7 @@ export const verifyUserApiCall = (token, history) => {
       await makeRequest(`/auth/verify/${token}`, {
         method: 'POST'
       });
-      history.push('/articles');
+      history.push('/confirmation');
     } catch (error) {
       const {
         response: { data }
