@@ -1,31 +1,39 @@
 import React from 'react';
+import moment from 'moment';
+import PropTypes from 'prop-types';
 import { Image, Card, Icon } from 'semantic-ui-react';
+import stripTags from 'striptags';
 import { Link } from 'react-router-dom';
 
-const VerticalArticleCard = () => {
+const VerticalArticleCard = props => {
+  const { feature, title, content, author, timeToRead, banner, createdAt, slug } = props;
+  function createMarkup() {
+    return { __html: content };
+  }
+
+  const description = <Card.Description dangerouslySetInnerHTML={createMarkup()} />;
+  const articleDescription = `${stripTags(description.props.dangerouslySetInnerHTML.__html).substring(0, 50)}.....`;
   return (
     <Card fluid>
-      <Image small src="https://res.cloudinary.com/dnavbc7ny/image/upload/v1550506089/rick_and_morty_w6h6h5.png" />
+      <div className={feature ? 'card-img feature' : 'card-img'} style={{ backgroundImage: `url(${banner})` }} />
       <Card.Content className="card-bg">
         <Card.Header>
-          <Link to="/" className="card-link">
-            Getting started with Webpack 4
+          <Link to={`/articles/read/${slug}`} className="header card-link">
+            {title}
           </Link>
+          <Card.Description className="articleDescription">{articleDescription}</Card.Description>
         </Card.Header>
-
-        <Card.Description>
-          Sed ut prspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem
-          aperiam,
-        </Card.Description>
       </Card.Content>
-
       <Card.Content extra>
         <div style={{ display: 'flex', justifyContent: 'space-between' }}>
           <div>
-            <Link to="/" className="card-link">
-              Jesse Egbosionu
+            <Link to={`/profile/${author}`} className="card-link">
+              {author}
             </Link>
-            <p>10th Sept. 2 mins</p>
+            <p>
+              {`${moment(createdAt).format('Do MMM')}.   `}
+              <span>{`   ${timeToRead} min`} </span>
+            </p>
           </div>
           <div>
             <a href="/" className="card-link">
@@ -36,6 +44,15 @@ const VerticalArticleCard = () => {
       </Card.Content>
     </Card>
   );
+};
+
+VerticalArticleCard.defaultProps = {
+  title: '',
+  content: '',
+  author: '',
+  timeToRead: '',
+  banner: '',
+  createdAt: ''
 };
 
 export default VerticalArticleCard;

@@ -1,7 +1,14 @@
-import { mount } from 'enzyme';
 import React from 'react';
+import { shallow, mount } from 'enzyme';
 import { MemoryRouter } from 'react-router';
 import HorizontalArticleCard from './HorizontalArticleCard';
+
+describe('<HorizontalArticleCard />', () => {
+  const wrapper = shallow(<HorizontalArticleCard />);
+  it('should render succesfully', () => {
+    expect(wrapper).toMatchSnapshot();
+  });
+});
 
 describe('<HorizontalArticleCard  />', () => {
   const props = {

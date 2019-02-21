@@ -6,6 +6,8 @@ import signUpReducer from './signUp/signUpReducer';
 import accountVerifyReducer from './verifyAccount/verifyAccountReducer';
 import searchFunctionalityReducer from './searchFunctionality/searchFunctionalityReducer';
 import articleReducer from './articleReducer/articleReducer';
+import homePageArticlesReducer from './homePageArticles/homePageArticlesReducer';
+import tagsReducer from './tags/tagsReducer';
 
 const reducers = combineReducers({
   sendEmailReducer,
@@ -14,7 +16,9 @@ const reducers = combineReducers({
   signUpReducer,
   accountVerifyReducer,
   searchFunctionalityReducer,
-  article: articleReducer
+  article: articleReducer,
+  homePageArticlesReducer,
+  tagsReducer
 });
 
 export default reducers;

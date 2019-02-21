@@ -5,6 +5,7 @@ import stripTags from 'striptags';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import Modal from '../../Modal/Modal';
+import './HorizontalArticleCard.scss';
 
 const HorizontalArticleCard = ({
   banner,
@@ -22,15 +23,17 @@ const HorizontalArticleCard = ({
     return { __html: content };
   }
   const description = <Card.Description dangerouslySetInnerHTML={createMarkup()} />;
-  const articleDescription = `${stripTags(description.props.dangerouslySetInnerHTML.__html).substring(0, 40)}`;
+
+  const articleDescription = `${stripTags(description.props.dangerouslySetInnerHTML.__html).substring(0, 40)}.....`;
+
   return (
     <div className="ui card horizontal">
-      <div className="card-img card-img-horizontal" style={{ backgroun: `url(${banner})` }} />
+      <div className="card-img card-img-horizontal" style={{ background: `url(${banner})` }} />
       <div className="content card-bg">
         <Link to={`/articles/read/${slug}`} className="header card-link">
           {title}
         </Link>
-        <div className="description">{articleDescription}</div>
+        <div className="description articleDescription">{articleDescription}</div>
         <div className="meta">
           <div style={{ display: 'flex', justifyContent: 'space-between' }}>
             <div>
@@ -39,7 +42,7 @@ const HorizontalArticleCard = ({
               </Link>
               <p>
                 {`${moment(createdAt).format('Do MMM')}.   `}
-                <span>{`   ${timeToRead} min`}</span>
+                <span>{`   ${timeToRead} min`} </span>
               </p>
             </div>
             <div>
@@ -54,6 +57,15 @@ const HorizontalArticleCard = ({
       </div>
     </div>
   );
+};
+
+HorizontalArticleCard.defaultProps = {
+  title: '',
+  content: '',
+  author: '',
+  timeToRead: '',
+  banner: '',
+  createdAt: ''
 };
 
 export default HorizontalArticleCard;

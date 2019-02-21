@@ -51,7 +51,10 @@ export const loginLocal = ({ userEmailOrUsername, userPassword }) => async dispa
       type: LOGIN_USER_SUCCESS,
       payload: { isAuthenticated: true, roleId: decodeJwt(token).roleId }
     });
+
     return window.location.reload;
+
+
   } catch (errors) {
     const wrongDetails = 'Invalid username/Email or Password';
     switch (errors.response.status) {

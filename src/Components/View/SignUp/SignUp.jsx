@@ -75,12 +75,16 @@ export class SignUp extends React.Component {
             <Image centered src="https://res.cloudinary.com/jesseinit/image/upload/v1549611110/neon-ah/Logo.svg" />
             <h2 className="site-modal__header">Signup to Authors Haven</h2>
             <p className="site-modal__subheader">Fill the form to create an account and get started</p>
-            {signUpCompleted && !signUpError && <Message onDismiss={()=> location.reload()} success>{message}</Message>}
-            {(hasValidationError || hasSignUpError) &&
-                <Message error list={errors}>
-                  {typeof signUpError === 'string' ? signUpError : null}
-                </Message>
-            }
+            {signUpCompleted && !signUpError && (
+              <Message onDismiss={() => location.reload()} success>
+                {message}
+              </Message>
+            )}
+            {(hasValidationError || hasSignUpError) && (
+              <Message error list={errors}>
+                {typeof signUpError === 'string' ? signUpError : null}
+              </Message>
+            )}
 
             <Form id="signup-form" onSubmit={this.handleSubmit}>
               <Form.Field>
@@ -175,7 +179,7 @@ SignUp.propTypes = {
   message: PropTypes.string,
   hasSignUpError: PropTypes.bool,
   signUpError: PropTypes.string,
-  signUpCompleted: PropTypes.bool,
+  signUpCompleted: PropTypes.bool
 };
 
 SignUp.defaultProps = {
@@ -183,7 +187,7 @@ SignUp.defaultProps = {
   message: null,
   hasSignUpError: false,
   signUpError: null,
-  signUpCompleted: false,
+  signUpCompleted: false
 };
 
 const mapStateToProps = state => ({
