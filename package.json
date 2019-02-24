@@ -4,8 +4,8 @@
   "description": "A Social platform for the creative at heart",
   "main": "index.js",
   "scripts": {
-    "test": "jest -u --coverage",
-    "test:coverage": "jest --coverage --colors && cat ./coverage/lcov.info",
+    "test": "jest --detectOpenHandles --forceExit -u --coverage ",
+    "test:coverage": "jest --detectOpenHandles --forceExit --coverage --colors && cat ./coverage/lcov.info",
     "test:watch": "jest -u --coverage --watch",
     "heroku-postbuild": "rm -rf ./dist/* && webpack -p",
     "start": "node server.js",
@@ -34,6 +34,7 @@
     "moment": "^2.24.0",
     "moxios": "^0.4.0",
     "prop-types": "^15.6.2",
+    "pusher-js": "^4.4.0",
     "react": "^16.6.3",
     "react-dnd": "^7.0.2",
     "react-dnd-html5-backend": "^7.0.2",

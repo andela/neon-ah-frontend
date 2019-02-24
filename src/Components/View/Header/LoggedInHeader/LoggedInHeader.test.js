@@ -1,25 +1,34 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import LoggedInHeader from './LoggedInHeader';
+import { LoggedInHeader, mapStateToProps } from './LoggedInHeader';
 
-const wrapper = shallow(<LoggedInHeader />);
+const fetchNotifications = jest.fn();
+const notificationList = [{}]
+
+const wrapper = shallow(<LoggedInHeader fetchNotifications={fetchNotifications} notificationList={notificationList} />);
 
 describe('<LoggedInHeader />', () => {
   it('should render succesfully', () => {
     expect(wrapper).toMatchSnapshot();
   });
 
-  it('should contain a div tag with className of landingPage__mobile', () => {
-    expect(wrapper.find('.landingPage__mobile').length).toEqual(1);
+  it('should simulate onClick Event on the Notification bell', () => {
+    wrapper.find('#notification-icon').simulate('click');
+    expect(wrapper.state('showNotificationBox')).toEqual(true)
   });
 
-  it('should  contain a search link', () => {
-    expect(
-      wrapper
+  it('should call the fetchNotifications function', () => {
+    wrapper.instance().componentDidMount();
+    expect(fetchNotifications.mock.calls.length).toBeGreaterThan(0);
+  });
 
-        .find('Link')
-        .first()
-        .prop('to')
-    ).toEqual('/search');
+  it('should test mapStateToProps function', () => {
+    const state = {
+      notification: { notificationList: [] }
+    };
+    const result = {
+      notificationList: []
+    }
+    expect(mapStateToProps(state)).toEqual(result);
   });
 });

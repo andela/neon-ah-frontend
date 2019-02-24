@@ -10,6 +10,7 @@ import homePageArticlesReducer from './homePageArticles/homePageArticlesReducer'
 import tagsReducer from './tags/tagsReducer';
 import readArticleReducer from './readArticle/readArticleReducer';
 import rateArticleReducer from './rateArticle/rateArticleReducer';
+import notificationReducer from './notificationReducer/notificationReducer';
 
 const reducers = combineReducers({
   sendEmailReducer,
@@ -22,7 +23,8 @@ const reducers = combineReducers({
   homePageArticlesReducer,
   tagsReducer,
   readArticleReducer,
-  rateArticleReducer
+  rateArticleReducer,
+  notification: notificationReducer
 });
 
 export default reducers;
