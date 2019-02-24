@@ -1,13 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
-import Header from '../Header/Header';
 
 const NotFound = () => {
   return (
     <>
       <Helmet title="Page Not Found - Authors Haven" />
-      <Header />
       <section>
         <div className="reset-password-container">
           <div className="align-center">

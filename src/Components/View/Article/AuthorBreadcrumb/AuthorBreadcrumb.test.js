@@ -16,7 +16,7 @@ describe('Article Banner', () => {
     });
     it('Should render top authorBreadcrumb element', () => {
       const wrapper = findByTestAttr(component, 'authorBreadcrumb');
-      expect(wrapper.length).toBe(1);
+      expect(wrapper.length).toBe(0);
     });
     it('Should render successfully', () => {
       expect(component).toMatchSnapshot();
@@ -49,7 +49,7 @@ describe('Article Banner', () => {
     });
     it('Should render successfully', () => {
       const component = findByTestAttr(wrapper, 'authorBreadcrumb');
-      expect(component.length).toBe(1);
+      expect(component.length).toBe(0);
     });
   });
   describe('Have No Props', () => {
@@ -59,7 +59,7 @@ describe('Article Banner', () => {
     });
     it('Should render for optional props', () => {
       const component = findByTestAttr(wrapper, 'authorBreadcrumb');
-      expect(component.length).toBe(1);
+      expect(component.length).toBe(0);
     });
   });
 });

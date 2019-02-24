@@ -1,4 +1,4 @@
-import makeRequest from '../../utils/axiosSetup';
+import axios from 'axios';
 
 export const READ_ARTICLE_BEGIN = 'READ_ARTICLE_BEGIN';
 export const READ_ARTICLE_SUCCESS = 'READ_ARTICLE_SUCCESS';
@@ -27,10 +27,8 @@ export const readArticleSuccess = response => ({
 export const readArticleAction = slug => async dispatch => {
   dispatch(readArticleBegin());
   try {
-    const response = await makeRequest(`/articles/${slug}`, {
-      method: 'GET'
-    });
-    dispatch(readArticleSuccess(response));
+    const response = await axios.get(`https://neon-ah-staging.herokuapp.com/api/v1/articles/${slug}`);
+    dispatch(readArticleSuccess(response.data));
   } catch (error) {
     dispatch(readArticleFailure(error));
   }

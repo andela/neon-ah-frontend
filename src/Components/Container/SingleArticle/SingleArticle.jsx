@@ -15,6 +15,7 @@ import AuthorBreadcrumb from '../../View/Article/AuthorBreadcrumb/AuthorBreadcru
 import ArticleRatings from '../../View/Article/ArticleRatings/ArticleRatings';
 import SocialIcons from '../../View/Article/SocialIcon/SocialIcons';
 import Comments from '../../View/Comments/Comments';
+import NotFound from '../../View/NotFound/NotFound';
 
 class SingleArticle extends Component {
   componentDidMount() {
@@ -26,63 +27,70 @@ class SingleArticle extends Component {
   render() {
     const { article, response, loading, isAuthenticated } = this.props;
     const createMarkup = () => ({ __html: article.content });
+    const error = response.response;
 
     return (
-      <div data-test="singleArticle">
-        {response.response && <Redirect to="/articles/NotFound" />}
+      <div>
         <Header>{isAuthenticated ? <LoggedInHeader /> : <LandingPageHeader />}</Header>
-
-        {loading ? (
-          <div className="ui segment">
-            <p />
-            <div className="ui active dimmer">
-              <div className="ui loader" />
-            </div>
+        {error ? (
+          <div>
+            <NotFound />
           </div>
         ) : (
-          <div>
-            <ArticleBanner src={article.banner} title={article.title} />
-            <section>
-              <div className="ui stackable two column grid container">
-                <AuthorBreadcrumb
-                  authorName={article.author && article.author.fullName}
-                  date={article.createdAt}
-                  timeToRead={article.timeToRead}
-                />
+          <div data-test="singleArticle">
+            {loading ? (
+              <div className="ui segment">
+                <p />
+                <div className="ui active dimmer">
+                  <div className="ui loader" />
+                </div>
               </div>
-            </section>
+            ) : (
+              <div>
+                <ArticleBanner src={article.banner} title={article.title} />
+                <section>
+                  <div className="ui stackable two column grid container">
+                    <AuthorBreadcrumb
+                      authorName={article.author && article.author.fullName}
+                      date={article.createdAt}
+                      timeToRead={article.timeToRead}
+                    />
+                  </div>
+                </section>
 
-            <section>
-              <div className="ui grid container" id="articleContent">
-                <div className="column" dangerouslySetInnerHTML={createMarkup()} />
-              </div>
-            </section>
+                <section>
+                  <div className="ui grid container" id="articleContent">
+                    <div className="column" dangerouslySetInnerHTML={createMarkup()} />
+                  </div>
+                </section>
 
-            <section>
-              <div className="ui stackable two column grid container" id="tags">
-                {article.tags &&
-                  article.tags.map((tag, index) => <Button key={tag + { index }} compact content={tag} />)}
+                <section>
+                  <div className="ui stackable two column grid container" id="tags">
+                    {article.tags &&
+                      article.tags.map((tag, index) => <Button key={tag + { index }} compact content={tag} />)}
+                  </div>
+                </section>
+                <section>
+                  <div className="ui stackable two column grid container row">
+                    <div className="eight wide column">
+                      <ArticleRatings rated={article.averageRating} articleId={article.id} articleSlug={article.slug} />
+                    </div>
+                    <div className="eight wide column" id="socialIcons">
+                      <SocialIcons />
+                    </div>
+                  </div>
+                </section>
+                <section>
+                  <div className="ui stackable two column grid container row">
+                    <div className="three wide column" />
+                    <div className="ten wide column">
+                      <Comments comments={article.comments} isAuthenticated={isAuthenticated} />
+                    </div>
+                  </div>
+                </section>
+                <Footer />
               </div>
-            </section>
-            <section>
-              <div className="ui stackable two column grid container row">
-                <div className="eight wide column">
-                  <ArticleRatings rating={article.averageRating} />
-                </div>
-                <div className="eight wide column" id="socialIcons">
-                  <SocialIcons />
-                </div>
-              </div>
-            </section>
-            <section>
-              <div className="ui stackable two column grid container row">
-                <div className="three wide column" />
-                <div className="ten wide column">
-                  <Comments comments={article.comments} isAuthenticated={isAuthenticated} />
-                </div>
-              </div>
-            </section>
-            <Footer />
+            )}
           </div>
         )}
       </div>

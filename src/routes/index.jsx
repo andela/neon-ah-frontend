@@ -10,8 +10,8 @@ import ConfirmPage from '../Components/View/ConfirmationPage/ConfirmationPage';
 import SearchFunctionality from '../Components/Container/SearchFunctionality/SearchFunctionality';
 import CreateArticleDefault from '../Components/View/CreateArticle/CreateArticle';
 import AuthenticatedRoute from '../Components/Container/ProtectedRoute/ProtectedRoute';
-import Home from '../Components/Container/Home/Home';
 import SingleArticle from '../Components/Container/SingleArticle/SingleArticle';
+import Home from '../Components/Container/Home/Home';
 
 const Routes = () => (
   <Router>

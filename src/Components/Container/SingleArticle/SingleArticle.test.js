@@ -28,7 +28,8 @@ const props = {
     title: 'The Article'
   },
   loading: false,
-  isAuthenticated: false
+  isAuthenticated: false,
+  rating: 1
 };
 
 const store = {
@@ -77,6 +78,12 @@ const store = {
         message: '',
         isLoading: false,
         response: {}
+      },
+      rateArticleReducer: {
+        rating: 0,
+        message: '',
+        isLoading: false,
+        response: {}
       }
     };
   },
@@ -97,6 +104,7 @@ const wrapper = mount(
 describe('Single Article"', () => {
   describe('General rendering', () => {
     let component;
+    // const app = mount(<NamedSingleArticle />);
     beforeEach(() => {
       component = setUp();
     });

@@ -1,10 +1,11 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { Button, Image } from 'semantic-ui-react';
 import moment from 'moment';
 import PropTypes from 'prop-types';
 
-const AuthorBreadCrumb = ({ src, authorName, date, timeToRead }) => {
+const AuthorBreadCrumb = ({ src, authorName, date, timeToRead, isAuthenticated }) => {
   const s = date;
   const momentTime = moment(s, 'ddd MMM DD YYYY hh:mm:ss [GMT]ZZ').format('ll');
   return (
@@ -20,7 +21,6 @@ const AuthorBreadCrumb = ({ src, authorName, date, timeToRead }) => {
           </div>
           <div className="eight wide column" id="articleDetails">
             <p>{authorName}</p>
-            {/* {moment(date).fromNow()} */}
             {momentTime}
             &nbsp; &middot; &nbsp;
             {timeToRead}
@@ -28,7 +28,7 @@ const AuthorBreadCrumb = ({ src, authorName, date, timeToRead }) => {
             {timeToRead > 1 ? 'mins' : 'min'}
           </div>
           <div className="two wide column">
-            <Button className="tiny ui primary basic button">Follow</Button>
+            {isAuthenticated ? <Button className="tiny ui primary basic button">Follow</Button> : null}
           </div>
         </div>
       </div>
@@ -40,13 +40,19 @@ AuthorBreadCrumb.propTypes = {
   src: PropTypes.string,
   authorName: PropTypes.string,
   date: PropTypes.string,
-  timeToRead: PropTypes.number
+  timeToRead: PropTypes.number,
+  isAuthenticated: PropTypes.bool
 };
 
 AuthorBreadCrumb.defaultProps = {
   src: 'https://via.placeholder.com/50',
   authorName: null,
   date: null,
-  timeToRead: 1
+  timeToRead: 1,
+  isAuthenticated: false
 };
-export default AuthorBreadCrumb;
+const mapStateToProps = state => ({
+  isAuthenticated: state.auth.isAuthenticated
+});
+
+export default connect(mapStateToProps)(AuthorBreadCrumb);
