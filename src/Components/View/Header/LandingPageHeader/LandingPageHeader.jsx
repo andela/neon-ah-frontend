@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { Button, Icon } from 'semantic-ui-react';
-import Button from '../../Button/Button';
 import Modal from '../../Modal/Modal';
 import LoggedInHeaderSearch from '../../SearchFunctionality/LoggedInHeaderSearch/LoggedInHeaderSearch';
 
