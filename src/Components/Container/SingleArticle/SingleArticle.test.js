@@ -104,6 +104,7 @@ const wrapper = mount(
 describe('Single Article"', () => {
   describe('General rendering', () => {
     let component;
+    // const app = mount(<NamedSingleArticle />);
     beforeEach(() => {
       component = setUp();
     });

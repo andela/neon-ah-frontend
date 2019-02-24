@@ -2,7 +2,6 @@
 /* eslint-disable no-undef */
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { Button } from 'semantic-ui-react';
 import * as singleArticleAction from '../../../action/readArticle/readArticleActions';

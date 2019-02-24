@@ -144,22 +144,3 @@ export default connect(
   mapStateToProps,
   mapDispatchToProps
 )(LoggedInHeader);
-
-// {
-//   Object.keys(loggedInUserData.length > 0) ? (
-//     <div className="image">
-//       <Image
-//         src={
-//           loggedInUserData.img
-//             ? loggedInUserData.img
-//             : 'https://res.cloudinary.com/jesseinit/image/upload/v1550502499/neon-ah/user.svg'
-//         }
-//         avatar
-//         style={ { marginLeft: '10px', marginRight: '10px', cursor: 'pointer' } }
-//         className="profile-img"
-//         onClick={ this.handleImageClick }
-//       />
-//       <ImageDropdown userinfo={ loggedInUserData } open={ showDropdown } />
-//     </div>
-//   ) : null
-// }

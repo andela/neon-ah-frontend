@@ -3,11 +3,19 @@ import { Tab } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 import ProfileSettingsTab from '../../Container/ProfileSettingsTab/ProfileSettingsTab';
 import ReadStats from '../../Container/ReadStats/ReadStats';
+import Bookmarks from '../../Container/Bookmarks/Bookmarks';
 
 const Tabs = ({ userInfo, self, history }) => {
   const panes = [
     { menuItem: 'Articles', render: () => <Tab.Pane attached={false}>Article</Tab.Pane> },
-    { menuItem: 'Bookmarks', render: () => <Tab.Pane attached={false}>Bookmarks</Tab.Pane> },
+    {
+      menuItem: 'Bookmarks',
+      render: () => (
+        <Tab.Pane attached={false}>
+          <Bookmarks />
+        </Tab.Pane>
+      )
+    },
     {
       menuItem: 'Stats',
       render: () => (

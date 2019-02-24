@@ -13,6 +13,7 @@ import rateArticleReducer from './rateArticle/rateArticleReducer';
 import notificationReducer from './notificationReducer/notificationReducer';
 import profileReducer from './profileReducer/profileReducer';
 import readStatsReducer from './readStats/readStatsReducer';
+import getUserBookmarksReducer from './getUserBookmarks/getUserBookmarksReducer';
 
 const reducers = combineReducers({
   sendEmailReducer,
@@ -28,7 +29,8 @@ const reducers = combineReducers({
   rateArticleReducer,
   notification: notificationReducer,
   profileReducer,
-  readStatsReducer
+  readStatsReducer,
+  getUserBookmarks: getUserBookmarksReducer
 });
 
 export default reducers;
