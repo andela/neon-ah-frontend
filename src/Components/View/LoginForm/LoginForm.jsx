@@ -30,12 +30,9 @@ class Login extends Component {
 
   handleSubmit = evt => {
     evt.preventDefault();
-
     const { completeLoginLocal, history } = this.props;
-
     const userPassword = this.password.value;
     const userEmailOrUsername = this.userEmailOrUsername.value;
-
     completeLoginLocal({ userEmailOrUsername, userPassword }, history);
   };
 

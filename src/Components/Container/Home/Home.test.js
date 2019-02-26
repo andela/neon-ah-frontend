@@ -1,8 +1,6 @@
 import React from 'react';
 import { mount } from 'enzyme';
 import { MemoryRouter } from 'react-router';
-import configureStore from 'redux-mock-store';
-import thunk from 'redux-thunk';
 import { Provider } from 'react-redux';
 import { Home } from './Home';
 
@@ -19,8 +17,8 @@ const props = {
       isReported: false,
       userId: 'aba396bd-7ac4-42c3-b442-cf10dd73e4f4',
       averageRating: 0,
-      createdAt: 'Thu Feb 21 2019 8:48:54 AM',
-      updatedAt: 'Thu Feb 21 2019 8:48:54 AM',
+      createdAt: '2019-02-20 02:15:13.466076+01',
+      updatedAt: '2019-02-20 02:15:13.466076+01',
       author: {
         userName: 'kabir',
         bio: 'Learning life now',
@@ -48,8 +46,8 @@ const store = {
           {
             id: '5e722316-bcee-43e4-8ce4-813d1c9f8f4d',
             name: 'stating out',
-            createdAt: 'Thu Feb 21 2019 8:48:54 AM',
-            updatedAt: 'Thu Feb 21 2019 8:48:54 AM'
+            createdAt: '2019-02-20 02:15:13.466076+01',
+            updatedAt: '2019-02-20 02:15:13.466076+01'
           }
         ]
       },
@@ -67,8 +65,8 @@ const store = {
             isReported: false,
             userId: 'aba396bd-7ac4-42c3-b442-cf10dd73e4f4',
             averageRating: 0,
-            createdAt: 'Thu Feb 21 2019 8:48:54 AM',
-            updatedAt: 'Thu Feb 21 2019 8:48:54 AM',
+            createdAt: '2019-02-20 02:15:13.466076+01',
+            updatedAt: '2019-02-20 02:15:13.466076+01',
             author: {
               userName: 'kabir',
               bio: 'Learning life now',
@@ -102,7 +100,8 @@ const store = {
   },
   subscribe: () => {
     return store.getState();
-  }
+  },
+  dispatch: () => {}
 };
 
 const wrapper = mount(

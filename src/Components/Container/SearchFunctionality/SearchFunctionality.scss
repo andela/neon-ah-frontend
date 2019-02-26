@@ -63,9 +63,19 @@
   font-size: 19px;
 }
 
+.back-button {
+  position: relative;
+  left: 95%;
+  top: 35px;
+  border: none;
+  background-color: white;
+  outline: none;
+  color: $mainBlue;
+}
+
 #dropdown {
   min-width: 150px;
-  border-color: #2fb5ee;
+  border-color: $mainBlue;
   background-color: white;
   outline: none;
   color: #696969;
@@ -75,7 +85,7 @@
   margin-top: 10px;
   color: #2d2d2d;
   padding: 3px;
-  border-bottom: 1px solid #2fb5ee;
+  border-bottom: 1px solid $mainBlue;
   width: 100%;
   outline: none;
   background: transparent;
@@ -109,7 +119,7 @@ option {
   font-style: normal;
   font-weight: normal;
   padding: 5px;
-  border-color: #2fb5ee !important;
+  border-color: $mainBlue !important;
   outline: none;
   cursor: pointer;
 }
@@ -132,8 +142,6 @@ option {
 }
 
 #author-card {
-  // width: 120px;
-  // height: 173px;
   border: none !important;
   box-shadow: none;
   text-align: center;

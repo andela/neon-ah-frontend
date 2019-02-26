@@ -1,17 +1,36 @@
-import { mount } from 'enzyme';
+import { mount, shallow } from 'enzyme';
 import React from 'react';
 import { Provider } from 'react-redux';
 import { MemoryRouter } from 'react-router';
-import AuthorCard from './AuthorCard';
+import SearchFunctionalityTab from './SearchFunctionalityTab';
 
 describe('<AuthorCard  />', () => {
   const props = {
-    image: 'https://res.cloudinary.com/jesseinit/image/upload/v1549618838/neon-ah/search.svg',
-    fullName: 'jesse',
-    isFollowing: 'follow',
-    userName: 'jesseinit',
-    handleFollowButtonSubmit: jest.fn(() => {}),
-    isAuthenticated: true
+    data: {
+      articles: {
+        rows: [
+          {
+            author: ''
+          }
+        ]
+      },
+      authors: {
+        rows: [{}]
+      },
+      tags: {
+        rows: [
+          {
+            id: 1,
+            name: 'Science'
+          }
+        ]
+      }
+    },
+    handleIconClick: jest.fn(),
+    isAuthenticated: true,
+    bookmarks: [],
+    following: [],
+    handleFollowButtonSubmit: jest.fn()
   };
   const store = {
     getState: () => {
@@ -43,19 +62,18 @@ describe('<AuthorCard  />', () => {
   const wrapper = mount(
     <Provider store={store}>
       <MemoryRouter>
-        <AuthorCard {...props} />
+        <SearchFunctionalityTab {...props} />
       </MemoryRouter>
     </Provider>
   );
-
   it('should render succesfully', () => {
     expect(wrapper).toMatchSnapshot();
   });
 
-  it('should simulate handling button click', () => {
-    const onClick = jest.fn();
-    wrapper.setProps({ handleFollowButtonSubmit: onClick });
-    wrapper.find('button.upload-btn').simulate('click');
-    expect(onClick.mock.calls.length).toEqual(0);
-  });
+  //   it('should simulate handling button click', () => {
+  //     const onClick = jest.fn();
+  //     wrapper.setProps({ handleFollowButtonSubmit: onClick });
+  //     wrapper.find('button.upload-btn').simulate('click');
+  //     expect(onClick.mock.calls.length).toEqual(0);
+  //   });
 });

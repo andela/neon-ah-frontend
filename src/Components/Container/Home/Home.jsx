@@ -18,13 +18,10 @@ import VerticalArticleCardLoader from '../../View/ArticleCard/VerticalArticleCar
 import HorizontalArticleCardLoader from '../../View/ArticleCard/HorizontalArticleCardLoader/HorizontalArticleLoader';
 
 export class Home extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {};
-  }
+  state = {};
 
   async componentDidMount() {
-    const { getHomePageArticles, getTags} = this.props;
+    const { getHomePageArticles, getTags } = this.props;
     getHomePageArticles();
     getTags();
   }
