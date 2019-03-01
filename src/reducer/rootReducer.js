@@ -12,6 +12,7 @@ import readArticleReducer from './readArticle/readArticleReducer';
 import rateArticleReducer from './rateArticle/rateArticleReducer';
 import notificationReducer from './notificationReducer/notificationReducer';
 import profileReducer from './profileReducer/profileReducer';
+import readStatsReducer from './readStats/readStatsReducer';
 
 const reducers = combineReducers({
   sendEmailReducer,
@@ -26,7 +27,8 @@ const reducers = combineReducers({
   readArticleReducer,
   rateArticleReducer,
   notification: notificationReducer,
-  profileReducer
+  profileReducer,
+  readStatsReducer
 });
 
 export default reducers;

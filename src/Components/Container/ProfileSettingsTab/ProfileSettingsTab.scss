@@ -70,7 +70,15 @@
 .check-box {
   margin-bottom: 10px;
 }
-
+.statistic-center {
+  width: 100%;
+  margin-bottom: 40px !important;
+}
+.statistic-center .label {
+  font-size: 20px !important;
+  font-weight: 500 !important;
+  text-transform: capitalize !important;
+}
 @media only screen and (max-width: 768px) {
   .upload-img {
     & > label {

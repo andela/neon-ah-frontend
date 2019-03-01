@@ -2,12 +2,20 @@ import React from 'react';
 import { Tab } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 import ProfileSettingsTab from '../../Container/ProfileSettingsTab/ProfileSettingsTab';
+import ReadStats from '../../Container/ReadStats/ReadStats';
 
 const Tabs = ({ userInfo, self, history }) => {
   const panes = [
     { menuItem: 'Articles', render: () => <Tab.Pane attached={false}>Article</Tab.Pane> },
     { menuItem: 'Bookmarks', render: () => <Tab.Pane attached={false}>Bookmarks</Tab.Pane> },
-    { menuItem: 'Likes', render: () => <Tab.Pane attached={false}>Likes</Tab.Pane> },
+    {
+      menuItem: 'Stats',
+      render: () => (
+        <Tab.Pane attached={false}>
+          <ReadStats />
+        </Tab.Pane>
+      )
+    },
     { menuItem: 'Followers', render: () => <Tab.Pane attached={false}>Followers</Tab.Pane> },
     { menuItem: 'Following', render: () => <Tab.Pane attached={false}>Following</Tab.Pane> }
   ];

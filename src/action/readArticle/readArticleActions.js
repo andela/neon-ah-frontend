@@ -26,8 +26,14 @@ export const readArticleSuccess = response => ({
 
 export const readArticleAction = slug => async dispatch => {
   dispatch(readArticleBegin());
+  const getUserToken = localStorage.getItem('userToken');
+  const token = getUserToken ? `Bearer ${getUserToken}` : '';
   try {
-    const response = await axios.get(`https://neon-ah-staging.herokuapp.com/api/v1/articles/${slug}`);
+    const response = await axios.get(`https://neon-ah-staging.herokuapp.com/api/v1/articles/${slug}`, {
+      headers: {
+        Authorization: `${token}`
+      }
+    });
     dispatch(readArticleSuccess(response.data));
   } catch (error) {
     dispatch(readArticleFailure(error));
