@@ -84,6 +84,12 @@ const store = {
         message: '',
         isLoading: false,
         response: {}
+      },
+      comment: {
+        isLoading: false,
+        commentCreated: false,
+        hasError: false,
+        errorMessage: null
       }
     };
   },

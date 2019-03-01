@@ -5,7 +5,7 @@ import { Button, Image } from 'semantic-ui-react';
 import moment from 'moment';
 import PropTypes from 'prop-types';
 
-const AuthorBreadCrumb = ({ src, authorName, date, timeToRead, isAuthenticated }) => {
+const AuthorBreadCrumb = ({ src, authorName, userName, date, timeToRead, isAuthenticated }) => {
   const s = date;
   const momentTime = moment(s, 'ddd MMM DD YYYY hh:mm:ss [GMT]ZZ').format('ll');
   return (
@@ -14,8 +14,13 @@ const AuthorBreadCrumb = ({ src, authorName, date, timeToRead, isAuthenticated }
         <div className="ui three column grid">
           <div className="column">
             <div>
-              <Link to="/user/:username">
-                <Image src={src} avatar style={{ marginLeft: '5px', marginRight: '5px' }} size="tiny" />
+              <Link to={`/profile/${userName}`}>
+                <Image
+                  src={src || 'https://via.placeholder.com/50'}
+                  avatar
+                  style={{ marginLeft: '5px', marginRight: '5px' }}
+                  size="tiny"
+                />
               </Link>
             </div>
           </div>
@@ -39,6 +44,7 @@ const AuthorBreadCrumb = ({ src, authorName, date, timeToRead, isAuthenticated }
 AuthorBreadCrumb.propTypes = {
   src: PropTypes.string,
   authorName: PropTypes.string,
+  userName: PropTypes.string,
   date: PropTypes.string,
   timeToRead: PropTypes.number,
   isAuthenticated: PropTypes.bool
@@ -48,11 +54,13 @@ AuthorBreadCrumb.defaultProps = {
   src: 'https://via.placeholder.com/50',
   authorName: null,
   date: null,
+  userName: '',
   timeToRead: 1,
   isAuthenticated: false
 };
 const mapStateToProps = state => ({
-  isAuthenticated: state.auth.isAuthenticated
+  isAuthenticated: state.auth.isAuthenticated,
+  userName: state.readArticleReducer.userName
 });
 
 export default connect(mapStateToProps)(AuthorBreadCrumb);

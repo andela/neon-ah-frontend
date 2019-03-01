@@ -15,6 +15,8 @@ import ArticleRatings from '../../View/Article/ArticleRatings/ArticleRatings';
 import SocialIcons from '../../View/Article/SocialIcon/SocialIcons';
 import Comments from '../../View/Comments/Comments';
 import NotFound from '../../View/NotFound/NotFound';
+import MakeHeaderResponsive from '../../View/Header/MakeHeaderResponsive/MakeHeaderResponsive';
+import LoggedInHeaderResponsive from '../../View/Header/LoggedInHeaderResponsive/LoggedInHeaderResponsive';
 
 class SingleArticle extends Component {
   componentDidMount() {
@@ -24,13 +26,25 @@ class SingleArticle extends Component {
   }
 
   render() {
-    const { article, response, loading, isAuthenticated } = this.props;
+    const { article, response, loading, isAuthenticated, authorImage } = this.props;
     const createMarkup = () => ({ __html: article.content });
     const error = response.response;
 
     return (
       <div>
-        <Header>{isAuthenticated ? <LoggedInHeader /> : <LandingPageHeader />}</Header>
+        <Header>
+          {isAuthenticated ? (
+            <>
+              <LoggedInHeader />
+              <LoggedInHeaderResponsive />
+            </>
+          ) : (
+            <>
+              <MakeHeaderResponsive />
+              <LandingPageHeader />
+            </>
+          )}
+        </Header>
         {error ? (
           <div>
             <NotFound />
@@ -50,6 +64,7 @@ class SingleArticle extends Component {
                 <section>
                   <div className="ui stackable two column grid container">
                     <AuthorBreadcrumb
+                      src={authorImage || null}
                       authorName={article.author && article.author.fullName}
                       date={article.createdAt}
                       timeToRead={article.timeToRead}
@@ -102,6 +117,7 @@ SingleArticle.propTypes = {
   response: PropTypes.oneOfType([PropTypes.object]).isRequired,
   loading: PropTypes.bool.isRequired,
   isAuthenticated: PropTypes.bool.isRequired,
+  authorImage: PropTypes.string.isRequired,
   match: PropTypes.oneOfType([PropTypes.object]).isRequired
 };
 
@@ -109,7 +125,8 @@ const mapStateToProps = state => ({
   article: state.readArticleReducer.article,
   response: state.readArticleReducer.response,
   loading: state.readArticleReducer.isLoading,
-  isAuthenticated: state.auth.isAuthenticated
+  isAuthenticated: state.auth.isAuthenticated,
+  authorImage: state.readArticleReducer.authorImage
 });
 
 const mapDispatchToProps = {

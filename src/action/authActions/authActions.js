@@ -31,7 +31,7 @@ export const loginSocial = (history, token) => dispatch => {
 
     dispatch({ type: SOCIAL_LOGIN_SUCCESS, payload: { isAuthenticated: true, roleId: userInfo.roleId } });
 
-    history.push('/articles');
+    history.push('/');
   } catch (error) {
     dispatch(loginError('Cannot authenticate your account.'));
     history.push('/');

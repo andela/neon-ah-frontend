@@ -1,4 +1,4 @@
-import axios from 'axios';
+import makeRequest from '../../utils/axiosSetup';
 
 export const READ_ARTICLE_BEGIN = 'READ_ARTICLE_BEGIN';
 export const READ_ARTICLE_SUCCESS = 'READ_ARTICLE_SUCCESS';
@@ -15,26 +15,31 @@ export const readArticleFailure = error => ({
   type: READ_ARTICLE_FAILURE,
   payload: {
     isLoading: false,
-    response: error
+    response: error,
+    authorImage: null,
+    userName: null
   }
 });
 
-export const readArticleSuccess = response => ({
-  type: READ_ARTICLE_SUCCESS,
-  payload: { isLoading: false, article: response.data.payload }
-});
+export const readArticleSuccess = response => {
+  return {
+    type: READ_ARTICLE_SUCCESS,
+    payload: {
+      isLoading: false,
+      article: response.data.payload,
+      authorImage: response.data.payload.author.img,
+      userName: response.data.payload.author.userName
+    }
+  };
+};
 
 export const readArticleAction = slug => async dispatch => {
   dispatch(readArticleBegin());
-  const getUserToken = localStorage.getItem('userToken');
-  const token = getUserToken ? `Bearer ${getUserToken}` : '';
+  // const getUserToken = localStorage.getItem('userToken');
+  // const token = getUserToken ? `Bearer ${getUserToken}` : '';
   try {
-    const response = await axios.get(`https://neon-ah-staging.herokuapp.com/api/v1/articles/${slug}`, {
-      headers: {
-        Authorization: `${token}`
-      }
-    });
-    dispatch(readArticleSuccess(response.data));
+    const response = await makeRequest(`/articles/${slug}`);
+    dispatch(readArticleSuccess(response));
   } catch (error) {
     dispatch(readArticleFailure(error));
   }

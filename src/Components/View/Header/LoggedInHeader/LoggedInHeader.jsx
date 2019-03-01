@@ -116,7 +116,6 @@ export class LoggedInHeader extends Component {
           {/* istanbul ignore next */ notificationList.filter(message => message.isRead === false).length > 0 && (
             <Icon name="circle" size="tiny" style={{ position: 'absolute', top: '0px', left: '13px', color: 'red' }} />
           )}
-          <NotificationBox onClose={this.onPageScroll} open={showNotificationBox} notificationList={notificationList} />
         </Icon>
         <div className="image">
           <Image
@@ -131,6 +130,7 @@ export class LoggedInHeader extends Component {
             open={showDropdown}
           />
         </div>
+        <NotificationBox onClose={this.onPageScroll} open={showNotificationBox} notificationList={notificationList} />
       </div>
     );
   }
@@ -161,7 +161,8 @@ LoggedInHeader.propTypes = {
     articles: [],
     following: [],
     followers: []
-  })
+  }),
+  getUserDataById: PropTypes.func.isRequired
 };
 
 LoggedInHeader.defaultProps = {

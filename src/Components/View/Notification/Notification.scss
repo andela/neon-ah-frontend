@@ -2,14 +2,14 @@ $break-small: 600px;
 
 .notification-box {
     position: absolute;
-    z-index: 5;
+    z-index: 500;
     box-shadow: 2px 4px 25px rgba(0, 0, 0, 0.1);
     border: 1px solid rgba(0, 0, 0, 0.125);
     border-radius: 0.25em;
     transition: all .2s linear;
     padding: 10px !important;
-    top: 35px;
-    right: 5px;
+    top: 50px;
+    right: 250px;
     background: #fcfcfc;
     width: 400px;
     max-height: 500px;
@@ -17,8 +17,8 @@ $break-small: 600px;
 
     @media screen and (max-width: $break-small) {
         width: 80%;
-        top: 15px;
-        right: 10px;
+        top: 20px;
+        right: 15px;
     }
 }
 

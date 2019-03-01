@@ -1,11 +1,19 @@
 .ui.tiny.image {
   width: 60px;
   height: auto;
+  margin-top: -10px;
+}
+
+.ui.tiny.avatar.image {
+  border-radius: 50px;
+  width: 70px;
+  height: 70px;
 }
 
 #articleDetails {
   padding: 0 -1em;
   margin: 0 -4em;
+  margin-left: -90px;
 }
 
 .ui.button.tiny.ui.primary.basic {

@@ -1,3 +1,5 @@
+$break-small: 600px;
+
 #commentHeading {
   font-style: normal;
   font-weight: normal;
@@ -6,14 +8,49 @@
   color: #262626;
 }
 
+.ui.comments {
+  width: 487px;
+  margin-left: auto;
+  margin-right: auto;
+
+  @media screen and (max-width: $break-small) {
+    width: auto;
+}
+}
+
 .ui.comments .reply.form textarea {
   background: #fbfbfb;
   border: none;
 }
+
+.ui.list>.item .header {
+  display: block;
+  margin: 0;
+  color: rgba(0,0,0,.87);
+  padding: 18px 0;
+  background: none;
+}
+
 #commentBox {
-  background: #fcfcfc;
-  padding: 5px;
+  display: flex;
+  flex-direction: column;
+  background: #E5E5E5;
+  padding: 10px;
   color: #262626;
+  text-align: left;
+  border-radius: 7px;
+}
+
+#like {
+  padding-left: 15px;
+  display: none;
+}
+
+.rule-div {
+  border-top: 1px solid darkgrey;
+  transform: rotate(-0.12deg);
+  margin-top: -10px;
+  margin-bottom: 8px;
 }
 
 .ui.primary.button {
@@ -56,10 +93,20 @@
   margin: 2em 0;
 }
 
+.ui.comments .comment img.avatar {
+  display: block;
+  margin: 0 auto;
+  width: 50px;
+  height: 50px;
+  border-radius: 50px;
+}
+
+#timestamp {
+  padding: 18px 0;
+}
+
 #commentText {
-  border-top: rgba(10, 10, 10, 0.7) 1px solid;
-  background: rgba(10, 10, 10, 0.7);
-  padding-top: 20px;
+  padding-left: 10px;
 }
 .ui.comments .reply.form textarea {
   background: rgba(10, 10, 10, 0.1);

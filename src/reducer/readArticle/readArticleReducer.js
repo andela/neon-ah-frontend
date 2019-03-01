@@ -8,7 +8,9 @@ export const initialArticleState = {
   article: {},
   message: '',
   isLoading: false,
-  response: {}
+  response: {},
+  authorImage: null,
+  userName: null
 };
 
 const readArticleReducer = (state = initialArticleState, { type, payload }) => {

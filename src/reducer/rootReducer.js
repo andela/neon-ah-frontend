@@ -14,6 +14,7 @@ import notificationReducer from './notificationReducer/notificationReducer';
 import profileReducer from './profileReducer/profileReducer';
 import readStatsReducer from './readStats/readStatsReducer';
 import getUserBookmarksReducer from './getUserBookmarks/getUserBookmarksReducer';
+import commentReducer from './commentReducer/commentReducer';
 
 const reducers = combineReducers({
   sendEmailReducer,
@@ -30,7 +31,8 @@ const reducers = combineReducers({
   notification: notificationReducer,
   profileReducer,
   readStatsReducer,
-  getUserBookmarks: getUserBookmarksReducer
+  getUserBookmarks: getUserBookmarksReducer,
+  comment: commentReducer
 });
 
 const rootReducer = (state, action) => {

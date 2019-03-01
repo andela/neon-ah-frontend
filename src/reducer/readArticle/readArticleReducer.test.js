@@ -5,13 +5,17 @@ describe('Read Article reducer', () => {
     isLoading: false,
     article: {},
     message: '',
-    response: {}
+    response: {},
+    authorImage: null,
+    userName: null
   };
   const expectedFailureState = {
     article: {},
     message: '',
     isLoading: false,
-    response: {}
+    response: {},
+    authorImage: null,
+    userName: null
   };
   it('Should return initial state', () => {
     const action = { type: 'READ_ARTICLE_BEGIN', payload: '' };
