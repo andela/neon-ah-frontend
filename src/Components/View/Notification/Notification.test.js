@@ -42,7 +42,7 @@ const wrapper = shallow(<NotificationItem data={notificationList[0]} updateNotif
 
   it('should check the visibility prop isRead is true', () => {
     const wrap = shallow(<NotificationItem data={notificationList[1]} updateNotification={updateNotification} />)
-    expect(wrap.find('#checkbox-span').getElement().props.style.visibility).toEqual('hidden');
+    expect(wrap.find('#checkbox-span').getElement().props.style.visibility).toEqual('visible');
   });
 });
 

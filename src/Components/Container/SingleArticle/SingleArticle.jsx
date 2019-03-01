@@ -26,7 +26,7 @@ class SingleArticle extends Component {
   }
 
   render() {
-    const { article, response, loading, isAuthenticated, authorImage } = this.props;
+    const { article, response, loading, isAuthenticated, authorImage, comments } = this.props;
     const createMarkup = () => ({ __html: article.content });
     const error = response.response;
 

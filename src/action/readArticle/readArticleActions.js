@@ -35,8 +35,6 @@ export const readArticleSuccess = response => {
 
 export const readArticleAction = slug => async dispatch => {
   dispatch(readArticleBegin());
-  // const getUserToken = localStorage.getItem('userToken');
-  // const token = getUserToken ? `Bearer ${getUserToken}` : '';
   try {
     const response = await makeRequest(`/articles/${slug}`);
     dispatch(readArticleSuccess(response));

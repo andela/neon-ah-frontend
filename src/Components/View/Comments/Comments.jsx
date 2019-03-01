@@ -23,7 +23,7 @@ export class Comments extends Component {
   handleChange = evt => {
     evt.preventDefault();
     const { inputFieldsData } = this.state;
-    inputFieldsData[evt.target.id] = evt.target.value.trim();
+    inputFieldsData[evt.target.id] = evt.target.value;
     this.setState({
       inputFieldsData,
       hasValidationError: false
@@ -48,10 +48,19 @@ export class Comments extends Component {
       return;
     }
     addComment(inputFieldsData, articleSlug);
+    this.setState({
+      inputFieldsData: {
+        content: ''
+      }
+    });
   };
 
   render() {
-    const { hasValidationError, errors } = this.state;
+    const {
+      hasValidationError,
+      errors,
+      inputFieldsData: { content }
+    } = this.state;
     const { comments, isAuthenticated, isLoading, hasError, commentCreated, errorMessage } = this.props;
     return (
       <Comment.Group data-test="comments">
@@ -72,7 +81,13 @@ export class Comments extends Component {
               </Message>
             )}
             <Form id="comment-form" onSubmit={this.handleSubmit} reply>
-              <Form.TextArea onChange={this.handleChange} id="content" className="commentInputBox" />
+              <Form.TextArea
+                placeholder="Enter comments"
+                onChange={this.handleChange}
+                id="content"
+                value={content}
+                className="commentInputBox"
+              />
               <Button
                 loading={isLoading}
                 disabled={hasValidationError || hasError}
@@ -87,7 +102,12 @@ export class Comments extends Component {
             <Modal type="login" triggerEl={<p className="pointer">Login in to submit comment</p>} />
           </div>
         )}
-        {comments &&
+        {/* istanbul ignore next */ comments &&
+          comments.sort((a, b) => {
+            const dateA = new Date(a.createdAt);
+            const dateB = new Date(b.createdAt);
+            return dateA - dateB;
+          }) &&
           comments.map(comment => (
             <Comment key={comment.id}>
               <Comment.Content id="commentBox">

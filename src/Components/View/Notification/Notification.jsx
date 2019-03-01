@@ -5,9 +5,14 @@ import NotificationItem from './NotificationItem';
 import './Notification.scss';
 
 const Notification = ({ notificationList, onClose, open }) => {
-  const notificationMessages = notificationList.map(notification => (
-    <NotificationItem key={notification.id} data={notification} />
-  ));
+  notificationList.sort((a, b) => {
+    const dateA = new Date(a.createdAt);
+    const dateB = new Date(b.createdAt);
+    return dateA - dateB;
+  });
+  const notificationMessages = notificationList
+    .reverse()
+    .map(notification => <NotificationItem key={notification.id} data={notification} />);
 
   return (
     <div className="animate notification-box" style={{ display: open ? 'block' : 'none' }}>

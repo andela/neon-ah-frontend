@@ -37,7 +37,7 @@ export const NotificationItem = ({ data, updateNotification }) => {
             <input onClick={() => updateNotification(id)} type="checkbox" />
           </span>
         </div>
-        <h3 style={{ marginTop: '-15px' }}>{message}</h3>
+        <h3 style={{ marginTop: '-15px' }}>{<a href={`/profile/${message.split(' ')[0]}`}>{message}</a>}</h3>
       </div>
     </List.Item>
   );

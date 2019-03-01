@@ -19,7 +19,7 @@ $break-small: 600px;
 }
 
 .ui.comments .reply.form textarea {
-  background: #fbfbfb;
+  background: #eeeeee;
   border: none;
 }
 
@@ -34,7 +34,7 @@ $break-small: 600px;
 #commentBox {
   display: flex;
   flex-direction: column;
-  background: #E5E5E5;
+  background: #FCFCFC;
   padding: 10px;
   color: #262626;
   text-align: left;
@@ -47,7 +47,7 @@ $break-small: 600px;
 }
 
 .rule-div {
-  border-top: 1px solid darkgrey;
+  border-top: 1px solid #e5e5e5;
   transform: rotate(-0.12deg);
   margin-top: -10px;
   margin-bottom: 8px;
@@ -61,7 +61,6 @@ $break-small: 600px;
   line-height: normal;
   font-size: 14px;
   padding: 7px 25px;
-
   color: #ffffff;
 }
 
@@ -107,9 +106,6 @@ $break-small: 600px;
 
 #commentText {
   padding-left: 10px;
-}
-.ui.comments .reply.form textarea {
-  background: rgba(10, 10, 10, 0.1);
 }
 
 @media only screen and (max-width: 768px) {

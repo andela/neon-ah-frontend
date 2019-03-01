@@ -8,7 +8,6 @@ const Header = ({ children }) => {
         <div className="header__container">
           <div>
             <a href="/">
-              `
               <img
                 src="https://res.cloudinary.com/jesseinit/image/upload/v1549829243/neon-ah/Logo.svg"
                 alt="Authors haven logo"
