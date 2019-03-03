@@ -14,15 +14,6 @@ describe('<LandingPageHeader />', () => {
   });
 
   it('should have three Navigation Links', () => {
-    expect(wrapper.find('Link').length).toEqual(1);
-  });
-
-  it('should  contain a search link', () => {
-    expect(
-      wrapper
-        .find('Link')
-        .first()
-        .prop('to')
-    ).toEqual('/search');
+    expect(wrapper.find('Icon').length).toEqual(1);
   });
 });

@@ -10,7 +10,8 @@ describe('Search functionality Reducer', () => {
       isBookmark: false,
       slug: '',
       following: [],
-      username: ''
+      username: '',
+      searchInputValue: ''
     };
 
     expect(searchFunctionalityReducer(undefined, action)).toEqual(initialState);
@@ -25,7 +26,8 @@ describe('Search functionality Reducer', () => {
       isBookmark: false,
       following: [],
       slug: '',
-      username: ''
+      username: '',
+      searchInputValue: ''
     };
 
     expect(searchFunctionalityReducer(undefined, action)).toEqual(expectedState);
@@ -39,7 +41,8 @@ describe('Search functionality Reducer', () => {
       isBookmark: false,
       following: [],
       slug: '',
-      username: ''
+      username: '',
+      searchInputValue: ''
     };
 
     expect(searchFunctionalityReducer(undefined, action)).toEqual(expectedState);
@@ -53,7 +56,8 @@ describe('Search functionality Reducer', () => {
       isBookmark: false,
       following: [],
       slug: '',
-      username: ''
+      username: '',
+      searchInputValue: ''
     };
 
     expect(searchFunctionalityReducer(undefined, action)).toEqual(expectedState);
@@ -67,7 +71,8 @@ describe('Search functionality Reducer', () => {
       isBookmark: false,
       following: [],
       slug: '',
-      username: ''
+      username: '',
+      searchInputValue: ''
     };
 
     expect(searchFunctionalityReducer(undefined, action)).toEqual(expectedState);
@@ -81,7 +86,8 @@ describe('Search functionality Reducer', () => {
       isBookmark: false,
       following: [],
       slug: '',
-      username: ''
+      username: '',
+      searchInputValue: ''
     };
 
     expect(searchFunctionalityReducer(undefined, action)).toEqual(expectedState);
@@ -95,7 +101,8 @@ describe('Search functionality Reducer', () => {
       isBookmark: true,
       following: [],
       slug: '',
-      username: ''
+      username: '',
+      searchInputValue: ''
     };
 
     expect(searchFunctionalityReducer(undefined, action)).toEqual(expectedState);
@@ -109,7 +116,8 @@ describe('Search functionality Reducer', () => {
       isBookmark: true,
       following: [],
       slug: '',
-      username: ''
+      username: '',
+      searchInputValue: ''
     };
 
     expect(searchFunctionalityReducer(undefined, action)).toEqual(expectedState);
@@ -123,7 +131,8 @@ describe('Search functionality Reducer', () => {
       isBookmark: false,
       following: [],
       slug: '',
-      username: ''
+      username: '',
+      searchInputValue: ''
     };
 
     expect(searchFunctionalityReducer(undefined, action)).toEqual(expectedState);
@@ -137,7 +146,8 @@ describe('Search functionality Reducer', () => {
       isBookmark: false,
       following: [],
       slug: '',
-      username: ''
+      username: '',
+      searchInputValue: ''
     };
 
     expect(searchFunctionalityReducer(undefined, action)).toEqual(expectedState);

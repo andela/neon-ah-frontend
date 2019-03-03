@@ -41,7 +41,8 @@ const store = {
         isBookmark: 'bookmark',
         following: [],
         query: 'title',
-        searching: true
+        searching: true,
+        searchInputValue: ''
       },
       auth: {
         isAuthenticated: false

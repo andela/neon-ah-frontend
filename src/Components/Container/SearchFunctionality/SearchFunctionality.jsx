@@ -11,12 +11,11 @@ import IsSearchResultFound from '../../View/IsSearchResultFound./IsSearchResultF
 import * as searchFunctionalityActions from '../../../action/searchFunctionality/searchFunctionalityAction';
 import LandingPageHeader from '../../View/Header/LandingPageHeader/LandingPageHeader';
 import MakeHeaderResponsive from '../../View/Header/MakeHeaderResponsive/MakeHeaderResponsive';
-import HandleSearchFunctionality from '../../View/SearchFunctionalityTab/HandleSearchFunctionality/HandleSearchFunctionality';
+import HandleSearchFunctionality from '../../View/SearchFunctionality/HandleSearchFunctionality/HandleSearchFunctionality';
 
 class SearchFunctionality extends Component {
   state = {
-    searching: false,
-    query: 'title',
+    searching: true,
     isAuthenticated: true
   };
 
@@ -40,11 +39,10 @@ class SearchFunctionality extends Component {
     }
   };
 
-  handleInputChange = async () => {
+  handleInputChange = async e => {
     const { searchByOptionApiCall } = this.props;
-    const { query } = this.state;
     await this.setState({ searching: true });
-    await searchByOptionApiCall(query, this.searchParameter.value);
+    await searchByOptionApiCall(this.searchParameter.value);
   };
 
   render() {
@@ -55,8 +53,10 @@ class SearchFunctionality extends Component {
       articleTagOrAuthorDatas,
       bookmarks,
       following,
+      searchInputValue,
       auth: { isAuthenticated }
     } = this.props;
+
     return (
       <>
         <Helmet title=" Search - Authors Haven" />
@@ -91,6 +91,7 @@ class SearchFunctionality extends Component {
                       ref={input => (this.searchParameter = input)}
                       id="input"
                       type="text"
+                      defaultValue={searchInputValue === '' ? null : searchInputValue}
                       placeholder="Search Author's Haven"
                       onChange={this.handleInputChange}
                     />
@@ -129,7 +130,14 @@ class SearchFunctionality extends Component {
 
 const mapStateToProps = state => {
   const {
-    searchFunctionalityReducer: { statusCode, articleTagOrAuthorDatas, bookmarks, isBookmark, following },
+    searchFunctionalityReducer: {
+      statusCode,
+      articleTagOrAuthorDatas,
+      bookmarks,
+      isBookmark,
+      following,
+      searchInputValue
+    },
     auth
   } = state;
   return {
@@ -138,7 +146,8 @@ const mapStateToProps = state => {
     bookmarks,
     isBookmark,
     following,
-    auth
+    auth,
+    searchInputValue
   };
 };
 

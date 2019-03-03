@@ -10,25 +10,20 @@ import pusher, { eventName } from '../../../../utils/pusherSetup';
 import * as profileAction from '../../../../action/profileActions/profileActions';
 import authentication from '../../../../utils/auth/authentication';
 import decodeToken from '../../../../utils/auth/jwtDecode';
+import LoggedInHeaderSearch from '../../SearchFunctionality/LoggedInHeaderSearch/LoggedInHeaderSearch';
 
 export class LoggedInHeader extends Component {
   constructor(props) {
     super(props);
     this.state = {
       showNotificationBox: false,
-      showDropdown: false
+      showDropdown: false,
+      searchIconClick: false
     };
   }
 
   componentDidMount() {
-    const { fetchNotifications, getUserDataById, history, getUserData } = this.props;
-    // getUserDataById();
-    // const match = {
-    //   params: {
-    //     username: userName
-    //   }
-    // };
-    // getUserData(match, history);
+    const { fetchNotifications } = this.props;
     fetchNotifications();
     const channel = pusher.subscribe('notification');
     channel.bind(eventName, () => {
@@ -36,6 +31,13 @@ export class LoggedInHeader extends Component {
       fetchNotifications();
     });
   }
+
+  handleSearchIconClick = () => {
+    const { searchIconClick } = this.state;
+    this.setState({
+      searchIconClick: !searchIconClick
+    });
+  };
 
   handleNotificationDisplay = () => {
     const { showNotificationBox } = this.state;
@@ -53,7 +55,7 @@ export class LoggedInHeader extends Component {
     });
   };
 
-  handleImageClick = () => {
+  handleProfileImageClick = () => {
     const { showDropdown } = this.state;
     this.setState({
       showDropdown: !showDropdown,
@@ -62,7 +64,7 @@ export class LoggedInHeader extends Component {
   };
 
   render() {
-    const { showNotificationBox, showDropdown } = this.state;
+    const { showNotificationBox, showDropdown, searchIconClick } = this.state;
     const { notificationList, loggedInUserData, data } = this.props;
     document.onscroll = this.onPageScroll;
     const token = authentication.getUserToken();
@@ -71,9 +73,32 @@ export class LoggedInHeader extends Component {
 
     return (
       <div className="landingPage__mobile">
-        <Link to="/search" style={{ marginRight: '10px' }}>
-          <Icon link name="search" />
-        </Link>
+        <div>
+          {searchIconClick ? (
+            <>
+              <div id="display-search-flex">
+                <div>
+                  <Icon
+                    link
+                    name="search"
+                    style={{ marginRight: '10px', marginTop: '6px' }}
+                    onClick={this.handleSearchIconClick}
+                  />
+                </div>
+                <div>
+                  <LoggedInHeaderSearch style={{ marginRight: '10px' }} />
+                </div>
+              </div>
+            </>
+          ) : (
+            <Icon
+              link
+              name="search"
+              style={{ marginRight: '10px', marginTop: '6px' }}
+              onClick={this.handleSearchIconClick}
+            />
+          )}
+        </div>
         <Link to="/article/new">
           <Button
             content="Write an article"
@@ -86,7 +111,7 @@ export class LoggedInHeader extends Component {
           onClick={this.handleNotificationDisplay}
           name="bell outline"
           size="large"
-          style={{ marginLeft: '10px', position: 'relative', cursor: 'pointer' }}
+          style={{ marginLeft: '10px', marginTop: '6px', position: 'relative', cursor: 'pointer' }}
         >
           {/* istanbul ignore next */ notificationList.filter(message => message.isRead === false).length > 0 && (
             <Icon name="circle" size="tiny" style={{ position: 'absolute', top: '0px', left: '13px', color: 'red' }} />
@@ -99,7 +124,7 @@ export class LoggedInHeader extends Component {
             avatar
             style={{ marginLeft: '10px', marginRight: '10px', cursor: 'pointer' }}
             className="profile-img"
-            onClick={this.handleImageClick}
+            onClick={this.handleProfileImageClick}
           />
           <ImageDropdown
             userName={loggedInUserData.userName ? loggedInUserData.userName : userNameInToken}
@@ -146,13 +171,10 @@ LoggedInHeader.defaultProps = {
 export const mapStateToProps = state => ({
   notificationList: state.notification.notificationList,
   loggedInUserData: state.profileReducer.loggedInUserData
-  // data: state.profileReducer.data
 });
 
 const mapDispatchToProps = {
   fetchNotifications: NotificationAction.fetchNotifications
-  // getUserDataById: profileAction.fetchUserProfileById,
-  // getUserData: profileAction.fetchUserProfile
 };
 
 export default connect(

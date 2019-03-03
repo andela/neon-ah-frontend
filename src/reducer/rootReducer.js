@@ -33,4 +33,12 @@ const reducers = combineReducers({
   getUserBookmarks: getUserBookmarksReducer
 });
 
-export default reducers;
+const rootReducer = (state, action) => {
+  if (action.type === 'LOGOUT') {
+    state = undefined;
+  }
+
+  return reducers(state, action);
+};
+
+export default rootReducer;

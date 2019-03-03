@@ -69,11 +69,4 @@ describe('<AuthorCard  />', () => {
   it('should render succesfully', () => {
     expect(wrapper).toMatchSnapshot();
   });
-
-  //   it('should simulate handling button click', () => {
-  //     const onClick = jest.fn();
-  //     wrapper.setProps({ handleFollowButtonSubmit: onClick });
-  //     wrapper.find('button.upload-btn').simulate('click');
-  //     expect(onClick.mock.calls.length).toEqual(0);
-  //   });
 });

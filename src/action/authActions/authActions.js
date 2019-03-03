@@ -59,8 +59,6 @@ export const loginLocal = ({ userEmailOrUsername, userPassword }) => async dispa
     });
 
     return window.location.reload;
-
-
   } catch (errors) {
     const wrongDetails = 'Invalid username/Email or Password';
     switch (errors.response.status) {

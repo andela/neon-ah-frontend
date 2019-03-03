@@ -31,9 +31,6 @@ export const fetchUserProfile = match => {
           isSelf = false;
         }
       }
-
-      console.log(isSelf);
-
       if (isSelf) {
         dispatch({
           type: FETCH_USER_PROFILE_SUCCESS,
@@ -79,8 +76,6 @@ export const postUserProfile = (userUpdateData, history) => {
         body: userUpdateData
       });
 
-      console.log('SUCCESS RES', response);
-
       let isSelf = true;
 
       if (token) {
@@ -97,7 +92,6 @@ export const postUserProfile = (userUpdateData, history) => {
 
       history.push(`/profile/${response.data.payload.userName}`);
     } catch (error) {
-      console.log('ERROR RES', error.response);
       const {
         response: { data }
       } = error;

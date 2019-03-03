@@ -2,7 +2,6 @@ import configureStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
 import MockAdapter from 'axios-mock-adapter';
 import { apiInstance } from '../../utils/axiosSetup';
-import mockData from '../forgotPassword/mockData';
 import * as profileActions from './profileActions';
 
 const middlewares = [thunk];
@@ -73,7 +72,8 @@ describe('profile Actions', () => {
     const expectedActions = [
       {
         payload: {
-          data: {
+          data: {},
+          loggedInUserData: {
             bio: 'NY Times Best Selling Author',
             email: 'samuel.adeniran@andela.com',
             fullName: 'Samuel Adeniran',
@@ -99,7 +99,8 @@ describe('profile Actions', () => {
       isLoading: false,
       error: '',
       isSelf: true,
-      message: ''
+      message: '',
+      loggedInUserData: {}
     });
 
     store.dispatch(profileActions.fetchUserProfile(match)).then(() => {

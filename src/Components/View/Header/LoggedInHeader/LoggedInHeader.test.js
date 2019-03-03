@@ -33,12 +33,6 @@ describe('<LoggedInHeader />', () => {
     wrapper.find('.profile-img').simulate('click');
     expect(wrapper.state('showDropdown')).toEqual(true);
   });
-
-  it('should call the getUserByID function', () => {
-    wrapper.instance().componentDidMount();
-    expect(getUserDataById.mock.calls.length).toBeGreaterThan(0);
-  });
-
   it('should test mapStateToProps function', () => {
     const state = {
       notification: { notificationList: [] },

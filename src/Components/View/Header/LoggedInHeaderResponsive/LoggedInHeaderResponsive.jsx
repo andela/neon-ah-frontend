@@ -87,13 +87,20 @@ LoggedInHeaderResponsive.propTypes = {
       updatedAt: PropTypes.string
     })
   ).isRequired,
-  fetchNotifications: PropTypes.func.isRequired
+  fetchNotifications: PropTypes.func.isRequired,
+  loggedInUserData: PropTypes.oneOfType([PropTypes.object]).isRequired
 };
 
-export const mapStateToProps = state => ({
-  notificationList: state.notification.notificationList,
-  loggedInUserData: state.profileReducer.loggedInUserData
-});
+export const mapStateToProps = state => {
+  const {
+    notification: { notificationList },
+    profileReducer: { loggedInUserData }
+  } = state;
+  return {
+    notificationList,
+    loggedInUserData
+  };
+};
 
 const mapDispatchToProps = {
   fetchNotifications: NotificationAction.fetchNotifications,

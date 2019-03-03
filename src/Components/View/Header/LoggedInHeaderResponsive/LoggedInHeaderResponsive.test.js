@@ -4,8 +4,14 @@ import { LoggedInHeaderResponsive, mapStateToProps } from './LoggedInHeaderRespo
 
 describe('<LoggedInHeaderResponsive />', () => {
   const fetchNotifications = jest.fn();
-  const notificationList = [{}]
-  const wrapper = shallow(<LoggedInHeaderResponsive fetchNotifications={fetchNotifications} notificationList={notificationList} />);
+  const props = {
+    notificationList: [{}],
+    loggedInUserData: {
+      userName: ''
+    }
+  };
+
+  const wrapper = shallow(<LoggedInHeaderResponsive {...props} fetchNotifications={fetchNotifications} />);
 
   it('should render succesfully', () => {
     expect(wrapper).toMatchSnapshot();
@@ -13,7 +19,7 @@ describe('<LoggedInHeaderResponsive />', () => {
 
   it('should simulate onClick Event on the Notification bell', () => {
     wrapper.find('#notification-dropdown').simulate('click');
-    expect(wrapper.state('openNotificationBox')).toEqual(true)
+    expect(wrapper.state('openNotificationBox')).toEqual(true);
   });
 
   it('should call the fetchNotifications function', () => {
@@ -23,11 +29,19 @@ describe('<LoggedInHeaderResponsive />', () => {
 
   it('should test mapStateToProps function', () => {
     const state = {
-      notification: { notificationList: [] }
+      notification: { notificationList: [] },
+      profileReducer: {
+        loggedInUserData: {
+          userName: ''
+        }
+      }
     };
     const result = {
-      notificationList: []
-    }
+      notificationList: [],
+      loggedInUserData: {
+        userName: ''
+      }
+    };
     expect(mapStateToProps(state)).toEqual(result);
   });
 });

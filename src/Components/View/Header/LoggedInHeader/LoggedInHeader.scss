@@ -1,4 +1,29 @@
 .image {
-  display: inline;
   position: relative;
+}
+
+#display-search-flex {
+  display: flex;
+}
+
+.landingPage__mobile {
+  display: flex;
+  margin-right: 20px;
+}
+@media only screen and (max-width: 768px) {
+  .landingPage__mobile {
+    display: none;
+  }
+  .hamburger {
+    display: block;
+  }
+
+  .menu {
+    display: block;
+  }
+  .footer-container {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+  }
 }

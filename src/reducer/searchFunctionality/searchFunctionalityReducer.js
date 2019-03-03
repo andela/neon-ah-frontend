@@ -5,7 +5,8 @@ const initialState = {
   isBookmark: false,
   following: [],
   slug: '',
-  username: ''
+  username: '',
+  searchInputValue: ''
 };
 
 const searchFunctionalityReducer = (state = initialState, { type, payload }) => {
@@ -31,6 +32,8 @@ const searchFunctionalityReducer = (state = initialState, { type, payload }) => 
       return { ...state, slug: payload };
     case 'SEND_AUTHOR_NAME':
       return { ...state, username: payload };
+    case 'GET_SEARCH_INPUT_VALUE':
+      return { ...state, searchInputValue: payload };
     default:
       return state;
   }

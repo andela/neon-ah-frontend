@@ -13,7 +13,6 @@ const SearchFunctionalityTab = ({
   following,
   handleFollowButtonSubmit
 }) => {
-  console.log(data);
   const panes = [
     {
       menuItem: 'Articles',

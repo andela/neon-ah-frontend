@@ -11,6 +11,7 @@ export const POST_BOOKMARK_FAILURE = 'POST_BOOKMARK_FAILURE';
 export const POST_BOOKMARK_SUCCESS = 'POST_BOOKMARK_SUCCESS';
 export const GET_FOLLOWING_FAILURE = 'GET_FOLLOWING_FAILURE';
 export const GET_FOLLOWING_SUCCESS = 'GET_FOLLOWING_SUCCESS';
+export const GET_SEARCH_INPUT_VALUE = 'GET_SEARCH_INPUT_VALUE';
 
 export const sendBookmarkSlug = slug => {
   return { type: 'SEND_ARTICLE_SLUG', payload: slug };
@@ -93,7 +94,7 @@ export const bookmarkArticleApiCall = slug => {
   };
 };
 
-export const searchByOptionApiCall = (option, parameter) => {
+export const searchByOptionApiCall = parameter => {
   return async dispatch => {
     try {
       const token = getToken.getUserToken();
@@ -115,5 +116,12 @@ export const searchByOptionApiCall = (option, parameter) => {
       } = error;
       dispatch({ type: UPDATE_ARTICLE_TAG_OR_AUTHOR_FAILURE, payload: data.data.statusCode });
     }
+  };
+};
+
+export const getSearchInputValue = value => {
+  return {
+    type: GET_SEARCH_INPUT_VALUE,
+    payload: value
   };
 };

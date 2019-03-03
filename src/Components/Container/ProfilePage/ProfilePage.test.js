@@ -14,7 +14,7 @@ describe('Render ProfilePage Component ', () => {
 describe('<ProfilePage/>', () => {
   const props = {
     isLoading: false,
-    data: {
+    loggedInUserData: {
       bio: 'NY Times Best Selling Writer',
       email: 'samuel.adeniran@andela.com',
       fullName: 'Samuel Beef',
@@ -25,6 +25,7 @@ describe('<ProfilePage/>', () => {
       updatedAt: '2019-02-26T23:03:15.144Z',
       userName: 'sam'
     },
+
     match: {
       params: {
         username: 'sam'
@@ -45,7 +46,8 @@ describe('<ProfilePage/>', () => {
           error: '',
           isSelf: false,
           message: '',
-          visible: false
+          visible: false,
+          loggedInUserData: {}
         },
         signUpReducer: {
           isLoading: false,

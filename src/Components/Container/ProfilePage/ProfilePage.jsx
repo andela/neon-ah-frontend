@@ -88,6 +88,7 @@ class ProfilePage extends Component {
 
 ProfilePage.propTypes = {
   isLoading: PropTypes.bool.isRequired,
+  loggedInUserData: PropTypes.oneOfType([PropTypes.object]).isRequired,
   data: PropTypes.oneOfType([PropTypes.object]).isRequired,
   match: PropTypes.oneOfType([PropTypes.object]).isRequired,
   history: PropTypes.oneOfType([PropTypes.array]).isRequired,

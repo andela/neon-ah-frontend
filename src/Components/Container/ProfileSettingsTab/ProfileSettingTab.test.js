@@ -21,7 +21,7 @@ describe('Render Profile Settings Tab', () => {
   });
 });
 
-describe('ForgotPasswordForm', () => {
+describe('Profile Settings Form', () => {
   const props = {
     userDetails: {
       email: 'samuel.adeniran@andela.com',
