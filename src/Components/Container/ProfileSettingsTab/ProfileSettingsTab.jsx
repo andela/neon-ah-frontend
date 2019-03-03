@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Axios from 'axios';
-import { Form, Button, Divider, Checkbox, Image, Message, Container } from 'semantic-ui-react';
+import { Form, Button, Divider, Checkbox, Image, Message, Container, Loader } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 import * as profileAction from '../../../action/profileActions/profileActions';
 
@@ -16,7 +16,8 @@ class ProfileSettingsTab extends Component {
       inAppSelected: false,
       fullName: '',
       userName: '',
-      bio: ''
+      bio: '',
+      loadingImage: false
     };
   }
 
@@ -86,12 +87,38 @@ class ProfileSettingsTab extends Component {
     event.preventDefault();
     const { fullName, userName, bio, emailSelected, inAppSelected, imageUrl } = this.state;
     const { postUserData, history } = this.props;
-    postUserData(fullName, userName, bio, imageUrl, inAppSelected, emailSelected, history);
+
+    const userUpdateData = {
+      fullName,
+      userName,
+      bio,
+      getInAppNotification: inAppSelected,
+      getEmailsNotification: emailSelected,
+      img: imageUrl
+    };
+
+    if (!userUpdateData.fullName) delete userUpdateData.fullName;
+    if (!userUpdateData.userName) delete userUpdateData.userName;
+    if (!userUpdateData.bio) delete userUpdateData.bio;
+    if (!userUpdateData.img) delete userUpdateData.img;
+
+    console.log('userUpdateData', userUpdateData);
+
+    postUserData(userUpdateData, history);
   };
 
   render() {
     const { userDetails, message, error, visible } = this.props;
-    const { fullName, userName, bio, imageUrl, inAppSelected, emailSelected, imagepreviewurl } = this.state;
+    const {
+      fullName,
+      userName,
+      bio,
+      imageUrl,
+      inAppSelected,
+      emailSelected,
+      imagepreviewurl,
+      loadingImage
+    } = this.state;
 
     let $imagePreview = '';
 
@@ -161,7 +188,10 @@ class ProfileSettingsTab extends Component {
                   <Image circular src={imageUrl || 'http://placekitten.com/g/200/150'} width="150px" height="150px" />
                 )}
                 <label htmlFor="img-upload">
-                  <span>Update Image</span>
+                  <span>
+                    Update Image
+                    <Loader className="loading" loadingImage active disabled inline size="mini" />
+                  </span>
                 </label>
                 <input
                   data-testid="image"
@@ -224,11 +254,10 @@ ProfileSettingsTab.propTypes = {
 
 const mapStateToProps = state => {
   const {
-    profileReducer: { isLoading, data, error, isSelf, message, visible }
+    profileReducer: { isLoading, error, isSelf, message, visible }
   } = state;
   return {
     isLoading,
-    data,
     error,
     isSelf,
     message,

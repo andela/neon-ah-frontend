@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Item, ItemMeta, Button } from 'semantic-ui-react';
+import { Item, Button } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 
 class UserProfileSection extends Component {

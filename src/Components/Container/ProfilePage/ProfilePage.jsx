@@ -32,7 +32,7 @@ class ProfilePage extends Component {
   }
 
   render() {
-    const { data, isLoading, isSelf, error, history } = this.props;
+    const { data, isLoading, isSelf, error, history, loggedInUserData } = this.props;
     const { isAuthenticated } = this.state;
 
     return (
@@ -73,11 +73,11 @@ class ProfilePage extends Component {
                       </Placeholder>
                     </Grid.Column>
                   ) : (
-                    <UserProfileSection userInfo={data} self={isSelf} />
+                    <UserProfileSection userInfo={data.id ? data : loggedInUserData} self={isSelf} />
                   )}
                 </Grid.Row>
               </Grid>
-              {isLoading ? null : <Tabs userInfo={data} self={isSelf} history={history} />}
+              {isLoading ? null : <Tabs userInfo={loggedInUserData} self={isSelf} history={history} />}
             </div>
           </div>
         )}
@@ -98,9 +98,10 @@ ProfilePage.propTypes = {
 
 const mapStateToProps = state => {
   const {
-    profileReducer: { isLoading, data, error, isSelf }
+    profileReducer: { isLoading, data, error, isSelf, loggedInUserData }
   } = state;
   return {
+    loggedInUserData,
     isLoading,
     data,
     error,

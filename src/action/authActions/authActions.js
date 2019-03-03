@@ -9,11 +9,9 @@ export const SHOW_ERROR = 'SHOW_ERROR';
 export const CLEAR_LOGIN_ERRORS = 'CLEAR_LOGIN_ERRORS';
 export const USER_LOGOUT = 'LOGOUT';
 
-export const logout = history => async dispatch => {
+export const logout = () => {
   localStorage.removeItem('userToken');
-  dispatch({ type: USER_LOGOUT, payload: {} });
-  history.push('/');
-  location.reload();
+  return { type: USER_LOGOUT, payload: {} };
 };
 
 export const loginError = message => {

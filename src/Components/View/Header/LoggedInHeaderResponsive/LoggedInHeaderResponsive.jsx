@@ -7,6 +7,7 @@ import { Dropdown } from 'semantic-ui-react';
 import { NotificationAction } from '../../../../action/notificationActions/notificationActions';
 import NotificationBox from '../../Notification/Notification';
 import pusher, { eventName } from '../../../../utils/pusherSetup';
+import * as profileAction from '../../../../action/profileActions/profileActions';
 
 export class LoggedInHeaderResponsive extends Component {
   constructor(props) {
@@ -44,7 +45,7 @@ export class LoggedInHeaderResponsive extends Component {
 
   render() {
     const { openNotificationBox } = this.state;
-    const { notificationList } = this.props;
+    const { notificationList, loggedInUserData } = this.props;
     document.onscroll = this.handlePageScroll;
 
     return (
@@ -60,7 +61,7 @@ export class LoggedInHeaderResponsive extends Component {
                 text="Notification"
                 style={{ color: '#4183c4' }}
               />
-              <Dropdown.Item text={<Link to="/profile">Profile</Link>} />
+              <Dropdown.Item text={<Link to={`/profile/${loggedInUserData.userName}`}>Profile</Link>} />
             </Dropdown.Menu>
           </Dropdown>
         </div>
@@ -90,11 +91,13 @@ LoggedInHeaderResponsive.propTypes = {
 };
 
 export const mapStateToProps = state => ({
-  notificationList: state.notification.notificationList
+  notificationList: state.notification.notificationList,
+  loggedInUserData: state.profileReducer.loggedInUserData
 });
 
 const mapDispatchToProps = {
-  fetchNotifications: NotificationAction.fetchNotifications
+  fetchNotifications: NotificationAction.fetchNotifications,
+  getUserDataById: profileAction.fetchUserProfileById
 };
 
 export default connect(

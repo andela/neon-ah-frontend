@@ -8,6 +8,8 @@ import NotificationBox from '../../Notification/Notification';
 import { NotificationAction } from '../../../../action/notificationActions/notificationActions';
 import pusher, { eventName } from '../../../../utils/pusherSetup';
 import * as profileAction from '../../../../action/profileActions/profileActions';
+import authentication from '../../../../utils/auth/authentication';
+import decodeToken from '../../../../utils/auth/jwtDecode';
 
 export class LoggedInHeader extends Component {
   constructor(props) {
@@ -19,8 +21,14 @@ export class LoggedInHeader extends Component {
   }
 
   componentDidMount() {
-    const { fetchNotifications, getUserDataById } = this.props;
-    getUserDataById();
+    const { fetchNotifications, getUserDataById, history, getUserData } = this.props;
+    // getUserDataById();
+    // const match = {
+    //   params: {
+    //     username: userName
+    //   }
+    // };
+    // getUserData(match, history);
     fetchNotifications();
     const channel = pusher.subscribe('notification');
     channel.bind(eventName, () => {
@@ -32,28 +40,34 @@ export class LoggedInHeader extends Component {
   handleNotificationDisplay = () => {
     const { showNotificationBox } = this.state;
     this.setState({
-      showNotificationBox: !showNotificationBox
+      showNotificationBox: !showNotificationBox,
+      showDropdown: false
     });
   };
 
   /* istanbul ignore next */
   onPageScroll = () => {
     this.setState({
-      showNotificationBox: false
+      showNotificationBox: false,
+      showDropdown: false
     });
   };
 
   handleImageClick = () => {
     const { showDropdown } = this.state;
     this.setState({
-      showDropdown: !showDropdown
+      showDropdown: !showDropdown,
+      showNotificationBox: false
     });
   };
 
   render() {
     const { showNotificationBox, showDropdown } = this.state;
-    const { notificationList, loggedInUserData } = this.props;
+    const { notificationList, loggedInUserData, data } = this.props;
     document.onscroll = this.onPageScroll;
+    const token = authentication.getUserToken();
+    const decode = decodeToken(token);
+    const { img: imageInToken, userName: userNameInToken } = decode;
 
     return (
       <div className="landingPage__mobile">
@@ -81,17 +95,16 @@ export class LoggedInHeader extends Component {
         </Icon>
         <div className="image">
           <Image
-            src={
-              loggedInUserData.img
-                ? loggedInUserData.img
-                : 'https://res.cloudinary.com/jesseinit/image/upload/v1550502499/neon-ah/user.svg'
-            }
+            src={loggedInUserData.img || imageInToken}
             avatar
             style={{ marginLeft: '10px', marginRight: '10px', cursor: 'pointer' }}
             className="profile-img"
             onClick={this.handleImageClick}
           />
-          <ImageDropdown userinfo={loggedInUserData} open={showDropdown} />
+          <ImageDropdown
+            userName={loggedInUserData.userName ? loggedInUserData.userName : userNameInToken}
+            open={showDropdown}
+          />
         </div>
       </div>
     );
@@ -133,11 +146,13 @@ LoggedInHeader.defaultProps = {
 export const mapStateToProps = state => ({
   notificationList: state.notification.notificationList,
   loggedInUserData: state.profileReducer.loggedInUserData
+  // data: state.profileReducer.data
 });
 
 const mapDispatchToProps = {
-  fetchNotifications: NotificationAction.fetchNotifications,
-  getUserDataById: profileAction.fetchUserProfileById
+  fetchNotifications: NotificationAction.fetchNotifications
+  // getUserDataById: profileAction.fetchUserProfileById,
+  // getUserData: profileAction.fetchUserProfile
 };
 
 export default connect(

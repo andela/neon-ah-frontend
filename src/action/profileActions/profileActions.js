@@ -21,17 +21,30 @@ export const fetchUserProfileError = data => {
 export const fetchUserProfile = match => {
   return async dispatch => {
     try {
-      const response = await makeRequest(`users/${match.params.username}`, { method: 'GET' });
+      const response = await makeRequest(`users/${match.params.username}`);
+
       let isSelf = true;
+
       if (token) {
         const decoded = isTokenValid(token);
         if (decoded.userId !== response.data.payload.id) {
           isSelf = false;
         }
       }
+
+      console.log(isSelf);
+
+      if (isSelf) {
+        dispatch({
+          type: FETCH_USER_PROFILE_SUCCESS,
+          payload: { loggedInUserData: response.data.payload, isSelf, isLoading: false, data: {} }
+        });
+        return;
+      }
+
       dispatch({
         type: FETCH_USER_PROFILE_SUCCESS,
-        payload: { data: response.data.payload, isLoading: false, isSelf }
+        payload: { data: response.data.payload, isSelf, isLoading: false }
       });
     } catch (error) {
       const {
@@ -58,33 +71,33 @@ export const fetchUserProfileById = () => {
   };
 };
 
-export const postUserProfile = (fullName, userName, bio, imageUrl, inAppSelected, emailSelected, history) => {
+export const postUserProfile = (userUpdateData, history) => {
   return async dispatch => {
     try {
       const response = await makeRequest('/users', {
         method: 'PUT',
-        body: {
-          fullName,
-          userName,
-          bio,
-          img: imageUrl,
-          getInAppNotification: inAppSelected,
-          getEmailsNotification: emailSelected
-        }
+        body: userUpdateData
       });
+
+      console.log('SUCCESS RES', response);
+
       let isSelf = true;
+
       if (token) {
         const decoded = isTokenValid(token);
         if (decoded.userId !== response.data.payload.id) {
           isSelf = false;
         }
       }
+
       dispatch({
         type: UPDATE_USER_PROFILE_SUCCESS,
-        payload: { message: response.data.message, data: response.data.payload, isSelf, visible: true }
+        payload: { message: response.data.message, loggedInUserData: response.data.payload, isSelf, visible: true }
       });
+
       history.push(`/profile/${response.data.payload.userName}`);
     } catch (error) {
+      console.log('ERROR RES', error.response);
       const {
         response: { data }
       } = error;

@@ -31,6 +31,7 @@ const authReducer = (state = initialAuthState, { type, payload }) => {
     case USER_LOGIN_FAILURE:
       return { ...state, ...{ isAuthenticated: false, roleId: '', loginErrors: [...payload], isLoading: false } };
     case USER_LOGOUT:
+      return { ...initialAuthState, isAuthenticated: false };
     default:
       return state;
   }

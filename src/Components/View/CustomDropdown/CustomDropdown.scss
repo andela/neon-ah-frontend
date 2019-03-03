@@ -10,7 +10,7 @@ ul {
   font-weight: 300;
   text-transform: none;
   float: right;
-  left: -7px;
+  left: -16px;
   position: absolute;
   width: 70px;
   margin-top: 10px;
@@ -25,8 +25,11 @@ ul {
   padding-bottom: 0.5rem !important;
   padding-left: 1.12286rem !important;
   font-size: 1rem;
+  color: #fff !important;
+  background: #fff;
 
   &:hover {
-    background: #f4f4f4;
+    color: #2fb5ee;
+    background: #f9f9f8;
   }
 }
