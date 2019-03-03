@@ -21,14 +21,6 @@ export const sendUserName = userName => {
   return { type: 'SEND_AUTHOR_NAME', payload: userName };
 };
 
-export const sendBookmarkSlug = slug => {
-  return { type: 'SEND_ARTICLE_SLUG', payload: slug };
-};
-
-export const sendUserName = userName => {
-  return { type: 'SEND_AUTHOR_NAME', payload: userName };
-};
-
 // action creator
 export const updateWithArticleTagOrAuthor = (statusCode, data) => {
   return { type: UPDATE_ARTICLE_TAG_OR_AUTHOR_SUCCESS, payload: { statusCode, data } };

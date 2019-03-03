@@ -8,7 +8,8 @@ const initialState = {
   error: '',
   isSelf: true,
   message: '',
-  visible: false
+  visible: false,
+  loadingBtn: false
 };
 
 describe('Profile reducer tests', () => {

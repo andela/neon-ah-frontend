@@ -6,13 +6,7 @@ const fetchNotifications = jest.fn();
 const getUserDataById = jest.fn();
 const notificationList = [{}];
 
-const wrapper = shallow(
-  <LoggedInHeader
-    fetchNotifications={fetchNotifications}
-    notificationList={notificationList}
-    getUserDataById={getUserDataById}
-  />
-);
+const wrapper = shallow(<LoggedInHeader fetchNotifications={fetchNotifications} notificationList={notificationList} />);
 
 describe('<LoggedInHeader />', () => {
   it('should render succesfully', () => {

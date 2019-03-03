@@ -30,6 +30,11 @@ ul {
 
   &:hover {
     color: #2fb5ee;
-    background: #f9f9f8;
+    background: #f6f6f6;
   }
+}
+
+.ui.dropdown .menu {
+  left: -65px;
+  margin-top: 12px;
 }

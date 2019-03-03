@@ -63,7 +63,7 @@ class ProfileSettingsTab extends Component {
     const reader = new FileReader();
     const file = event.target.files[0];
     reader.onloadend = () => {
-      this.setState({ file, imagepreviewurl: reader.result });
+      this.setState({ file, imagepreviewurl: reader.result, loadingImage: true });
     };
     reader.readAsDataURL(file);
     const formData = new FormData();
@@ -78,15 +78,31 @@ class ProfileSettingsTab extends Component {
     await this.setState(state => {
       return {
         state,
-        imageUrl: upload.data.secure_url
+        imageUrl: upload.data.secure_url,
+        loadingImage: false
       };
     });
+  };
+
+  validate = (fullName, userName, bio) => {
+    return {
+      fullName: fullName.length === 0,
+      userName: userName.length === 0,
+      bio: bio.length === 0
+    };
+  };
+
+  canBeSubmitted = () => {
+    const { fullName, userName, bio } = this.state;
+    const errors = this.validate(userName, fullName, bio);
+    const isDisabled = Object.keys(errors).some(x => errors[x]);
+    return !isDisabled;
   };
 
   handleSubmit = event => {
     event.preventDefault();
     const { fullName, userName, bio, emailSelected, inAppSelected, imageUrl } = this.state;
-    const { postUserData, history } = this.props;
+    const { updateUserData, history } = this.props;
 
     const userUpdateData = {
       fullName,
@@ -101,14 +117,15 @@ class ProfileSettingsTab extends Component {
     if (!userUpdateData.userName) delete userUpdateData.userName;
     if (!userUpdateData.bio) delete userUpdateData.bio;
     if (!userUpdateData.img) delete userUpdateData.img;
+    if (!this.canBeSubmitted()) {
+      return;
+    }
 
-    console.log('userUpdateData', userUpdateData);
-
-    postUserData(userUpdateData, history);
+    updateUserData(userUpdateData, history);
   };
 
   render() {
-    const { userDetails, message, error, visible } = this.props;
+    const { userDetails, message, error, visible, loadingBtn } = this.props;
     const {
       fullName,
       userName,
@@ -126,6 +143,8 @@ class ProfileSettingsTab extends Component {
       $imagePreview = <Image src={imagepreviewurl} alt="user avatar" width="150px" height="150px" circular />;
     }
 
+    const errors = this.validate(fullName, userName, bio);
+    const isDisabled = Object.keys(errors).some(x => errors[x]);
     return (
       <div>
         {message && visible ? (
@@ -133,9 +152,9 @@ class ProfileSettingsTab extends Component {
             <Message onDismiss={this.handleDismiss} success size="small" content={message} />
           </Container>
         ) : null}
-        {error ? (
+        {error && visible ? (
           <Container>
-            <Message error size="small" content={error} />
+            <Message onDismiss={this.handleDismiss} error size="small" content={error} />
           </Container>
         ) : null}
         <Form>
@@ -185,12 +204,17 @@ class ProfileSettingsTab extends Component {
               </div>
               <div className="upload-img">
                 {$imagePreview || (
-                  <Image circular src={imageUrl || 'http://placekitten.com/g/200/150'} width="150px" height="150px" />
+                  <Image
+                    circular
+                    src={imageUrl || 'https://res.cloudinary.com/jesseinit/image/upload/v1550502499/neon-ah/user.svg'}
+                    width="150px"
+                    height="150px"
+                  />
                 )}
                 <label htmlFor="img-upload">
                   <span>
                     Update Image
-                    <Loader className="loading" loadingImage active disabled inline size="mini" />
+                    <Loader className="loading" active={loadingImage} inline size="mini" />
                   </span>
                 </label>
                 <input
@@ -231,6 +255,8 @@ class ProfileSettingsTab extends Component {
             </div>
             <Button
               type="submit"
+              loading={loadingBtn}
+              disabled={isDisabled}
               style={{ backgroundColor: '#2fb5ee', color: '#fff' }}
               content="Update Profile"
               onClick={this.handleSubmit}
@@ -248,25 +274,26 @@ ProfileSettingsTab.propTypes = {
   error: PropTypes.string.isRequired,
   message: PropTypes.string.isRequired,
   visible: PropTypes.bool.isRequired,
-  postUserData: PropTypes.func.isRequired,
+  updateUserData: PropTypes.func.isRequired,
   clearFlashMessage: PropTypes.func.isRequired
 };
 
 const mapStateToProps = state => {
   const {
-    profileReducer: { isLoading, error, isSelf, message, visible }
+    profileReducer: { isLoading, error, isSelf, message, visible, loadingBtn }
   } = state;
   return {
     isLoading,
     error,
     isSelf,
     message,
-    visible
+    visible,
+    loadingBtn
   };
 };
 
 const mapDispatchToProps = {
-  postUserData: profileAction.postUserProfile,
+  updateUserData: profileAction.updateUserProfile,
   clearFlashMessage: profileAction.clearFlashMessage
 };
 

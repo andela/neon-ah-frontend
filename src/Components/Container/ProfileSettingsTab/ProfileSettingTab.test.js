@@ -21,9 +21,12 @@ describe('Render Profile Settings Tab', () => {
   });
 });
 
-describe('Profile Settings Form', () => {
+describe('ProfileSettingsTab', () => {
   const props = {
     userDetails: {
+      userName: 'samuel',
+      fullName: 'sam',
+      bio: 'hello',
       email: 'samuel.adeniran@andela.com',
       getEmailsNotification: true,
       getInAppNotification: true,
@@ -36,7 +39,13 @@ describe('Profile Settings Form', () => {
     message: '',
     visible: true,
     postUserData: jest.fn(),
-    clearFlashMessage: jest.fn()
+    clearFlashMessage: jest.fn(),
+    validate: jest.fn(),
+    validate: {
+      fullName: 1,
+      userName: 2,
+      bio: 1
+    }
   };
 
   const store = {
@@ -48,7 +57,11 @@ describe('Profile Settings Form', () => {
           error: '',
           isSelf: false,
           message: '',
-          visible: false
+          visible: false,
+          loggedInUserData: {},
+          fullName: 'sam',
+          userName: 'samuel',
+          bio: 'hello'
         },
         signUpReducer: {
           isLoading: false,

@@ -47,7 +47,9 @@ describe('<ProfilePage/>', () => {
           isSelf: false,
           message: '',
           visible: false,
-          loggedInUserData: {}
+          loggedInUserData: {
+            userName: 'sam'
+          }
         },
         signUpReducer: {
           isLoading: false,

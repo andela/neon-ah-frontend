@@ -19,14 +19,15 @@ export class LoggedInHeaderResponsive extends Component {
     this.handlePageScroll = this.handlePageScroll.bind(this);
   }
 
-  componentDidMount() {
-    const { fetchNotifications } = this.props;
+  async componentDidMount() {
+    const { fetchNotifications, getUserDataById } = this.props;
     fetchNotifications();
     const channel = pusher.subscribe('notification');
     channel.bind(eventName, () => {
       /* istanbul ignore next */
       fetchNotifications();
     });
+    await getUserDataById();
   }
 
   handleNotificationBoxToggle() {
@@ -93,12 +94,16 @@ LoggedInHeaderResponsive.propTypes = {
 
 export const mapStateToProps = state => {
   const {
-    notification: { notificationList },
-    profileReducer: { loggedInUserData }
+    profileReducer: { isLoading, data, error, isSelf, loggedInUserData },
+    notification: { notificationList }
   } = state;
   return {
-    notificationList,
-    loggedInUserData
+    loggedInUserData,
+    isLoading,
+    data,
+    error,
+    isSelf,
+    notificationList
   };
 };
 

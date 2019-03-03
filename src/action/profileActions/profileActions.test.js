@@ -247,7 +247,7 @@ describe('profile Actions', () => {
       }
     ];
 
-    store.dispatch(profileActions.postUserProfile()).then(() => {
+    store.dispatch(profileActions.updateUserProfile()).then(() => {
       expect(store.getActions()).toEqual(expectedActions);
       done();
     });
@@ -273,7 +273,7 @@ describe('profile Actions', () => {
       }
     ];
 
-    store.dispatch(profileActions.postUserProfile()).catch(() => {
+    store.dispatch(profileActions.updateUserProfile()).catch(() => {
       expect(store.getActions()).toEqual(expectedActions);
       done();
     });

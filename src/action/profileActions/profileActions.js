@@ -9,6 +9,7 @@ export const FETCH_USER_PROFILE_FAILURE = 'FETCH_USER_PROFILE_FAILURE';
 
 export const FETCH_USER_PROFILE_BY_ID_SUCCESS = 'FETCH_USER_PROFILE_BY_ID_SUCCESS';
 
+export const START_USER_UPDATE_PROFILE = 'START_USER_UPDATE_PROFILE';
 export const UPDATE_USER_PROFILE_SUCCESS = 'UPDATE_USER_PROFILE_SUCCESS';
 export const UPDATE_USER_PROFILE_FAILURE = 'UPDATE_USER_PROFILE_FAILURE';
 
@@ -16,6 +17,29 @@ export const CLEAR_FLASH_MESSAGE = 'CLEAR_FLASH_MESSAGE';
 
 export const fetchUserProfileError = data => {
   return { type: FETCH_USER_PROFILE_FAILURE, payload: { error: data.data.message, isLoading: false } };
+};
+
+export const startUserUpdate = () => {
+  return {
+    type: 'START_USER_UPDATE_PROFILE',
+    payload: { loadingBtn: true }
+  };
+};
+
+export const fetchUserProfileById = () => {
+  return async dispatch => {
+    try {
+      const response = await makeRequest(`/users`, { method: 'GET' });
+      dispatch({
+        type: FETCH_USER_PROFILE_BY_ID_SUCCESS,
+        payload: { loggedInUserData: response.data.payload }
+      });
+    } catch (error) {
+      const {
+        response: { data }
+      } = error;
+    }
+  };
 };
 
 export const fetchUserProfile = match => {
@@ -26,11 +50,13 @@ export const fetchUserProfile = match => {
       let isSelf = true;
 
       if (token) {
+        dispatch(fetchUserProfileById());
         const decoded = isTokenValid(token);
         if (decoded.userId !== response.data.payload.id) {
           isSelf = false;
         }
       }
+
       if (isSelf) {
         dispatch({
           type: FETCH_USER_PROFILE_SUCCESS,
@@ -52,25 +78,10 @@ export const fetchUserProfile = match => {
   };
 };
 
-export const fetchUserProfileById = () => {
+export const updateUserProfile = (userUpdateData, history) => {
   return async dispatch => {
     try {
-      const response = await makeRequest(`/users`, { method: 'GET' });
-      dispatch({
-        type: FETCH_USER_PROFILE_BY_ID_SUCCESS,
-        payload: { loggedInUserData: response.data.payload }
-      });
-    } catch (error) {
-      const {
-        response: { data }
-      } = error;
-    }
-  };
-};
-
-export const postUserProfile = (userUpdateData, history) => {
-  return async dispatch => {
-    try {
+      dispatch(startUserUpdate());
       const response = await makeRequest('/users', {
         method: 'PUT',
         body: userUpdateData
@@ -87,7 +98,13 @@ export const postUserProfile = (userUpdateData, history) => {
 
       dispatch({
         type: UPDATE_USER_PROFILE_SUCCESS,
-        payload: { message: response.data.message, loggedInUserData: response.data.payload, isSelf, visible: true }
+        payload: {
+          message: response.data.message,
+          loggedInUserData: response.data.payload,
+          isSelf,
+          visible: true,
+          loadingBtn: false
+        }
       });
 
       history.push(`/profile/${response.data.payload.userName}`);
@@ -97,7 +114,7 @@ export const postUserProfile = (userUpdateData, history) => {
       } = error;
       dispatch({
         type: UPDATE_USER_PROFILE_FAILURE,
-        payload: { error: data.error }
+        payload: { message: data.data.message, visible: true, loadingBtn: false }
       });
     }
   };

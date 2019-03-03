@@ -10,7 +10,6 @@ describe('<LoggedInHeaderResponsive />', () => {
       userName: ''
     }
   };
-
   const wrapper = shallow(<LoggedInHeaderResponsive {...props} fetchNotifications={fetchNotifications} />);
 
   it('should render succesfully', () => {

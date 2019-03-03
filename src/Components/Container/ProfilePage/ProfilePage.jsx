@@ -32,7 +32,7 @@ class ProfilePage extends Component {
   }
 
   render() {
-    const { data, isLoading, isSelf, error, history, loggedInUserData } = this.props;
+    const { data, isLoading, isSelf, error, history, loggedInUserData, match } = this.props;
     const { isAuthenticated } = this.state;
 
     return (
@@ -73,11 +73,20 @@ class ProfilePage extends Component {
                       </Placeholder>
                     </Grid.Column>
                   ) : (
-                    <UserProfileSection userInfo={data.id ? data : loggedInUserData} self={isSelf} />
+                    <UserProfileSection
+                      userInfo={loggedInUserData.userName !== match.params.username ? data : loggedInUserData}
+                      self={loggedInUserData.userName === match.params.username}
+                    />
                   )}
                 </Grid.Row>
               </Grid>
-              {isLoading ? null : <Tabs userInfo={loggedInUserData} self={isSelf} history={history} />}
+              {isLoading ? null : (
+                <Tabs
+                  userInfo={loggedInUserData}
+                  self={loggedInUserData.userName === match.params.username}
+                  history={history}
+                />
+              )}
             </div>
           </div>
         )}
