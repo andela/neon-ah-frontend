@@ -102,8 +102,6 @@ class ProfileSettingsTab extends Component {
     if (!userUpdateData.bio) delete userUpdateData.bio;
     if (!userUpdateData.img) delete userUpdateData.img;
 
-    console.log('userUpdateData', userUpdateData);
-
     postUserData(userUpdateData, history);
   };
 

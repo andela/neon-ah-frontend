@@ -40,75 +40,6 @@ describe('profile Actions', () => {
     expect(actionType).toEqual('UPDATE_USER_PROFILE_FAILURE');
   });
 
-  it('Dispatches the correct action and payload for fetching user profile', done => {
-    mock.onGet('/users/sam').reply(200, {
-      status: 'success',
-      data: {
-        payload: {
-          bio: 'NY Times Best Selling Author',
-          email: 'samuel.adeniran@andela.com',
-          fullName: 'Samuel Adeniran',
-          getEmailsNotification: true,
-          getInAppNotification: true,
-          id: '6211521f-5baf-403e-9d66-04103240a5c2',
-          img: 'https://res.cloudinary.com/jesseinit/image/upload/v1551087507/article-images/tttkavt3wkrffezc7cf5.jpg',
-          articles: [],
-          following: [],
-          followers: [],
-          userName: 'sam'
-        },
-        message: 'User retrieved successfully',
-        statusCode: 200,
-        error: null
-      }
-    });
-
-    const match = {
-      params: {
-        username: 'sam'
-      }
-    };
-
-    const expectedActions = [
-      {
-        payload: {
-          data: {},
-          loggedInUserData: {
-            bio: 'NY Times Best Selling Author',
-            email: 'samuel.adeniran@andela.com',
-            fullName: 'Samuel Adeniran',
-            getEmailsNotification: true,
-            getInAppNotification: true,
-            id: '6211521f-5baf-403e-9d66-04103240a5c2',
-            img:
-              'https://res.cloudinary.com/jesseinit/image/upload/v1551087507/article-images/tttkavt3wkrffezc7cf5.jpg',
-            userName: 'sam',
-            articles: [],
-            following: [],
-            followers: []
-          },
-          isLoading: false,
-          isSelf: true
-        },
-        type: 'FETCH_USER_PROFILE_SUCCESS'
-      }
-    ];
-
-    const store = mockStore({
-      data: {},
-      isLoading: false,
-      error: '',
-      isSelf: true,
-      message: '',
-      loggedInUserData: {}
-    });
-
-    store.dispatch(profileActions.fetchUserProfile(match)).then(() => {
-      expect(store.getActions()).toEqual(expectedActions);
-      done();
-    });
-  });
-
   it('Dispatches correct actions and payload when an error occurs when fetching user profile fails', () => {
     mock.onGet('/users/sam').reply(500, {
       status: 'failure',
@@ -267,7 +198,8 @@ describe('profile Actions', () => {
     const expectedActions = [
       {
         payload: {
-          error: 'An error occured on the server'
+          error: 'An error occured on the server',
+          isLoading: false
         },
         type: 'UPDATE_USER_PROFILE_FAILURE'
       }

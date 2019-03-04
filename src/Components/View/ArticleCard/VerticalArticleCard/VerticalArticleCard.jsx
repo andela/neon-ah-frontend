@@ -13,15 +13,17 @@ const VerticalArticleCard = props => {
 
   const description = <Card.Description dangerouslySetInnerHTML={createMarkup()} />;
   const articleDescription = `${stripTags(description.props.dangerouslySetInnerHTML.__html).substring(0, 50)}.....`;
+  const stripArticleDescription = articleDescription.replace('&nbsp;', ' ');
+  const stripTitle = `${stripTags(title).substring(0, 30)}.....`;
   return (
     <Card fluid>
       <div className={feature ? 'card-img feature' : 'card-img'} style={{ backgroundImage: `url(${banner})` }} />
       <Card.Content className="card-bg">
         <Card.Header>
           <Link to={`/articles/read/${slug}`} className="header card-link">
-            {title}
+            {stripTitle}
           </Link>
-          <Card.Description className="articleDescription">{articleDescription}</Card.Description>
+          <Card.Description className="articleDescription">{stripArticleDescription}</Card.Description>
         </Card.Header>
       </Card.Content>
       <Card.Content extra>

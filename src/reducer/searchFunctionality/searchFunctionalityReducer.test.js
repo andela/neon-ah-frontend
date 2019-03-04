@@ -11,7 +11,10 @@ describe('Search functionality Reducer', () => {
       slug: '',
       following: [],
       username: '',
-      searchInputValue: ''
+      searchInputValue: '',
+      following: [],
+      followers: [],
+      value: []
     };
 
     expect(searchFunctionalityReducer(undefined, action)).toEqual(initialState);
@@ -27,7 +30,9 @@ describe('Search functionality Reducer', () => {
       following: [],
       slug: '',
       username: '',
-      searchInputValue: ''
+      searchInputValue: '',
+      followers: [],
+      value: []
     };
 
     expect(searchFunctionalityReducer(undefined, action)).toEqual(expectedState);
@@ -42,7 +47,9 @@ describe('Search functionality Reducer', () => {
       following: [],
       slug: '',
       username: '',
-      searchInputValue: ''
+      searchInputValue: '',
+      followers: [],
+      value: []
     };
 
     expect(searchFunctionalityReducer(undefined, action)).toEqual(expectedState);
@@ -57,7 +64,9 @@ describe('Search functionality Reducer', () => {
       following: [],
       slug: '',
       username: '',
-      searchInputValue: ''
+      searchInputValue: '',
+      followers: [],
+      value: []
     };
 
     expect(searchFunctionalityReducer(undefined, action)).toEqual(expectedState);
@@ -72,7 +81,9 @@ describe('Search functionality Reducer', () => {
       following: [],
       slug: '',
       username: '',
-      searchInputValue: ''
+      searchInputValue: '',
+      followers: [],
+      value: []
     };
 
     expect(searchFunctionalityReducer(undefined, action)).toEqual(expectedState);
@@ -87,7 +98,9 @@ describe('Search functionality Reducer', () => {
       following: [],
       slug: '',
       username: '',
-      searchInputValue: ''
+      searchInputValue: '',
+      followers: [],
+      value: []
     };
 
     expect(searchFunctionalityReducer(undefined, action)).toEqual(expectedState);
@@ -102,7 +115,9 @@ describe('Search functionality Reducer', () => {
       following: [],
       slug: '',
       username: '',
-      searchInputValue: ''
+      searchInputValue: '',
+      followers: [],
+      value: []
     };
 
     expect(searchFunctionalityReducer(undefined, action)).toEqual(expectedState);
@@ -117,7 +132,9 @@ describe('Search functionality Reducer', () => {
       following: [],
       slug: '',
       username: '',
-      searchInputValue: ''
+      searchInputValue: '',
+      followers: [],
+      value: []
     };
 
     expect(searchFunctionalityReducer(undefined, action)).toEqual(expectedState);
@@ -132,7 +149,9 @@ describe('Search functionality Reducer', () => {
       following: [],
       slug: '',
       username: '',
-      searchInputValue: ''
+      searchInputValue: '',
+      followers: [],
+      value: []
     };
 
     expect(searchFunctionalityReducer(undefined, action)).toEqual(expectedState);
@@ -147,7 +166,9 @@ describe('Search functionality Reducer', () => {
       following: [],
       slug: '',
       username: '',
-      searchInputValue: ''
+      searchInputValue: '',
+      followers: [],
+      value: []
     };
 
     expect(searchFunctionalityReducer(undefined, action)).toEqual(expectedState);

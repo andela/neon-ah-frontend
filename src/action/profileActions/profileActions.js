@@ -15,13 +15,16 @@ export const UPDATE_USER_PROFILE_FAILURE = 'UPDATE_USER_PROFILE_FAILURE';
 export const CLEAR_FLASH_MESSAGE = 'CLEAR_FLASH_MESSAGE';
 
 export const fetchUserProfileError = data => {
-  return { type: FETCH_USER_PROFILE_FAILURE, payload: { error: data.data.message, isLoading: false } };
+  return {
+    type: FETCH_USER_PROFILE_FAILURE,
+    payload: { error: data.data.error, isLoading: false }
+  };
 };
 
-export const fetchUserProfile = match => {
+export const fetchUserProfile = username => {
   return async dispatch => {
     try {
-      const response = await makeRequest(`users/${match.params.username}`);
+      const response = await makeRequest(`users/${username}`);
 
       let isSelf = true;
 
@@ -48,6 +51,7 @@ export const fetchUserProfile = match => {
         response: { data }
       } = error;
       dispatch(fetchUserProfileError(data));
+      console.log(data);
     }
   };
 };

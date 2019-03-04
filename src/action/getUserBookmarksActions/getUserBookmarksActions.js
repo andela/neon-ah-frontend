@@ -32,7 +32,7 @@ export const getUserBookmarkActions = () => async dispatch => {
   try {
     dispatch(getBookmarksBegin());
     const response = await makeRequest('/user/bookmarks');
-    console.log('TCL: response', response.data);
+
     dispatch(getBookmarks(response.data));
   } catch (error) {
     dispatch(getBookmarksFailure(error));

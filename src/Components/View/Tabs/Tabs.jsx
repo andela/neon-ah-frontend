@@ -4,10 +4,13 @@ import PropTypes from 'prop-types';
 import ProfileSettingsTab from '../../Container/ProfileSettingsTab/ProfileSettingsTab';
 import ReadStats from '../../Container/ReadStats/ReadStats';
 import Bookmarks from '../../Container/Bookmarks/Bookmarks';
+import Followers from '../Followers/Followers';
+import Following from '../Following/Following';
 
 const Tabs = ({ userInfo, self, history }) => {
   const panes = [
     { menuItem: 'Articles', render: () => <Tab.Pane attached={false}>Article</Tab.Pane> },
+
     {
       menuItem: 'Bookmarks',
       render: () => (
@@ -16,19 +19,34 @@ const Tabs = ({ userInfo, self, history }) => {
         </Tab.Pane>
       )
     },
+
     {
+      menuItem: 'Followers',
+      render: () => (
+        <Tab.Pane attached={false}>
+          <Followers />
+        </Tab.Pane>
+      )
+    },
+    {
+      menuItem: 'Following',
+      render: () => (
+        <Tab.Pane attached={false}>
+          <Following />
+        </Tab.Pane>
+      )
+    }
+  ];
+
+  if (self) {
+    panes.push({
       menuItem: 'Stats',
       render: () => (
         <Tab.Pane attached={false}>
           <ReadStats />
         </Tab.Pane>
       )
-    },
-    { menuItem: 'Followers', render: () => <Tab.Pane attached={false}>Followers</Tab.Pane> },
-    { menuItem: 'Following', render: () => <Tab.Pane attached={false}>Following</Tab.Pane> }
-  ];
-
-  if (self) {
+    });
     panes.push({
       menuItem: 'Profile Settings',
       render: props => (

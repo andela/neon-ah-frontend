@@ -3,29 +3,10 @@ import { Item, Button } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 
 class UserProfileSection extends Component {
-  state = {
-    followersCount: 0,
-    followingCount: 0,
-    articlesCount: 0
-  };
-
-  componentWillMount = () => {
-    const {
-      userInfo: { articles, followers, following }
-    } = this.props;
-    this.setState(state => {
-      return {
-        state,
-        articlesCount: articles.length,
-        followersCount: followers.length,
-        followingCount: following.length
-      };
-    });
-  };
+  state = {};
 
   render() {
     const { userInfo, self } = this.props;
-    const { articlesCount, followingCount, followersCount } = this.state;
     return (
       <div className="user-profile">
         <Item.Group>
@@ -59,17 +40,17 @@ class UserProfileSection extends Component {
                 <div className="user-stats">
                   <div>
                     <p>Following</p>
-                    <p>{followingCount}</p>
+                    <p>{userInfo.following.length}</p>
                   </div>
 
                   <div>
                     <p>Followers</p>
-                    <p>{followersCount}</p>
+                    <p>{userInfo.followers.length}</p>
                   </div>
 
                   <div>
                     <p>Articles Written</p>
-                    <p>{articlesCount}</p>
+                    <p>{userInfo.articles.length}</p>
                   </div>
                 </div>
               </Item.Description>

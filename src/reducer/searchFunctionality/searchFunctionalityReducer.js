@@ -6,7 +6,9 @@ const initialState = {
   following: [],
   slug: '',
   username: '',
-  searchInputValue: ''
+  searchInputValue: '',
+  followers: [],
+  value: []
 };
 
 const searchFunctionalityReducer = (state = initialState, { type, payload }) => {
@@ -24,8 +26,10 @@ const searchFunctionalityReducer = (state = initialState, { type, payload }) => 
       return { ...state, isBookmark: !isBookmark };
     case 'POST_BOOKMARK_FAILURE':
       return { ...state, isBookmark: !isBookmark };
-    case 'GET_FOLLOWING_SUCCESS':
+    case 'GET_FOLLOWING_BEGIN':
       return { ...state, following: payload.value, username: payload.username };
+    case 'GET_FOLLOWING_SUCCESS':
+      return { ...state, ...payload };
     case 'GET_FOLLOWING_FAILURE':
       return { ...state, following: payload };
     case 'SEND_ARTICLE_SLUG':
@@ -34,6 +38,12 @@ const searchFunctionalityReducer = (state = initialState, { type, payload }) => 
       return { ...state, username: payload };
     case 'GET_SEARCH_INPUT_VALUE':
       return { ...state, searchInputValue: payload };
+    case 'GET_FOLLOWERS_BEGIN':
+      return { ...state, ...payload };
+    case 'GET_FOLLOWERS_SUCCESS':
+      return { ...state, ...payload };
+    case 'GET_FOLLOWERS_FAILURE':
+      return { ...state, ...payload };
     default:
       return state;
   }

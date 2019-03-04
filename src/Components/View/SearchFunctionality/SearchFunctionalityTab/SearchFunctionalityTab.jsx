@@ -58,7 +58,7 @@ const SearchFunctionalityTab = ({
                     <Grid.Column mobile={8} tablet={4} computer={3}>
                       <AuthorCard
                         userName={author.userName}
-                        isFollowing={findInArray(following, 'id', author.id) ? 'following' : 'follow'}
+                        isFollowing={following && findInArray(following, 'id', author.id) ? 'following' : 'follow'}
                         key={author.id}
                         image={author.img}
                         fullName={author.fullName}

@@ -23,7 +23,7 @@ class ProfilePage extends Component {
 
   async componentDidMount() {
     const { getUserData, match, history } = this.props;
-    await getUserData(match, history);
+    await getUserData(match.params.username, history);
     if (getToken.getUserToken() !== null) {
       await this.setState({ isAuthenticated: true });
     } else {
