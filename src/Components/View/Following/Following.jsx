@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Grid, Segment, Dimmer, Loader, Image, Message } from 'semantic-ui-react';
+import { Grid, Segment, Dimmer, Loader, Image, Message, Placeholder } from 'semantic-ui-react';
 import * as searchFunctionalityActions from '../../../action/searchFunctionality/searchFunctionalityAction';
 import AuthorCard from '../AuthorCard/AuthorCard';
 import findInArray from '../../../utils/findInArray/findInArray';
-// import searchFunctionalityReducer from '../../../reducer/searchFunctionality/searchFunctionalityReducer';
 
 class Following extends Component {
   state = {
@@ -38,13 +37,12 @@ class Following extends Component {
     return (
       <>
         {isLoading && following.length <= 0 ? (
-          <Segment>
-            <Dimmer active inverted>
-              <Loader size="massive">Getting Following</Loader>
-            </Dimmer>
-
-            <Image src="https://react.semantic-ui.com/images/wireframe/short-paragraph.png" />
-          </Segment>
+          <Placeholder>
+            <Placeholder.Header>
+              <Placeholder.Line />
+              <Placeholder.Line />
+            </Placeholder.Header>
+          </Placeholder>
         ) : null}
         {following.length < 1 && !isLoading && (
           <Message info>

@@ -14,40 +14,43 @@ class Bookmarks extends Component {
   render() {
     const { bookmarks, isLoading } = this.props;
 
+    if (isLoading) {
+      return (
+        <Placeholder>
+          <Placeholder.Header>
+            <Placeholder.Line />
+            <Placeholder.Line />
+          </Placeholder.Header>
+        </Placeholder>
+      );
+    }
+
     return (
       <>
         <div>
-          {isLoading && (
-            <Placeholder>
-              <Placeholder.Header>
-                <Placeholder.Line />
-                <Placeholder.Line />
-              </Placeholder.Header>
-            </Placeholder>
-          )}
-          {bookmarks.length < 1 && !isLoading && (
+          {bookmarks.length ? (
+            <Grid stackable columns={2}>
+              {bookmarks.map(bookmark => {
+                return (
+                  <Grid.Column>
+                    <HorizontalArticleCard
+                      key={bookmark.id}
+                      slug={bookmark.Article.slug}
+                      title={bookmark.Article.title}
+                      banner={bookmark.Article.banner}
+                      createdAt={bookmark.Article.createdAt}
+                      timeToRead={bookmark.Article.timeToRead}
+                      content={bookmark.Article.content}
+                    />
+                  </Grid.Column>
+                );
+              })}
+            </Grid>
+          ) : (
             <Message info>
               <p>You have no bookmarked articles</p>
             </Message>
           )}
-
-          <Grid stackable columns={2}>
-            {bookmarks.map(bookmark => {
-              return (
-                <Grid.Column>
-                  <HorizontalArticleCard
-                    key={bookmark.id}
-                    slug={bookmark.Article.slug}
-                    title={bookmark.Article.title}
-                    banner={bookmark.Article.banner}
-                    createdAt={bookmark.Article.createdAt}
-                    timeToRead={bookmark.Article.timeToRead}
-                    content={bookmark.Article.content}
-                  />
-                </Grid.Column>
-              );
-            })}
-          </Grid>
         </div>
       </>
     );

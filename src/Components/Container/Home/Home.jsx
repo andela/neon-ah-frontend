@@ -26,6 +26,11 @@ export class Home extends Component {
     getTags();
   }
 
+  componentDidUpdate = (prevProps) => {
+    if(prevProps.auth.isAuthenticated !== this.props.auth.isAuthenticated) this.props.getHomePageArticles();
+  }
+  
+
   render() {
     const {
       articles,

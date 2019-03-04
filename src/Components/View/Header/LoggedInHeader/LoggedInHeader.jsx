@@ -65,7 +65,7 @@ export class LoggedInHeader extends Component {
 
   render() {
     const { showNotificationBox, showDropdown, searchIconClick } = this.state;
-    const { notificationList, loggedInUserData, data } = this.props;
+    const { notificationList, loggedInUserData } = this.props;
     document.onscroll = this.onPageScroll;
     const token = authentication.getUserToken();
     const decode = decodeToken(token);

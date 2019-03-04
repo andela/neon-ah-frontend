@@ -32,9 +32,9 @@ class HorizontalArticleCard extends Component {
       return { __html: content };
     }
     const description = <Card.Description dangerouslySetInnerHTML={createMarkup()} />;
-    const articleDescription = `${stripTags(description.props.dangerouslySetInnerHTML.__html).substring(0, 40)}.....`;
-    const stripTitle = `${stripTags(title).substring(0, 30)}.....`;
-    const stripArticleDescription = articleDescription.replace('&nbsp;', ' ');
+    const stripTitle = `${stripTags(title).substring(0, 20)}...`;
+    let articleDescription = `${stripTags(description.props.dangerouslySetInnerHTML.__html).substring(0, 40)}...`;
+    articleDescription = articleDescription.replace(/(&nbsp;|&amp;)/gi, ' ');
     return (
       <div className="ui card horizontal">
         <div className="card-img card-img-horizontal" style={{ background: `url(${banner})` }} />
@@ -42,9 +42,9 @@ class HorizontalArticleCard extends Component {
           <Link to={`/articles/read/${slug}`} className="header card-link">
             {stripTitle}
           </Link>
-          <div className="description articleDescription">{stripArticleDescription}</div>
+          <div className="description articleDescription">{articleDescription}</div>
           <div className="meta">
-            <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', backgroundSize: 'cover', backgroundRepeat: 'no-repeat' }}>
               <div>
                 <Link to={`/profile/${author}`} className="card-link">
                   {author}

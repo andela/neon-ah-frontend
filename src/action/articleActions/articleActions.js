@@ -25,7 +25,7 @@ export const createArticle = (articleData, history) => async dispatch => {
 
     dispatch({ type: CREATE_ARTICLE_SUCCESS, payload });
 
-    return history.push(`/article/read/${payload.slug}`);
+    return history.push(`/articles/read/${payload.slug}`);
   } catch (error) {
     switch (error.response.status) {
       case 400:

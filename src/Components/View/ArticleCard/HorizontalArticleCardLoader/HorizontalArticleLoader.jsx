@@ -1,5 +1,6 @@
 import React from 'react';
 import { Placeholder } from 'semantic-ui-react';
+
 const VerticalArticleCardLoader = () => {
   return (
     <Placeholder>

@@ -63,7 +63,7 @@ class ProfileSettingsTab extends Component {
     const reader = new FileReader();
     const file = event.target.files[0];
     reader.onloadend = () => {
-      this.setState({ file, imagepreviewurl: reader.result });
+      this.setState({ file, imagepreviewurl: reader.result, loadingImage: true });
     };
     reader.readAsDataURL(file);
     const formData = new FormData();
@@ -78,7 +78,8 @@ class ProfileSettingsTab extends Component {
     await this.setState(state => {
       return {
         state,
-        imageUrl: upload.data.secure_url
+        imageUrl: upload.data.secure_url,
+        loadingImage: false
       };
     });
   };
@@ -188,7 +189,7 @@ class ProfileSettingsTab extends Component {
                 <label htmlFor="img-upload">
                   <span>
                     Update Image
-                    <Loader className="loading" loadingImage active disabled inline size="mini" />
+                    <Loader className="loading" active={loadingImage} disabled inline size="mini" />
                   </span>
                 </label>
                 <input

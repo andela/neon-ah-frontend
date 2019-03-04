@@ -25,8 +25,6 @@ export class LoggedInHeaderSearch extends Component {
     const { searchOption, sendSearchInputValue } = this.props;
     this.setState({ isLoading: true, value });
     sendSearchInputValue(value);
-    // crteate an action to populate store with input value.
-
     await searchOption(value);
     this.setState({
       isLoading: false

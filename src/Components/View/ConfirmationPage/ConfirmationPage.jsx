@@ -6,9 +6,8 @@ import PropTypes from 'prop-types';
 
 export class ConfirmationPage extends Component {
   componentDidMount() {
-    const { history } = this.props;
     setTimeout(() => {
-      history.push('/articles');
+      window.location.replace('/');
     }, 700);
   }
 

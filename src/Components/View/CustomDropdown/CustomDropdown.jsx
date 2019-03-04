@@ -22,7 +22,7 @@ const ImageDropdown = ({ userName, open, logOutUser, history }) => {
       }}
     >
       <li className="dropdown__submenu-item">
-        <Link to={`/profile/${userName}`}>Profile</Link>
+        <a href={`/profile/${userName}`}>Profile</a>
       </li>
       <li className="dropdown__submenu-item">
         <Link onClick={handleLogout} to="/Logout">

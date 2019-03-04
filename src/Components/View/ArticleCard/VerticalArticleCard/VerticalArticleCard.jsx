@@ -1,7 +1,7 @@
 import React from 'react';
 import moment from 'moment';
 import PropTypes from 'prop-types';
-import { Image, Card, Icon } from 'semantic-ui-react';
+import { Card, Icon } from 'semantic-ui-react';
 import stripTags from 'striptags';
 import { Link } from 'react-router-dom';
 
@@ -12,9 +12,10 @@ const VerticalArticleCard = props => {
   }
 
   const description = <Card.Description dangerouslySetInnerHTML={createMarkup()} />;
-  const articleDescription = `${stripTags(description.props.dangerouslySetInnerHTML.__html).substring(0, 50)}.....`;
-  const stripArticleDescription = articleDescription.replace('&nbsp;', ' ');
-  const stripTitle = `${stripTags(title).substring(0, 30)}.....`;
+  const stripTitle = `${stripTags(title).substring(0, 20)}...`;
+  let articleDescription = `${stripTags(description.props.dangerouslySetInnerHTML.__html).substring(0, 50)}...`;
+  articleDescription = articleDescription.replace(/(&nbsp;|&amp;)/gi, ' ');
+
   return (
     <Card fluid>
       <div className={feature ? 'card-img feature' : 'card-img'} style={{ backgroundImage: `url(${banner})` }} />
@@ -23,7 +24,7 @@ const VerticalArticleCard = props => {
           <Link to={`/articles/read/${slug}`} className="header card-link">
             {stripTitle}
           </Link>
-          <Card.Description className="articleDescription">{stripArticleDescription}</Card.Description>
+          <Card.Description className="articleDescription">{articleDescription}</Card.Description>
         </Card.Header>
       </Card.Content>
       <Card.Content extra>
@@ -33,8 +34,8 @@ const VerticalArticleCard = props => {
               {author}
             </Link>
             <p>
-              {`${moment(createdAt).format('Do MMM')}.   `}
-              <span>{`   ${timeToRead} min`} </span>
+              {`${moment(createdAt).format('Do MMM')}.`}
+              <span>{`${timeToRead} min`} </span>
             </p>
           </div>
           <div>

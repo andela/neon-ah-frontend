@@ -26,12 +26,12 @@ export const fetchUserProfile = username => {
     try {
       const response = await makeRequest(`users/${username}`);
 
-      let isSelf = true;
+      let isSelf = false;
 
       if (token) {
         const decoded = isTokenValid(token);
-        if (decoded.userId !== response.data.payload.id) {
-          isSelf = false;
+        if (decoded.userId === response.data.payload.id) {
+          isSelf = true;
         }
       }
       if (isSelf) {

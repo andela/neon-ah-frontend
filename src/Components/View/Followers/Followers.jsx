@@ -38,13 +38,12 @@ class Followers extends Component {
     return (
       <>
         {isLoading && followers.length <= 0 ? (
-          <Segment>
-            <Dimmer active inverted>
-              <Loader size="massive">Getting Followers</Loader>
-            </Dimmer>
-
-            <Image src="https://react.semantic-ui.com/images/wireframe/short-paragraph.png" />
-          </Segment>
+          <Placeholder>
+            <Placeholder.Header>
+              <Placeholder.Line />
+              <Placeholder.Line />
+            </Placeholder.Header>
+          </Placeholder>
         ) : null}
 
         {followers.length < 1 && !isLoading && (

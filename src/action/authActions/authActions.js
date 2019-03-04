@@ -31,7 +31,7 @@ export const loginSocial = (history, token) => dispatch => {
 
     dispatch({ type: SOCIAL_LOGIN_SUCCESS, payload: { isAuthenticated: true, roleId: userInfo.roleId } });
 
-    history.push('/');
+    window.location.replace('/');
   } catch (error) {
     dispatch(loginError('Cannot authenticate your account.'));
     history.push('/');
@@ -58,7 +58,7 @@ export const loginLocal = ({ userEmailOrUsername, userPassword }) => async dispa
       payload: { isAuthenticated: true, roleId: decodeJwt(token).roleId }
     });
 
-    return window.location.reload;
+    return window.location.reload();
   } catch (errors) {
     const wrongDetails = 'Invalid username/Email or Password';
     switch (errors.response.status) {

@@ -17,6 +17,5 @@ describe('<ConfirmationPage />', () => {
     wrap.instance().componentDidMount();
     expect(setTimeout).toHaveBeenCalledTimes(1);
     expect(setTimeout).toHaveBeenLastCalledWith(expect.any(Function), 700);
-    expect(push.mock.calls.length).toEqual(1);
   });
 });

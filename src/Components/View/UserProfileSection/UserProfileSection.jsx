@@ -7,6 +7,7 @@ class UserProfileSection extends Component {
 
   render() {
     const { userInfo, self } = this.props;
+    console.log('userInfo', userInfo);
     return (
       <div className="user-profile">
         <Item.Group>
@@ -17,7 +18,7 @@ class UserProfileSection extends Component {
               src={
                 userInfo.img
                   ? userInfo.img
-                  : 'https://res.cloudinary.com/jesseinit/image/upload/v1550502499/neon-ah/user.svg'
+                  : 'https://res.cloudinary.com/jesseinit/image/upload/v1551253945/neon-ah/defaultUserProfileImage.svg'
               }
             />
             <Item.Content>
@@ -40,17 +41,17 @@ class UserProfileSection extends Component {
                 <div className="user-stats">
                   <div>
                     <p>Following</p>
-                    <p>{userInfo.following.length}</p>
+                    <p>{userInfo.following ? userInfo.following.length : 0}</p>
                   </div>
 
                   <div>
                     <p>Followers</p>
-                    <p>{userInfo.followers.length}</p>
+                    <p>{userInfo.followers ? userInfo.followers.length : 0}</p>
                   </div>
 
                   <div>
                     <p>Articles Written</p>
-                    <p>{userInfo.articles.length}</p>
+                    <p>{userInfo.articles ? userInfo.articles.length : 0}</p>
                   </div>
                 </div>
               </Item.Description>
