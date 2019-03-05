@@ -5,19 +5,19 @@ describe('RATE Article reducer', () => {
     isLoading: false,
     message: '',
     response: {},
-    rating: {}
+    rating: 0
   };
   const initialState = {
     isLoading: false,
     message: '',
-    rating: {},
+    rating: 0,
     response: {}
   };
   const expectedFailureState = {
     message: '',
     isLoading: false,
     response: {},
-    rating: {}
+    rating: 0
   };
   it('Should return initial state', () => {
     const action = { type: 'RATE_ARTICLE_BEGIN', payload: '' };

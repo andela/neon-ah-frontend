@@ -3,11 +3,13 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { Button } from 'semantic-ui-react';
+import { Button, Grid } from 'semantic-ui-react';
 import * as singleArticleAction from '../../../action/readArticle/readArticleActions';
 import Header from '../../View/Header/Header';
 import Footer from '../../View/Footer/LandingPageFooter';
 import LoggedInHeader from '../../View/Header/LoggedInHeader/LoggedInHeader';
+import LoggedInHeaderResponsive from '../../View/Header/LoggedInHeaderResponsive/LoggedInHeaderResponsive';
+import MakeHeaderResponsive from '../../View/Header/MakeHeaderResponsive/MakeHeaderResponsive';
 import LandingPageHeader from '../../View/Header/LandingPageHeader/LandingPageHeader';
 import ArticleBanner from '../../View/Article/ArticleBanner/ArticleBanner';
 import AuthorBreadcrumb from '../../View/Article/AuthorBreadcrumb/AuthorBreadcrumb';
@@ -15,8 +17,7 @@ import ArticleRatings from '../../View/Article/ArticleRatings/ArticleRatings';
 import SocialIcons from '../../View/Article/SocialIcon/SocialIcons';
 import Comments from '../../View/Comments/Comments';
 import NotFound from '../../View/NotFound/NotFound';
-import MakeHeaderResponsive from '../../View/Header/MakeHeaderResponsive/MakeHeaderResponsive';
-import LoggedInHeaderResponsive from '../../View/Header/LoggedInHeaderResponsive/LoggedInHeaderResponsive';
+import RelatedArticles from '../../View/Article/RelatedArticles/RelatedArticles';
 
 class SingleArticle extends Component {
   componentDidMount() {
@@ -100,6 +101,11 @@ class SingleArticle extends Component {
                     <div className="ten wide column">
                       <Comments comments={article.comments} isAuthenticated={isAuthenticated} />
                     </div>
+                  </div>
+                </section>
+                <section>
+                  <div className="ui grid container">
+                    <RelatedArticles />
                   </div>
                 </section>
                 <Footer />

@@ -7,7 +7,7 @@ import {
 } from '../../action/rateArticle/rateArticleAction';
 
 const initialArticleState = {
-  rating: {},
+  rating: 0,
   message: '',
   isLoading: false,
   response: {}

@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { Button, Image } from 'semantic-ui-react';
 import moment from 'moment';
 import PropTypes from 'prop-types';
+import Modal from '../../Modal/Modal';
 
 const AuthorBreadCrumb = ({ src, authorName, userName, date, timeToRead, isAuthenticated }) => {
   const s = date;
@@ -33,7 +34,11 @@ const AuthorBreadCrumb = ({ src, authorName, userName, date, timeToRead, isAuthe
             {timeToRead > 1 ? 'mins' : 'min'}
           </div>
           <div className="two wide column">
-            {isAuthenticated ? <Button className="tiny ui primary basic button">Follow</Button> : null}
+            {isAuthenticated ? (
+              <Button className="tiny ui primary basic button">Follow</Button>
+            ) : (
+              <Modal type="login" triggerEl={<Button className="tiny ui primary basic button">Follow</Button>} />
+            )}
           </div>
         </div>
       </div>

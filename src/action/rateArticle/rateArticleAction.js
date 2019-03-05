@@ -22,9 +22,9 @@ export const rateArticleFailure = error => ({
   }
 });
 
-export const rateArticleSuccess = response => ({
+export const rateArticleSuccess = (response, rating) => ({
   type: RATE_ARTICLE_SUCCESS,
-  payload: { isLoading: false, article: response.data.payload, response }
+  payload: { isLoading: false, article: response.data.payload, response, rating }
 });
 
 export const rateArticleAction = (articleSlug, articleId, rating) => async dispatch => {
@@ -41,7 +41,7 @@ export const rateArticleAction = (articleSlug, articleId, rating) => async dispa
         userId
       }
     });
-    dispatch(rateArticleSuccess(response));
+    dispatch(rateArticleSuccess(response, rating));
   } catch (error) {
     dispatch(rateArticleFailure(error));
   }

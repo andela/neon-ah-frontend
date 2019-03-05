@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { Rating, Dimmer, Loader } from 'semantic-ui-react';
+import { Rating, Dimmer, Loader, Icon } from 'semantic-ui-react';
 import Modal from '../../Modal/Modal';
 import * as ratingArticle from '../../../../action/rateArticle/rateArticleAction';
 
@@ -13,7 +13,7 @@ class ArticleRatings extends Component {
   };
 
   render() {
-    const { response, loading, isAuthenticated, rating } = this.props;
+    const { response, loading, isAuthenticated, rated, myRating } = this.props;
     if (loading) {
       return (
         <Dimmer active inverted>
@@ -23,19 +23,32 @@ class ArticleRatings extends Component {
     }
     return (
       <div>
-        <Rating
-          maxRating={5}
-          onRate={this.handleRate}
-          defaultRating={rating}
-          size="huge"
-          className="rating"
-          data-test="ArticleRating"
-          disabled={!isAuthenticated}
-        />
+        {isAuthenticated ? (
+          <Rating
+            name="theRating"
+            maxRating={5}
+            onRate={this.handleRate}
+            defaultRating={myRating || rated}
+            size="huge"
+            className="rating"
+            data-test="ArticleRating"
+          />
+        ) : (
+          <Modal
+            type="login"
+            triggerEl={(
+              <Rating
+                maxRating={5}
+                defaultRating={rated}
+                size="huge"
+                className="rating"
+                data-test="ArticleRating"
+                disabled
+/>
+)}
+          />
+        )}
         <pre>
-          {!isAuthenticated && (
-            <Modal type="login" triggerEl={<p className="pointer">Please login to rate an article</p>} />
-          )}
           {response.response && <p className="ui pointing red basic label">{response.response.data.data.message}</p>}
           {response.data && <p className="ui pointing basic label">{response.data.message}</p>}
         </pre>
@@ -45,7 +58,8 @@ class ArticleRatings extends Component {
 }
 
 ArticleRatings.propTypes = {
-  rating: PropTypes.number,
+  myRating: PropTypes.number,
+  rated: PropTypes.number,
   rateArticleAction: PropTypes.func.isRequired,
   response: PropTypes.oneOfType([PropTypes.object]),
   loading: PropTypes.bool,
@@ -54,7 +68,8 @@ ArticleRatings.propTypes = {
   isAuthenticated: PropTypes.bool.isRequired
 };
 ArticleRatings.defaultProps = {
-  rating: 0,
+  myRating: 0,
+  rated: 0,
   response: {},
   loading: false,
   articleSlug: '',
@@ -66,7 +81,7 @@ const mapStateToProps = state => ({
   response: state.rateArticleReducer.response,
   loading: state.rateArticleReducer.isLoading,
   isAuthenticated: state.auth.isAuthenticated,
-  rating: state.readArticleReducer.article.averageRating
+  rated: state.readArticleReducer.article.averageRating
 });
 const mapDispatchToProps = {
   rateArticleAction: ratingArticle.rateArticleAction

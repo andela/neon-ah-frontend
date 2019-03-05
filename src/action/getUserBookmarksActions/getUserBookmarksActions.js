@@ -32,7 +32,6 @@ export const getUserBookmarkActions = () => async dispatch => {
   try {
     dispatch(getBookmarksBegin());
     const response = await makeRequest('/user/bookmarks');
-
     dispatch(getBookmarks(response.data));
   } catch (error) {
     dispatch(getBookmarksFailure(error));
